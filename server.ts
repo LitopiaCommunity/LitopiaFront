@@ -8,13 +8,15 @@ import {join} from 'path';
 import * as compression from 'compression';
 
 import {AppServerModule} from './src/main.server';
-import * as zlib from "zlib";
-import {Z_RLE} from "zlib";
+import { environment } from 'src/environments/environment';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/LitopiaFront/browser');
+  //For firebase fu function folder
+  const website = environment.production ? "browser" : "dist/functions/browser";
+  const distFolder = join(process.cwd(), website);
+
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   server.use(compression({level:9}))

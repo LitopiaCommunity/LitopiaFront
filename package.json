@@ -11,7 +11,8 @@
     "serve:ssr": "node dist/LitopiaFront/server/main.js",
     "build:ssr": "ng build && ng run LitopiaFront:server",
     "prerender": "ng run LitopiaFront:prerender",
-    "prebuild": "gulp compress"
+    "prebuild": "gulp compress",
+    "ci": "npm run prebuild && build:ssr"
   },
   "private": true,
   "dependencies": {
