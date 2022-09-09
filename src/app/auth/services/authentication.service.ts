@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
 import {User} from "./auth-user";
 import {isPlatformBrowser} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {AuthPopupComponent} from "../auth-popup/auth-popup.component";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class AuthenticationService{
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     @Inject('WINDOWS') private windows:Window,
-    private readonly http: HttpClient) {
+    private readonly http: HttpClient,
+    private readonly dialog: MatDialog) {
     this.currentUserSubject = new BehaviorSubject<Partial<User>>({logged:false});
     this.currentUserObs = this.currentUserSubject.asObservable();
     this.updateUserStatus();
@@ -24,9 +27,11 @@ export class AuthenticationService{
     return this.currentUserSubject.value;
   }
 
-  public login(){
+  public async login() {
     if (isPlatformBrowser(this.platformId)) {
-      const child = window.open('/api/auth/login', '', 'toolbar=0,status=0,width=400,height=800')
+      const continueLogin = await this.infoLoginPopup()
+      if (!continueLogin) return;
+      const child = this.popupCenter('/api/auth/login',1000,700)
       const timer = setInterval(() => {
         if (child && child.closed) {
           this.updateUserStatus();
@@ -34,6 +39,17 @@ export class AuthenticationService{
         }
       }, 500);
     }
+  }
+
+  private async infoLoginPopup() {
+    const displayPopupJson = this.windows.localStorage.getItem('display-login-popup')
+    const displayPopup = typeof displayPopupJson === "undefined" || displayPopupJson === null ? true : JSON.parse(displayPopupJson)
+    let openLoginBox = true;
+    if (displayPopup) {
+      const ref = this.dialog.open(AuthPopupComponent, {data: {canLogin: false}})
+      openLoginBox = await firstValueFrom(ref.afterClosed())
+    }
+    return openLoginBox;
   }
 
   public async logout(){
@@ -55,5 +71,11 @@ export class AuthenticationService{
         this.currentUserSubject.next({logged:false})
       },
     })
+  }
+
+  popupCenter(url:string, w:number, h:number){
+    const y = window.top!.outerHeight / 2 + window.top!.screenY - ( h / 2);
+    const x = window.top!.outerWidth / 2 + window.top!.screenX - ( w / 2);
+    return window.open(url, '', `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
   }
 }

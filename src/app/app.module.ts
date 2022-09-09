@@ -8,7 +8,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
@@ -39,6 +39,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ApiModule, Configuration} from "./apis/litopia-api";
 import { environment } from '../environments/environment';
+import { AuthPopupComponent } from './auth/auth-popup/auth-popup.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -61,28 +63,31 @@ import { environment } from '../environments/environment';
     PageHeaderComponent,
     NousRejoindreFormComponent,
     NousRejoindreFormAdhesionComponent,
-    NousRejoindreFormCounselComponent
+    NousRejoindreFormCounselComponent,
+    AuthPopupComponent
   ],
-  imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
-    ApiModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatTooltipModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        BrowserModule.withServerTransition({appId: 'serverApp'}),
+        ApiModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatTooltipModule,
+        HttpClientModule,
+        FlexLayoutModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        FormsModule,
+    ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
     { provide: 'PREFERSCOLOR', useFactory: getPrefersColorSchemeDark },
