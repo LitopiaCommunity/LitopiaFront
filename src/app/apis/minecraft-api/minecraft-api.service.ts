@@ -12,7 +12,7 @@ export class MinecraftApiService {
   constructor(private http:HttpClient) { }
 
   static readonly API_URL = '/proxy/mcapi';
-  static readonly GET_UUID_FROM_USER_PATH = 'users/profiles/minecraft/';
+  static readonly GET_UUID_FROM_USER_PATH = '/users/profiles/minecraft/';
 
   getUUIDFomUser$Response(username: string) {
     return this.http.get(MinecraftApiService.API_URL + MinecraftApiService.GET_UUID_FROM_USER_PATH + username);
