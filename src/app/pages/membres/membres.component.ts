@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SeoService} from "../../utils/seo.service";
 
 @Component({
   selector: 'app-membres',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembresComponent implements OnInit {
 
-  constructor() { }
+  constructor(private seo:SeoService) {
+    this.seo.generateTags({
+      title: 'Litopia - Membres',
+      description: 'Retrouvez la liste des membres de Litopia',
+      //image: 'https://litopia.fr/uneimageàmettre'
+    });
+  }
 
   ngOnInit(): void {
   }
