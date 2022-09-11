@@ -1,0 +1,31 @@
+name: CI to production server
+on:
+  workflow_run:
+    workflows: Tests and builds app
+    branches: main
+    types: completed
+jobs:
+  deploy:
+    # check if the previous job was successful
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            echo "Deploying to production server..."
+            cd ${{ secrets.DEPLOY_PATH }}
+            echo "Pulling latest changes..."
+            git pull
+            echo "Installing dependencies..."
+            npm install
+            echo "Building..."
+            npm run build:ssr
+            echo "Restarting server..."
+            npm run pm2:stop
+            npm run pm2:start
