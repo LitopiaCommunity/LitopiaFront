@@ -41,6 +41,7 @@ import {ApiModule, Configuration} from "./apis/litopia-api";
 import { environment } from '../environments/environment';
 import { AuthPopupComponent } from './auth/auth-popup/auth-popup.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { MembresComponent } from './pages/membres/membres.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     NousRejoindreFormComponent,
     NousRejoindreFormAdhesionComponent,
     NousRejoindreFormCounselComponent,
-    AuthPopupComponent
+    AuthPopupComponent,
+    MembresComponent
   ],
     imports: [
         BrowserModule.withServerTransition({appId: 'serverApp'}),
