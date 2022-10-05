@@ -13,7 +13,7 @@ export class AcceuilComponent implements OnInit {
 
   constructor(private seo: SeoService) {
     this.seo.generateTags({
-      title: 'Litopia - Acceuil',
+      title: 'Litopia - Accueil',
       description: 'Litopia serveur UHC vanialla en 1.19 sur minecraft.',
       //image: 'https://litopia.fr/uneimageàmettre'
     });
