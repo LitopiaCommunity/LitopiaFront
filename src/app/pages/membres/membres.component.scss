@@ -1,0 +1,43 @@
+.members-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+  padding: 40px 10px;
+  min-height: calc(100vh - 100px);
+  &>*{
+    padding: 10px;
+  }
+}
+
+
+.admin-container{
+  order: 0;
+  flex: 1 0 auto;
+  align-self: auto;
+}
+
+.litopien-container{
+  order: 0;
+  flex: 3.5 1 auto;
+  align-self: stretch;
+  &>*{
+    height: calc(100% - 40px);
+  }
+}
+
+.member-header-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  &>*:first-child{
+    flex-grow: 1;
+  }
+}
+
+.card-manager{
+  margin: 0;
+}

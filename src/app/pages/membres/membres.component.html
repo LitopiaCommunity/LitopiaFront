@@ -4,9 +4,28 @@
     [img]="'litopia-comunity'"
     [imgAlt]="'Membres de litopia en chute libre'">
   </app-page-header>
-  <div class="page-content-container" style="min-height: 60vh">
-    <h1 class="mat-h1">Page en construction</h1>
-    <h2>Revenez plus tard ;)</h2>
-  </div>
 </section>
+<article class="members-container">
+  <section class="admin-container">
+    <div class="card card-manager">
+      <div>
+      <h1>Administrateur</h1>
+      <hr>
+      </div>
+    </div>
+  </section>
+  <section class="litopien-container">
+    <div class="card card-manager">
+      <div class="member-header-container">
+        <h1>Membres du serveur</h1>
+        <mat-form-field appearance="outline">
+          <mat-label>
+            <mat-icon>search</mat-icon>
+            <span>Recherche</span></mat-label>
+          <input matInput/>
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+</article>
 <app-footer></app-footer>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SeoService} from "../../utils/seo.service";
+import {UsersService} from "../../apis/litopia-api";
 
 @Component({
   selector: 'app-membres',
@@ -8,7 +9,7 @@ import {SeoService} from "../../utils/seo.service";
 })
 export class MembresComponent implements OnInit {
 
-  constructor(private seo:SeoService) {
+  constructor(private seo:SeoService, private userService:UsersService) {
     this.seo.generateTags({
       title: 'Litopia - Membres',
       description: 'Retrouvez la liste des membres de Litopia',
@@ -17,6 +18,10 @@ export class MembresComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getMember(){
+    return this.userService.usersControllerGetAllUser()
   }
 
 }
