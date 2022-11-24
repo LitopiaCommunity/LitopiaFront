@@ -5,27 +5,30 @@
     [imgAlt]="'Membres de litopia en chute libre'">
   </app-page-header>
 </section>
-<article class="members-container">
-  <section class="admin-container">
-    <div class="card card-manager">
-      <div>
+<section class="members-container">
+  <article class="admin">
+    <section class="card card-manager">
       <h1>Administrateur</h1>
-      <hr>
+      <div class="admin__section">
+
       </div>
-    </div>
-  </section>
-  <section class="litopien-container">
-    <div class="card card-manager">
-      <div class="member-header-container">
-        <h1>Membres du serveur</h1>
-        <mat-form-field appearance="outline">
+    </section>
+  </article>
+  <article class="litopien">
+    <section class="card card-manager">
+      <div class="litopien__header">
+        <h1 class="litopien__header__title">Membres du serveur</h1>
+        <mat-form-field appearance="outline" class="litopien__header__search">
           <mat-label>
             <mat-icon>search</mat-icon>
             <span>Recherche</span></mat-label>
           <input matInput/>
         </mat-form-field>
       </div>
-    </div>
-  </section>
-</article>
+      <div class="litopien__grid">
+
+      </div>
+    </section>
+  </article>
+</section>
 <app-footer></app-footer>
