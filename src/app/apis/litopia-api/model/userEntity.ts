@@ -21,19 +21,22 @@ export interface UserEntity {
     candidature: string;
     candidatureProposalAt: string;
     candidatureAcceptedAt: string;
+    lastActivity: string;
 }
 export namespace UserEntity {
-    export type RoleEnum = 'ghost' | 'candidate' | 'ban' | 'refuse' | 'litopien' | 'active litopien' | 'inactive litopien' | 'litogod' | 'unique god';
+    export type RoleEnum = 'ghost' | 'candidate' | 'pre-accepted' | 'pretopien' | 'litopien' | 'active-litopien' | 'inactive-litopien' | 'ban' | 'refuse' | 'litogod' | 'unique-god';
     export const RoleEnum = {
         Ghost: 'ghost' as RoleEnum,
         Candidate: 'candidate' as RoleEnum,
+        PreAccepted: 'pre-accepted' as RoleEnum,
+        Pretopien: 'pretopien' as RoleEnum,
+        Litopien: 'litopien' as RoleEnum,
+        ActiveLitopien: 'active-litopien' as RoleEnum,
+        InactiveLitopien: 'inactive-litopien' as RoleEnum,
         Ban: 'ban' as RoleEnum,
         Refuse: 'refuse' as RoleEnum,
-        Litopien: 'litopien' as RoleEnum,
-        ActiveLitopien: 'active litopien' as RoleEnum,
-        InactiveLitopien: 'inactive litopien' as RoleEnum,
         Litogod: 'litogod' as RoleEnum,
-        UniqueGod: 'unique god' as RoleEnum
+        UniqueGod: 'unique-god' as RoleEnum
     };
 }
 

@@ -9,8 +9,8 @@
   <article class="admin">
     <section class="card card-manager">
       <h1>Administrateur</h1>
-      <div class="admin__section">
-
+      <div *ngIf="adminObs | async as adminList" class="admin__section">
+        <app-profil-card *ngFor="let admin of adminList" [user]="admin"></app-profil-card>
       </div>
     </section>
   </article>
