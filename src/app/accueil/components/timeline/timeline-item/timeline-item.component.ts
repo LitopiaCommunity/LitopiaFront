@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {rightFadeInAnimation} from "../../../../animations/right-fade-in.animation";
-import {leftFadeInAnimation} from "../../../../animations/left-fade-in.animation";
+import {rightFadeInAnimation} from "../../../animations/right-fade-in.animation";
+import {leftFadeInAnimation} from "../../../animations/left-fade-in.animation";
 
 @Component({
   selector: 'app-timeline-item',

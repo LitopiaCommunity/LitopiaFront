@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ThemesChooserService} from "../../utils/themes-chooser.service";
+import {ThemesChooserService} from "../../common/services/themes-chooser/themes-chooser.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../auth/services/authentication.service";
 import {Observable} from "rxjs";
