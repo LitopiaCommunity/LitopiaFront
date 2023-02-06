@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {upFadeInAnimation} from "../../animations/up-fade-in.animation";
-import {SeoService} from "../../utils/seo.service";
+import {SeoService} from "../../../common/services/seo/seo.service";
 
 @Component({
-  selector: 'app-acceuil',
-  templateUrl: './acceuil.component.html',
-  styleUrls: ['./acceuil.component.scss'],
+  selector: 'container-acceuil',
+  templateUrl: './accueil-container.component.html',
+  styleUrls: ['./accueil-container.component.scss'],
   animations:[upFadeInAnimation]
 })
-export class AcceuilComponent implements OnInit {
+export class AccueilContainer {
   appearSet=new Set<string>();
 
   constructor(private seo: SeoService) {
@@ -17,9 +17,6 @@ export class AcceuilComponent implements OnInit {
       description: 'Litopia serveur UHC vanialla en 1.19 sur minecraft.',
       //image: 'https://litopia.fr/uneimageàmettre'
     });
-  }
-
-  ngOnInit(): void {
   }
 
   appear(appearName:string){

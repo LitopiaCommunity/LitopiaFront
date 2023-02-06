@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {leftFadeInAnimation} from "../../../animations/left-fade-in.animation";
-import {rightFadeInAnimation} from "../../../animations/right-fade-in.animation";
+import {leftFadeInAnimation} from "../../animations/left-fade-in.animation";
+import {rightFadeInAnimation} from "../../animations/right-fade-in.animation";
 
 @Component({
   selector: 'app-season-presentations',

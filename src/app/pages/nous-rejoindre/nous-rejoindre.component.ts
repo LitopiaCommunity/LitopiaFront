@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SeoService} from "../../utils/seo.service";
+import {SeoService} from "../../common/services/seo/seo.service";
 
 @Component({
   selector: 'app-nous-rejoindre',

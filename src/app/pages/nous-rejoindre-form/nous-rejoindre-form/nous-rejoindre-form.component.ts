@@ -13,7 +13,7 @@ import {lastValueFrom, map, switchMap, take, throttleTime} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {SimpleMinecaftAccount} from "../../../apis/minecraft-api/model/simpleMinecaftAccount";
 import {CandidatureProcessService, MinecraftUsersService} from "../../../apis/litopia-api";
-import {uuidConverter} from "../../../utils/uuid-converter";
+import {uuidConverter} from "../../../common/utils/uuid-converter";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
