@@ -16,7 +16,7 @@ import {ThemeChooserComponent} from "./components/layout/navbar/theme-chooser/th
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {RouterLinkWithHref} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {ExtendedModule, FlexModule} from "@angular/flex-layout";
 import {MatTooltipModule} from "@angular/material/tooltip";
 
@@ -41,7 +41,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    RouterLinkWithHref,
+    RouterModule,
     FlexModule,
     MatTooltipModule,
     ExtendedModule,
