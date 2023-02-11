@@ -10,8 +10,8 @@
 @use "app/accueil/components/fullscreen-img-text/fullscreen-img-text.theme.component" as fullscreen-img-text;
 @use "app/accueil/components/timeline/timeline.theme.component" as timeline-container;
 @use "app/accueil/components/timeline/timeline-item/timeline-item.component.theme" as timeline-item;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form.component.theme" as nous-rejoindre;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.theme.component" as nous-rejoindre-form;
+@use "app/nous-rejoindre/containers/nous-rejoindre-form.component.theme" as nous-rejoindre;
+@use "app/nous-rejoindre/containers/nous-rejoindre-form/nous-rejoindre-form.theme.component" as nous-rejoindre-form;
 @use "app/layout/footer/footers.component.theme" as footer;
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.

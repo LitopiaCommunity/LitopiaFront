@@ -1,6 +1,5 @@
 import {Inject, NgModule, PLATFORM_ID} from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -15,22 +14,11 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ThemeChooserComponent} from './layout/navbar/theme-chooser/theme-chooser.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {NousRejoindreComponent} from './pages/nous-rejoindre/nous-rejoindre.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {isPlatformServer} from "@angular/common";
 import {ReglementComponent} from './pages/reglement/reglement.component';
-import {PageHeaderComponent} from './layout/page-header/page-header.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {
-  NousRejoindreFormComponent
-} from './pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.component';
-import {
-  NousRejoindreFormAdhesionComponent
-} from './pages/nous-rejoindre-form/nous-rejoindre-form-adhesion/nous-rejoindre-form-adhesion.component';
-import {
-  NousRejoindreFormCounselComponent
-} from './pages/nous-rejoindre-form/nous-rejoindre-form-counsel/nous-rejoindre-form-counsel.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -42,6 +30,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MembresComponent} from './pages/membres/membres.component';
 import {AccueilModule} from "./accueil/accueil.module";
 import {LitopiaCommonModule} from "./common/litopia-common.module";
+import {NousRejoindreModule} from "./nous-rejoindre/nous-rejoindre.module";
 
 @NgModule({
   declarations: [
@@ -49,20 +38,15 @@ import {LitopiaCommonModule} from "./common/litopia-common.module";
     NavbarComponent,
     ThemeChooserComponent,
     NotFoundComponent,
-    NousRejoindreComponent,
     FooterComponent,
     ReglementComponent,
-    PageHeaderComponent,
-    PageHeaderComponent,
-    NousRejoindreFormComponent,
-    NousRejoindreFormAdhesionComponent,
-    NousRejoindreFormCounselComponent,
     AuthPopupComponent,
     MembresComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AccueilModule,
+    NousRejoindreModule,
     LitopiaCommonModule,
     ApiModule,
     AppRoutingModule,
