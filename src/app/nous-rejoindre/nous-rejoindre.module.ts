@@ -17,6 +17,7 @@ import {TextFieldModule} from "@angular/cdk/text-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
+import {ReglementComponent} from "./containers/reglement/reglement.component";
 
 
 
@@ -26,6 +27,7 @@ import {MatButtonModule} from "@angular/material/button";
     NousRejoindreFormComponent,
     NousRejoindreFormAdhesionComponent,
     NousRejoindreFormCounselComponent,
+    ReglementComponent,
   ],
   imports: [
     CommonModule,

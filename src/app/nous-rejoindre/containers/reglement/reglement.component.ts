@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SeoService} from "../../common/services/seo/seo.service";
+import {SeoService} from "../../../common/services/seo/seo.service";
 
 @Component({
   selector: 'app-reglement',

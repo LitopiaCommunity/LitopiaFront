@@ -17,7 +17,6 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {isPlatformServer} from "@angular/common";
-import {ReglementComponent} from './pages/reglement/reglement.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -26,10 +25,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ApiModule, Configuration} from "./apis/litopia-api";
 import {environment} from '../environments/environment';
 import {MatDialogModule} from "@angular/material/dialog";
-import {MembresComponent} from './pages/membres/membres.component';
 import {AccueilModule} from "./accueil/accueil.module";
 import {LitopiaCommonModule} from "./common/litopia-common.module";
 import {NousRejoindreModule} from "./nous-rejoindre/nous-rejoindre.module";
+import {MembresModule} from "./membres/membres.module";
 
 @NgModule({
   declarations: [
@@ -38,14 +37,13 @@ import {NousRejoindreModule} from "./nous-rejoindre/nous-rejoindre.module";
     ThemeChooserComponent,
     NotFoundComponent,
     FooterComponent,
-    ReglementComponent,
-    MembresComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AccueilModule,
     NousRejoindreModule,
     LitopiaCommonModule,
+    MembresModule,
     ApiModule,
     AppRoutingModule,
     BrowserAnimationsModule,
