@@ -4,7 +4,7 @@ import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
 import {User} from "./auth-user";
 import {isPlatformBrowser} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {AuthPopupComponent} from "../auth-popup/auth-popup.component";
+import {AuthPopupComponent} from "../../components/auth-popup/auth-popup.component";
 
 @Injectable({
   providedIn: 'root'

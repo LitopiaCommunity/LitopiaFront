@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthenticationService} from "../../../auth/services/authentication.service";
+import {AuthenticationService} from "../../../common/services/authentification/authentication.service";
 import {MinecraftApiService} from "../../../apis/minecraft-api/minecraft-api.service";
 import {
   AbstractControl,
