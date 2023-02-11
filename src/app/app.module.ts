@@ -3,28 +3,13 @@ import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NavbarComponent} from './layout/navbar/navbar.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatButtonModule} from "@angular/material/button";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {ThemeChooserComponent} from './layout/navbar/theme-chooser/theme-chooser.component';
+import {MatIconRegistry} from "@angular/material/icon";
 import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {FooterComponent} from './layout/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {isPlatformServer} from "@angular/common";
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ApiModule, Configuration} from "./apis/litopia-api";
 import {environment} from '../environments/environment';
-import {MatDialogModule} from "@angular/material/dialog";
 import {AccueilModule} from "./accueil/accueil.module";
 import {LitopiaCommonModule} from "./common/litopia-common.module";
 import {NousRejoindreModule} from "./nous-rejoindre/nous-rejoindre.module";
@@ -33,10 +18,7 @@ import {MembresModule} from "./membres/membres.module";
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    ThemeChooserComponent,
     NotFoundComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -47,22 +29,7 @@ import {MembresModule} from "./membres/membres.module";
     ApiModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatTooltipModule,
     HttpClientModule,
-    FlexLayoutModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    FormsModule,
   ],
   providers: [
     {provide: 'LOCALSTORAGE', useFactory: getLocalStorage},

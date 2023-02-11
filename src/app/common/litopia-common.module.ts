@@ -10,6 +10,15 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {FooterComponent} from "./components/layout/footer/footer.component";
+import {NavbarComponent} from "./components/layout/navbar/navbar.component";
+import {ThemeChooserComponent} from "./components/layout/navbar/theme-chooser/theme-chooser.component";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {RouterLinkWithHref} from "@angular/router";
+import {ExtendedModule, FlexModule} from "@angular/flex-layout";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -19,6 +28,9 @@ import {MatButtonModule} from "@angular/material/button";
     PageHeaderComponent,
     AppearDirective,
     AuthPopupComponent,
+    FooterComponent,
+    NavbarComponent,
+    ThemeChooserComponent,
   ],
   imports: [
     CommonModule,
@@ -26,11 +38,20 @@ import {MatButtonModule} from "@angular/material/button";
     FormsModule,
     MatDialogModule,
     MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
+    RouterLinkWithHref,
+    FlexModule,
+    MatTooltipModule,
+    ExtendedModule,
   ],
   exports: [
     AppearDirective,
     PictureContentDeliveryComponent,
     PageHeaderComponent,
+    FooterComponent,
+    NavbarComponent,
   ]
 })
 export class LitopiaCommonModule { }

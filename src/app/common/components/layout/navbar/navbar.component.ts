@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ThemesChooserService} from "../../common/services/themes-chooser/themes-chooser.service";
+import {ThemesChooserService} from "../../../services/themes-chooser/themes-chooser.service";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../../common/services/authentification/authentication.service";
+import {AuthenticationService} from "../../../services/authentification/authentication.service";
 import {Observable} from "rxjs";
-import {User} from "../../common/services/authentification/auth-user";
+import {User} from "../../../services/authentification/auth-user";
 
 @Component({
   selector: 'app-navbar',

@@ -18,6 +18,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {ReglementComponent} from "./containers/reglement/reglement.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -40,6 +41,7 @@ import {ReglementComponent} from "./containers/reglement/reglement.component";
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatSnackBarModule,
   ]
 })
 export class NousRejoindreModule { }
