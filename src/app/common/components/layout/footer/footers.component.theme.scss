@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $background-palette: map.get($color-config, 'background');
+
+  $bg-10:mat.get-color-from-palette($background-palette,10);
+
+  .litopia-footer{
+    background-color: $bg-10;
+  }
+}
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+  /*
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include typography($theme);
+  }*/
+}

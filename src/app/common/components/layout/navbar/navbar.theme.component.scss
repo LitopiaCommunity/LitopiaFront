@@ -1,0 +1,53 @@
+@use 'sass:map';
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+
+  $primary-color:mat.get-color-from-palette($primary-palette, 200);
+
+  .litopia-title {
+    color: $primary-color;
+    font-weight: 600;
+  }
+  .nav-link:hover {
+    color: $primary-color;
+  }
+  // selected / current nav link style
+  .selected {
+    color: $primary-color;
+  }
+
+  .navbar-container-lg{
+    border-bottom: $primary-color solid 2px;
+  }
+
+  .navbar-container-lg .nav-link:hover::after, .navbar-container-lg .nav-link:hover::before {
+    background-color: $primary-color;
+  }
+
+  .topbar-container-sm{
+    border-bottom: solid $primary-color 2px;
+  }
+
+  .navbar-container-sm{
+    border-top: $primary-color solid 2px;
+  }
+}
+
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+  /*
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include typography($theme);
+  }*/
+}

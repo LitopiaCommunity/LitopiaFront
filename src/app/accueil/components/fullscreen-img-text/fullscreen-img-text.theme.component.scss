@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '../../../../../node_modules/@angular/material/index' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  $background-palette: map.get($color-config, 'background');
+  $bg-card:mat.get-color-from-palette($background-palette, 'card');
+  $bg-5:mat.get-color-from-palette($background-palette,5);
+  $bg-10:mat.get-color-from-palette($background-palette,10);
+  $bg-20:mat.get-color-from-palette($background-palette,20);
+  $bg-30:mat.get-color-from-palette($background-palette,30);
+  $primary-palette: map.get($color-config, 'accent');
+  $primary-dark:mat.get-color-from-palette($primary-palette, 'darker');
+  $primary-main:mat.get-color-from-palette($primary-palette, 'main');
+  $primary-light:mat.get-color-from-palette($primary-palette, 'lighter');
+
+  .transparent-theme-gradiant-bg{
+    background: linear-gradient(90deg, rgba($bg-10,0.9) 0%, rgba($bg-20,0.75) 35%, rgba($bg-30,0.5) 100%);
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

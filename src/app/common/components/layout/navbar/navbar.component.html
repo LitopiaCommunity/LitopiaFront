@@ -1,0 +1,84 @@
+<header>
+  <mat-toolbar class="navbar-container-lg" role="heading" aria-level="1">
+    <h1 class="litopia-title">LITOPIA</h1>
+    <nav>
+      <ul>
+        <li class="nav-link" [class.selected]="checkUrl('/')">
+          <a href="/nous-rejoindre" routerLink="">Accueil</a>
+        </li>
+        <li class="nav-link" [class.selected]="checkUrl('/nous-rejoindre')">
+          <a href="/nous-rejoindre" routerLink="nous-rejoindre">Nous rejoindre</a>
+        </li>
+        <li class="nav-link" [class.selected]="checkUrl('/membres')">
+          <a href="/membres" routerLink="membres">Membres</a>
+        </li>
+        <li class="nav-link">
+          <a href="https://www.paypal.me/litopia">Nous Soutenir</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="flex-stretch"></div>
+    <div *ngIf="authObs() | async as user">
+      <button *ngIf="!user.logged" mat-stroked-button style="font-size: 13px" color="primary" (click)="login()">
+        Se connecter
+      </button>
+      <div *ngIf="user.logged">
+        <button mat-icon-button>
+          <img class="pp" src="https://cdn.discordapp.com/avatars/{{user.discordID}}/{{user.discordAvatar}}.png" referrerpolicy="no-referrer" [matMenuTriggerFor]="menu" alt="avatar">
+        </button>
+        <mat-menu #menu="matMenu">
+          <p mat-menu-item disableRipple>Bienvenue {{user.discordNickname}} !</p>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Déconnection</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <app-theme-chooser></app-theme-chooser>
+  </mat-toolbar>
+
+  <mat-toolbar class="topbar-container-sm" role="heading" aria-level="2">
+    <h1 class="litopia-title">LITOPIA</h1>
+    <div class="flex-stretch"></div>
+    <button mat-stroked-button style="font-size: 13px" color="primary" (click)="login()">
+      Se connecter
+    </button>
+    <app-theme-chooser></app-theme-chooser>
+  </mat-toolbar>
+
+  <mat-toolbar  class="navbar-container-sm" role="heading" aria-level="1">
+    <nav>
+      <ul class="nav-sub-container">
+        <li class="nav-link" [class.selected]="checkUrl('/')">
+          <a mat-button href="/" routerLink="">
+            <div class="nav-button-text">
+              <mat-icon>home</mat-icon>
+              <span>Accueil</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-link" [class.selected]="checkUrl('/nous-rejoindre')">
+          <a mat-button href="/nous-rejoindre" routerLink="nous-rejoindre">
+            <div class="nav-button-text">
+              <mat-icon>send</mat-icon>
+              <span>Nous rejoindre</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-link" [class.selected]="checkUrl('/membres')">
+          <a mat-button href="/membres" routerLink="/membres">
+            <div class="nav-button-text">
+              <mat-icon>groupe</mat-icon>
+              <span>Membres</span>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+  </mat-toolbar>
+</header>

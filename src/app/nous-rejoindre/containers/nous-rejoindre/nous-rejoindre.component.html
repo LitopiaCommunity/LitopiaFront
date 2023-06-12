@@ -1,0 +1,63 @@
+<section>
+  <app-page-header
+    [title]="'Nous Rejoindre'"
+    [img]="'litopia-s4-consula'"
+    [imgAlt]="'Consulat de litopia'">
+  </app-page-header>
+  <div class="page-content-container">
+    <article class="card-container-row">
+      <div>
+        <h2>COMMENT NOUS REJOINDRE ?</h2>
+        <h3 class="mat-subheading-2 underline-title">INTRODUCTION</h3>
+        <p class="darkerText">Si tu es ici, c'est que Litopia t'intéresse. Notre serveur est ouvert sous forme de
+          candidature&nbsp;<strong><em>(whitelist)</em></strong>.
+          Nous restreignons l'arrivée de nouveaux joueurs dans le but de permettre à la communauté
+          de
+          bien intégrer chacun des arrivants, histoire d'avoir une vraie communauté soudée pour accueillir
+          d'autres
+          personnes. D'un autre côté, cela nous permet aussi d'éviter les joueurs "troll" et ceux qui ne sont
+          pas
+          réellement motivés.
+          En attendant rejoins-nous sur notre discord ;)</p>
+        <div class="call-to-action-container">
+          <a mat-stroked-button href="https://discord.gg/DTtDnSqg7X" target="_blank"><mat-icon svgIcon="discord"></mat-icon><span>&nbsp;Rejoindre notre discord</span></a>
+        </div>
+      </div>
+      <app-picture-content-delivery [name]="'litopia-comunity'"
+                                    [alt]="'communauté de litopia qui forme un cercle'"></app-picture-content-delivery>
+    </article>
+    <div class="flex-row">
+      <div>
+        <article class="card-container-row">
+          <h2>RÈGLEMENT INTERNE DE LITOPIA</h2>
+          <div class="flex-column">
+            <p class="darkerText">Pour intégrer notre serveur, il te faudra avant tout lire et accepter&nbsp;<strong>nos
+              règles</strong>. En cas de non respect de celles-ci, les joueurs concernés seront sanctionnés sur-le-champ.
+            </p>
+            <div class="call-to-action-container">
+              <a mat-stroked-button color="primary" href="/nous-rejoindre/reglement" routerLink="/nous-rejoindre/reglement">
+                Réglement
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div>
+        <article class="card-container-row">
+          <h2>CANDIDATURES</h2>
+          <div class="flex-column">
+            <p class="darkerText">Vous vous sentez prêt pour nous rejoindre ? Vous avez hâte de commencer votre aventure ?
+              Alors c'est parti
+              !</p>
+            <div class="call-to-action-container">
+              <a mat-flat-button color="primary" href="/nous-rejoindre/1" routerLink="/nous-rejoindre/1">
+                <span>Passer aux candidatures</span>
+                <mat-icon>arrow_forward</mat-icon>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
