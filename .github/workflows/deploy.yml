@@ -27,5 +27,5 @@ jobs:
             echo "Building..."
             npm run build:ssr
             echo "Restarting server..."
-            npm run pm2:stop
-            npm run pm2:start
+            npm run stop
+            npm run start
