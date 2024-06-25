@@ -1,0 +1,8 @@
+<a [title]="getUserName()" [routerLink]="['/','membres','profil',getUserName()]" class="profile-link">
+  <img class="profile-img" [src]="getProfilePicture()"
+       alt="Tête de {{getUserName()}}">
+  <div class="profil-content">
+    <p class="user-name">{{ getUserName() }}</p>
+    <p class="user-date">{{ user?.candidatureAcceptedAt | date:'dd MMM yyyy' }}</p>
+  </div>
+</a>

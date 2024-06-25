@@ -12,9 +12,9 @@
         <li class="nav-link">
           <a href="https://bluemap.litopia.fr">Bluemap</a>
         </li>
-        <!--<li class="nav-link" [class.selected]="checkUrl('/membres')">
+        <li class="nav-link" [class.selected]="checkUrl('/membres')">
           <a href="/membres" routerLink="membres">Membres</a>
-        </li>-->
+        </li>
         <li class="nav-link">
           <a href="https://www.paypal.me/litopia">Nous Soutenir</a>
         </li>
@@ -30,7 +30,7 @@
           <img class="pp" src="https://cdn.discordapp.com/avatars/{{user.discordID}}/{{user.discordAvatar}}.png" referrerpolicy="no-referrer" [matMenuTriggerFor]="menu" alt="avatar">
         </button>
         <mat-menu #menu="matMenu">
-          <p mat-menu-item disableRipple>Bienvenue {{user.discordNickname}} !</p>
+          <p mat-menu-item [disableRipple]="true">Bienvenue {{user.discordNickname}} !</p>
           <button mat-menu-item (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>
             <span>Déconnection</span>

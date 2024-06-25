@@ -13,6 +13,7 @@
 @use "app/pages/nous-rejoindre-form/nous-rejoindre-form.component.theme" as nous-rejoindre;
 @use "app/pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.theme.component" as nous-rejoindre-form;
 @use "app/layout/footer/footers.component.theme" as footer;
+@use "app/pages/membres/profil-card/profil-card.theme.component" as profil-card;
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 @include mat.core();
@@ -248,6 +249,7 @@ $darkTheme: (
 @include nous-rejoindre.theme($darkTheme);
 @include nous-rejoindre-form.theme($darkTheme);
 @include footer.theme($darkTheme);
+@include profil-card.theme($darkTheme);
 
 body{
   background-color: $dark-background;
@@ -267,6 +269,7 @@ body{
   @include nous-rejoindre.theme($lightTheme);
   @include nous-rejoindre-form.theme($lightTheme);
   @include footer.theme($lightTheme);
+  @include profil-card.theme($lightTheme);
 }
 body.light-theme{
   background-color: $light-background;

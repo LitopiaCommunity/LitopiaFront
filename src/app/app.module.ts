@@ -42,6 +42,8 @@ import { environment } from '../environments/environment';
 import { AuthPopupComponent } from './auth/auth-popup/auth-popup.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MembresComponent } from './pages/membres/membres.component';
+import { ProfilCardComponent } from './pages/membres/profil-card/profil-card.component';
+import {ProfilComponent} from "./pages/profil/profil.component";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { MembresComponent } from './pages/membres/membres.component';
     NousRejoindreFormAdhesionComponent,
     NousRejoindreFormCounselComponent,
     AuthPopupComponent,
-    MembresComponent
+    MembresComponent,
+    ProfilCardComponent,
+    ProfilComponent
   ],
     imports: [
         BrowserModule.withServerTransition({appId: 'serverApp'}),

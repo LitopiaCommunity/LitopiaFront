@@ -4,9 +4,36 @@
     [img]="'litopia-comunity'"
     [imgAlt]="'Membres de litopia en chute libre'">
   </app-page-header>
-  <div class="page-content-container" style="min-height: 60vh">
-    <h1 class="mat-h1">Page en construction</h1>
-    <h2>Revenez plus tard ;)</h2>
-  </div>
+</section>
+<section class="members-container">
+  <article class="admin">
+    <section class="card card-manager">
+      <h1>Unique Dieux</h1>
+      <div *ngIf="uniqueGodObs | async as uniqueGodList" class="admin__section">
+        <app-profil-card *ngFor="let admin of uniqueGodList" [user]="admin"></app-profil-card>
+      </div>
+      <h1>Litodieux</h1>
+      <div *ngIf="litogodObs | async as litogodList" class="admin__section">
+        <app-profil-card *ngFor="let litoGod of litogodList" [user]="litoGod"></app-profil-card>
+      </div>
+    </section>
+  </article>
+  <article class="litopien">
+    <section class="card card-manager">
+      <div class="litopien__header">
+        <h1 class="litopien__header__title">Membres du serveur</h1>
+        <mat-form-field appearance="outline" class="litopien__header__search">
+          <mat-label>
+            <mat-icon>search</mat-icon>
+            <span>Recherche</span></mat-label>
+          <input matInput [formControl]="searchControl"/>
+        </mat-form-field>
+      </div>
+      <div class="litopien__grid">
+
+        <app-profil-card *ngFor="let user of membersFinalObs | async" [user]="user"></app-profil-card>
+      </div>
+    </section>
+  </article>
 </section>
 <app-footer></app-footer>

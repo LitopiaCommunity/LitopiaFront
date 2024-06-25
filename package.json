@@ -12,7 +12,7 @@
     "build:ssr": "ng build && ng run LitopiaFront:server",
     "prerender": "ng run LitopiaFront:prerender",
     "prebuild": "gulp compress",
-    "openAPIGenerator": "sudo openapi-generator-cli generate -i http://localhost:8080/api-json -g typescript-angular -o ./src/app/apis/litopia-api",
+    "openAPIGenerator": "openapi-generator-cli generate -i http://localhost:8000/api-json -g typescript-angular -o ./src/app/apis/litopia-api",
     "pm2:stop": "pm2 stop litopia-front",
     "pm2:start": "pm2 start dist/LitopiaFront/server/main.js --name litopia-front"
   },
