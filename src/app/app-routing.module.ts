@@ -9,6 +9,7 @@ import {NousRejoindreFormCounselComponent} from "./pages/nous-rejoindre-form/nou
 import {NousRejoindreFormComponent} from "./pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.component";
 import {ReglementComponent} from "./pages/reglement/reglement.component";
 import {MembresComponent} from "./pages/membres/membres.component";
+import {ProfilComponent} from "./pages/profil/profil.component";
 
 const routes: Routes = [
   {title:'Litopia - Acceuil', path:'', component:AcceuilComponent, data: { animation: 'acceuil' }},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {title:'Litopia - Nous Rejoindre', path:'nous-rejoindre/3', component:NousRejoindreFormComponent, data: { animation: 'nous-rejoindre-3' }},
   {title:'Litopia - Réglement', path:'reglement', component:ReglementComponent, data: { animation: 'reglement' }},
   {title:'Litopia - Membres', path:'membres', component:MembresComponent, data: { animation: 'membres' }},
+  {title:'Litopia - Membres', path:'membres/profil/:id', component:ProfilComponent, data: { animation: 'profil' }},
   { path: '**', component:NotFoundComponent, data: { animation: '404' }},
 ];
 

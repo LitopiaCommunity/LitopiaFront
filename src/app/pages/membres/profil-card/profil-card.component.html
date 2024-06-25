@@ -1,6 +1,8 @@
-<article>
-  <img src="https://mc-heads.net/head/{{user!.minecraftUser!.minecraftUUID!}}/left" alt="Tête de {{user!.minecraftUser!.minecraftNickname!}}">
-  <div>
-  <h2>{{user!.minecraftUser!.minecraftNickname!}}</h2>
+<a [title]="getUserName()" [routerLink]="['/','membres','profil',getUserName()]" class="profile-link">
+  <img class="profile-img" [src]="getProfilePicture()"
+       alt="Tête de {{getUserName()}}">
+  <div class="profil-content">
+    <p class="user-name">{{ getUserName() }}</p>
+    <p class="user-date">{{ user?.candidatureAcceptedAt | date:'dd MMM yyyy' }}</p>
   </div>
-</article>
+</a>

@@ -1,0 +1,58 @@
+@use 'sass:map';
+@use '../../../../../node_modules/@angular/material/index' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+  $primary-color:mat.get-color-from-palette($primary-palette, 200);
+
+
+  $background-palette: map.get($color-config, 'background');
+  $bg-10:mat.get-color-from-palette($background-palette, 10);
+  $bg-card:mat.get-color-from-palette($background-palette, 'card');
+  $bg-card-lighter: lighten($bg-card, 10%);
+  $bg-card-hover: darken($bg-card, 10%);
+  $bg-card-active: darken($bg-card, 20%);
+  $bg-card-visited: darken($bg-card, 2%);
+
+  .profile-link {
+    background: $bg-card-lighter;
+  }
+
+  .profile-link:hover {
+    background: $bg-card-hover;
+  }
+
+  .profile-link:active {
+    background: $bg-card-active;
+  }
+
+  .profile-link:visited {
+    background: $bg-card-visited;
+    &:hover {
+      background: $bg-card-hover;
+    }
+    &:active {
+      background: $bg-card-active;
+    }
+  }
+
+  .user-date {
+    color: grey;
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+  /*
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include typography($theme);
+  }*/
+}
