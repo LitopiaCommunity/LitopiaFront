@@ -70,5 +70,20 @@ export const articles : TimelineArticle[] = [
     datetime: "2021-12-04 16:00",
     description: "Saison marquée par une forte rivalité entre la Licorp (les capitalistes) et l'Union Litopiste (les communistes). Une saison de guerre froide dans les montagnes. Conflit à suivre...",
     image:""
+  },
+  {
+    title: "Litopia saison 6",
+    displayDate: "Septembre 2022",
+    datetime: "2022-05-09 16:00",
+    description: "Cette saison a été marquée par une génération incroyable, mais également par une importante propagande de waifus et la création d'une principauté alliée avec tous. Elle représente aussi l'apogée de la Likorp, ayant remporté la bataille économique contre l'Union Litopiste.",
+    image:""
+  },
+  {
+    title: "Litopia saison 7",
+    displayDate: "Juin 2023",
+    datetime: "2023-10-06 16:00",
+    description: "La saison 7 a été marquée par la reconstruction d'un spawn déchu et la création d'une immense ville japonaise. C'est également une saison riche en événements, certains offrant même la possibilité de gagner de véritables lots !",
+    image:""
   }
+
 ]
