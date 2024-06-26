@@ -17,7 +17,7 @@ $colors: (
 );
 
 @each $role, $color in $colors {
-  .#{$role} {
+  .role-#{$role} {
     color: $color;
   }
 }

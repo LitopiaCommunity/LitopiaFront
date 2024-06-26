@@ -27,7 +27,7 @@
         <img class="profile-img" alt="Avatar de {{getUserName(member)}}" [src]="getMnecraftFullSkin(member)">
         <h1>{{ getUserName(member) }}</h1>
 
-        <h2 class="role" matTooltip="Rôle de du Litopien" [ngClass]="member!.role">
+        <h2 class="role" matTooltip="Rôle de du Litopien" [ngClass]="'role-'+member!.role">
           {{ getRole(member) }}
         </h2>
         <p matTooltip="Date de proposition de candidature">
