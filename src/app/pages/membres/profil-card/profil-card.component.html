@@ -3,6 +3,7 @@
        alt="Tête de {{getUserName()}}">
   <div class="profil-content">
     <p class="user-name">{{ getUserName() }}</p>
+    <p class="role-name" [ngClass]="user!.role ?? ''">{{getRole()}}</p>
     <p class="user-date">{{ user?.candidatureAcceptedAt | date:'dd MMM yyyy' }}</p>
   </div>
 </a>

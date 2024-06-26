@@ -18,4 +18,33 @@ export class ProfilCardComponent  {
       `https://mc-heads.net/head/${this.user.minecraftUser.minecraftUUID}/left` :
       this.user?.discordAvatar ? `https://cdn.discordapp.com/avatars/${this.user?.discordID}/${this.user?.discordAvatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png'
   }
+
+  getRole(){
+    switch (this.user?.role){
+      case "ghost":
+        return "👻 Ghost";
+      case "candidate":
+        return "📋 Candidat";
+      case "pre-accepted":
+        return "🗳️ Pre-Accepted";
+      case "pretopien":
+        return "🌟 Pretopien";
+      case "litopien":
+        return "🏅 Litopien";
+      case "active-litopien":
+        return "🔥 Litopien Actif";
+      case "inactive-litopien":
+        return "🛌 Litopien Inactif";
+      case "ban":
+        return "🚫 Bani";
+      case "refuse":
+        return "❌ Refusé";
+      case "litogod":
+        return "👼 Litodieux";
+      case "unique-god":
+        return "🔱 Unique Dieux";
+      default:
+        return "❓ Unknown Role";
+    }
+  }
 }
