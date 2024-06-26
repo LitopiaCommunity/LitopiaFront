@@ -19,7 +19,7 @@ const routes: Routes = [
   {title:'Litopia - Nous Rejoindre', path:'nous-rejoindre/3', component:NousRejoindreFormComponent, data: { animation: 'nous-rejoindre-3' }},
   {title:'Litopia - Réglement', path:'reglement', component:ReglementComponent, data: { animation: 'reglement' }},
   {title:'Litopia - Membres', path:'membres', component:MembresComponent, data: { animation: 'membres' }},
-  {title:'Litopia - Membres', path:'membres/profil/:id', component:ProfilComponent, data: { animation: 'profil' }},
+  {title:'Litopia - Membres', path:'membres/profile/:id', component:ProfilComponent, data: { animation: 'profil' }},
   { path: '**', component:NotFoundComponent, data: { animation: '404' }},
 ];
 
