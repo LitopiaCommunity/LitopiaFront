@@ -11,6 +11,55 @@
   </a>
 </div>
 -->
-<div>
-  En construction
-</div>
+<ng-container *ngIf="memberObs | async as member; else loading" xmlns="http://www.w3.org/1999/html">
+  <section>
+    <app-page-header
+      [title]="getUserName(member)"
+      [profilePicture]="getProfilePicture(member)"
+      [img]="'litopia-comunity'"
+      [imgAlt]="'Membres de litopia en chute libre'"
+      [compact]="true">
+    </app-page-header>
+  </section>
+  <section class="profile-container">
+    <article class="profile-recap">
+      <section class="card card-manager">
+        <img class="profile-img" alt="Avatar de {{getUserName(member)}}" [src]="getMnecraftFullSkin(member)">
+        <h1>{{ getUserName(member) }}</h1>
+
+        <h2 class="role" matTooltip="Rôle de du Litopien" [ngClass]="member!.role">
+          {{ getRole(member) }}
+        </h2>
+        <p matTooltip="Date de proposition de candidature">
+          <span role="img" aria-label="calendar">📅</span>
+          {{ member.candidatureProposalAt | date: 'dd MMM yyyy à hh:mm' }}
+        </p>
+        <p matTooltip="Date d'acceptation de candidature">
+          <span role="img" aria-label="calendar">📅</span>
+          {{ member.candidatureAcceptedAt | date: 'dd MMM yyyy à hh:mm' }}
+        </p>
+        <p matTooltip="Date de dernière connexion">
+          <span role="img" aria-label="rocket">🚀</span>
+          {{ member.lastActivity | date: 'dd MMM yyyy à hh:mm' }}
+        </p>
+      </section>
+    </article>
+    <article class="candidature">
+      <section class="card card-manager">
+        <h1>Candidature</h1>
+        <markdown [data]="member.candidature"></markdown>
+      </section>
+    </article>
+  </section>
+  <app-footer></app-footer>
+</ng-container>
+
+<ng-template #loading>
+  <section>
+    <app-page-header
+      [title]="'Profil de ...'"
+      [img]="'litopia-comunity'"
+      [imgAlt]="'Membres de litopia en chute libre'">
+    </app-page-header>
+  </section>
+</ng-template>

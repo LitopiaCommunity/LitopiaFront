@@ -1,4 +1,4 @@
-<div class="mid-screen-section section-bottom-radius">
+<div class="mid-screen-section section-bottom-radius" [class.screen-section-compact]="compact">
   <app-picture-content-delivery [name]="img" [alt]="imgAlt" [fullScreenImg]="true"
                                 [classNames]="['section-bottom-radius']"></app-picture-content-delivery>
   <div class="
@@ -8,6 +8,7 @@
     section-bottom-radius
     header-content-container
     underline-center">
+    <img class="profile-img" *ngIf="profilePicture" [src]="profilePicture">
     <h1 class="mat-title big-title underline">{{title}}</h1>
   </div>
 </div>

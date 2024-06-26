@@ -44,6 +44,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { MembresComponent } from './pages/membres/membres.component';
 import { ProfilCardComponent } from './pages/membres/profil-card/profil-card.component';
 import {ProfilComponent} from "./pages/profil/profil.component";
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {ProfilComponent} from "./pages/profil/profil.component";
         MatSnackBarModule,
         MatDialogModule,
         FormsModule,
+        MarkdownModule.forRoot(),
     ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },

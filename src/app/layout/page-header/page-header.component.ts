@@ -9,6 +9,8 @@ export class PageHeaderComponent implements OnInit {
   @Input() title!:string;
   @Input() img!:string;
   @Input() imgAlt!:string;
+  @Input() profilePicture!:string;
+  @Input() compact=false;
 
   constructor() { }
 

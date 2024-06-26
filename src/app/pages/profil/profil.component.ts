@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {UsersService, UserEntity} from '../../apis/litopia-api';
 import {Observable} from 'rxjs';
 import {SeoService} from "../../utils/seo.service";
+import {getMnecraftFullSkin, getProfilePicture, getRole, getUserName} from "../../utils/user-default";
 
 @Component({
   selector: 'app-profil',
@@ -31,4 +32,9 @@ export class ProfilComponent implements OnInit {
       image:'https://mc-heads.net/head/'+id+'/100.png'
     });
   }
+
+  protected readonly getUserName = getUserName;
+  protected readonly getProfilePicture = getProfilePicture;
+  protected readonly getMnecraftFullSkin = getMnecraftFullSkin;
+  protected readonly getRole = getRole;
 }

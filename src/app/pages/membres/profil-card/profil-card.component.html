@@ -1,9 +1,9 @@
-<a [title]="getUserName()" [routerLink]="['/','membres','profil',getUserName()]" class="profile-link">
-  <img class="profile-img" [src]="getProfilePicture()"
-       alt="Tête de {{getUserName()}}">
-  <div class="profil-content">
-    <p class="user-name">{{ getUserName() }}</p>
-    <p class="role-name" [ngClass]="user!.role ?? ''">{{getRole()}}</p>
+<a [title]="getUserName(user)" [routerLink]="['/','membres','profil',getUserName(user)]" class="profile-link">
+  <img class="profile-img" [src]="getProfilePicture(user)"
+       alt="Tête de {{getUserName(user)}}">
+  <article class="profil-content">
+    <h2 class="user-name">{{ getUserName(user) }}</h2>
+    <p class="role-name" [ngClass]="user!.role">{{getRole(user)}}</p>
     <p class="user-date">{{ user?.candidatureAcceptedAt | date:'dd MMM yyyy' }}</p>
-  </div>
+  </article>
 </a>
