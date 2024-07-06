@@ -45,6 +45,7 @@ import { MembresComponent } from './pages/membres/membres.component';
 import { ProfilCardComponent } from './pages/membres/profil-card/profil-card.component';
 import {ProfilComponent} from "./pages/profil/profil.component";
 import {MarkdownModule} from "ngx-markdown";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import {MarkdownModule} from "ngx-markdown";
         MatDialogModule,
         FormsModule,
         MarkdownModule.forRoot(),
+        MatSelectModule,
     ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },

@@ -19,9 +19,18 @@
     </section>
   </div>
   <section class="litopien">
-    <article class="card card-manager">
+    <article class="card card-manager litopien__container">
       <div class="litopien__header">
         <h1 class="litopien__header__title">Membres du serveur</h1>
+        <mat-form-field appearance="outline">
+          <mat-label>Tri</mat-label>
+          <mat-select [formControl]="sortControl">
+            <mat-option [value]="SortType.LAST_ACTIVITY">Date d'activité</mat-option>
+            <mat-option [value]="SortType.ARIVAL_DATE">Date d'arrivée</mat-option>
+            <mat-option [value]="SortType.PLAYER_ROLE">Role</mat-option>
+            <mat-option [value]="SortType.PLAYER_NAME">Nom</mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-form-field appearance="outline" class="litopien__header__search">
           <mat-label>
             <mat-icon>search</mat-icon>
