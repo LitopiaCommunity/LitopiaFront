@@ -71,8 +71,8 @@
           </a>
         </li>
 
-        <li class="nav-link">
-          <a mat-button href="/">
+        <li class="nav-link" [class.selected]="checkUrl('/membres')">
+          <a mat-button href="/membres" routerLink="membres">
             <div class="nav-button-text">
               <mat-icon>groupe</mat-icon>
               <span>Membres</span>

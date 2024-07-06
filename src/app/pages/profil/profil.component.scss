@@ -1,4 +1,4 @@
-.profile-container{
+.profile-container {
   display: flex;
   flex-direction: row;
   align-content: flex-start;
@@ -7,14 +7,15 @@
   min-height: calc(100vh - 100px);
   gap: 1rem;
 }
-.role{
+
+.role {
   font-size: 1.2em;
 }
 
-.candidature{
-  flex:1;
+.candidature {
+  flex: 20;
 }
 
-.profile-recap{
-  flex:0 0 15rem
+.profile-recap {
+  flex: 1 0 15rem
 }
