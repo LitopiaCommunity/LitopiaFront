@@ -6,12 +6,14 @@ import {environment} from '../environments/environment';
 
 export interface RuntimeConfig {
   apiBasePath: string;
+  blueMapUrl: string;
 }
 
 @Injectable({providedIn: 'root'})
 export class RuntimeConfigService {
   private config: RuntimeConfig = {
-    apiBasePath: environment.apiBasePath
+    apiBasePath: environment.apiBasePath,
+    blueMapUrl: environment.blueMapUrl
   };
 
   constructor(
@@ -21,8 +23,9 @@ export class RuntimeConfigService {
 
   load(): Promise<void> {
     if (isPlatformServer(this.platformId)) {
-      const env = (typeof process !== 'undefined' ? process.env : {}) as Record<string, string | undefined>;
-      this.config.apiBasePath = env['API_BASE_PATH'] || environment.apiBasePath;
+      const env = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env;
+      this.config.apiBasePath = env?.['API_BASE_PATH'] || environment.apiBasePath;
+      this.config.blueMapUrl = env?.['BLUE_MAP_URL'] || environment.blueMapUrl;
       return Promise.resolve();
     }
 
@@ -31,11 +34,18 @@ export class RuntimeConfigService {
         if (cfg?.apiBasePath) {
           this.config.apiBasePath = cfg.apiBasePath;
         }
+        if (cfg?.blueMapUrl) {
+          this.config.blueMapUrl = cfg.blueMapUrl;
+        }
       })
       .catch(() => {});
   }
 
   get apiBasePath(): string {
     return this.config.apiBasePath;
+  }
+
+  get blueMapUrl(): string {
+    return this.config.blueMapUrl;
   }
 }

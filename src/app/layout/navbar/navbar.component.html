@@ -10,7 +10,7 @@
           <a href="/nous-rejoindre" routerLink="nous-rejoindre">Nous rejoindre</a>
         </li>
         <li class="nav-link">
-          <a href="https://bluemap.litopia.fr">Bluemap</a>
+          <a [attr.href]="blueMapUrl">Bluemap</a>
         </li>
         <li class="nav-link" [class.selected]="checkUrl('/membres')">
           <a href="/membres" routerLink="membres">Membres</a>

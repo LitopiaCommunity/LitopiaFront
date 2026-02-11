@@ -31,7 +31,8 @@ export function app(): express.Express {
   server.get('/runtime-config.json', (req, res) => {
     res.set('Cache-Control', 'no-store');
     res.json({
-      apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath
+      apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath,
+      blueMapUrl: process.env['BLUE_MAP_URL'] || environment.blueMapUrl
     });
   });
 
