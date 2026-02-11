@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBasePath:'http://localhost:8000'
+  apiBasePath:'http://localhost:8000',
+  blueMapUrl:'https://bluemap.litopia.fr'
 };
 
 /*

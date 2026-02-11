@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "../../auth/services/authentication.service";
 import {Observable} from "rxjs";
 import {User} from "../../auth/services/auth-user";
+import {RuntimeConfigService} from "../../runtime-config.service";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,12 @@ import {User} from "../../auth/services/auth-user";
   styleUrls: ['./navbar.component.scss','navbar.desktop.component.scss','navbar.mobile.component.scss','navbar.theme.component.scss'],
 })
 export class NavbarComponent {
-  constructor(private themesChooser:ThemesChooserService,private router: Router, private authenticationService:AuthenticationService) { }
+  constructor(
+    private themesChooser:ThemesChooserService,
+    private router: Router,
+    private authenticationService:AuthenticationService,
+    private runtimeConfig: RuntimeConfigService
+  ) { }
 
   get accent(){
     return this.themesChooser.accent
@@ -31,5 +37,9 @@ export class NavbarComponent {
 
   logout() {
     this.authenticationService.logout()
+  }
+
+  get blueMapUrl() {
+    return this.runtimeConfig.blueMapUrl
   }
 }
