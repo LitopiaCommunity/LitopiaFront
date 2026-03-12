@@ -19,6 +19,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FullscreenImgTextComponent } from './pages/acceuil/fullscreen-img-text/fullscreen-img-text.component';
 import { SeasonPresentationsComponent } from './pages/acceuil/season-presentations/season-presentations.component';
 import { NousRejoindreComponent } from './pages/nous-rejoindre/nous-rejoindre.component';
+import { ArchivesComponent } from './pages/archives/archives.component';
 import { PictureContentDeliveryComponent } from './utils/picture-content-delivery/picture-content-delivery.component';
 import { TimelineComponent } from './pages/acceuil/timeline/timeline.component';
 import { TimelineItemComponent } from './pages/acceuil/timeline/timeline-item/timeline-item.component';
@@ -46,6 +47,8 @@ import { ProfilCardComponent } from './pages/membres/profil-card/profil-card.com
 import {ProfilComponent} from "./pages/profil/profil.component";
 import {MarkdownModule} from "ngx-markdown";
 import {MatSelectModule} from "@angular/material/select";
+import {MatCardModule} from "@angular/material/card";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import {MatSelectModule} from "@angular/material/select";
     FullscreenImgTextComponent,
     SeasonPresentationsComponent,
     NousRejoindreComponent,
+    ArchivesComponent,
     PictureContentDeliveryComponent,
     TimelineComponent,
     TimelineItemComponent,
@@ -97,6 +101,8 @@ import {MatSelectModule} from "@angular/material/select";
         FormsModule,
         MarkdownModule.forRoot(),
         MatSelectModule,
+        MatCardModule,
+        MatChipsModule,
     ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },

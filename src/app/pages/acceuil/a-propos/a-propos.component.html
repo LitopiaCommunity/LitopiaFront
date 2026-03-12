@@ -11,15 +11,15 @@
       <h1>A propos</h1>
     </header>
     <p [@rightFadeInAnimation]="isAppear('p1')"
-       (appear)="appear('p1')">Litopia est un serveur Minecraft Vanilla en UltraHardCore (avec respawn), actuellement en version 1.21 Le PvP est actif et la map illimitée en freebuild. Nous sommes avant tout une communauté soudée, une bande de copains qui se retrouvent pour partager ensemble une aventure sur Minecraft.</p>
+       (appear)="appear('p1')">Litopia est un serveur Minecraft Vanilla en UltraHardCore (avec respawn), actuellement en <strong>version 26.2</strong>. Le PvP est actif et la map illimitée en freebuild. Nous sommes avant tout une communauté soudée, une bande de copains qui se retrouvent pour partager ensemble une aventure sur Minecraft.</p>
     <p [@rightFadeInAnimation]="isAppear('p2')"
-       (appear)="appear('p2')">Pour intégrer notre serveur, il te faudra avant tout lire et accepter certaines règles. En cas de non respect de celles-ci, les joueurs concernés seront sanctionnés sur-le-champ.</p>
+       (appear)="appear('p2')"><strong>Serveur privé réservé aux membres historiques.</strong> Avec l'Ultime Saison, nous entrons dans une nouvelle ère : <strong>Zéro Reset. Construction éternelle.</strong> Cette carte restera en ligne à jamais, monument permanent de notre communauté et témoin de 10 ans d'aventures partagées.</p>
     <div class="call-to-action-container"
          [@rightFadeInAnimation]="isAppear('btn')"
          (appear)="appear('btn')">
-      <a mat-flat-button color="primary" href="/nous-rejoindre" routerLink="/nous-rejoindre">
-        <span>Nous rejoindre&nbsp;</span>
-        <mat-icon>arrow_forward</mat-icon>
+      <a mat-flat-button color="primary" href="/archives" routerLink="/archives">
+        <span>Voir les archives&nbsp;</span>
+        <mat-icon>history</mat-icon>
       </a>
     </div>
   </article>

@@ -4,10 +4,10 @@
     <nav>
       <ul>
         <li class="nav-link" [class.selected]="checkUrl('/')">
-          <a href="/nous-rejoindre" routerLink="">Accueil</a>
+          <a href="/" routerLink="">Accueil</a>
         </li>
-        <li class="nav-link" [class.selected]="checkUrl('/nous-rejoindre')">
-          <a href="/nous-rejoindre" routerLink="nous-rejoindre">Nous rejoindre</a>
+        <li class="nav-link" [class.selected]="checkUrl('/archives')">
+          <a href="/archives" routerLink="archives">🏛️ Archives</a>
         </li>
         <li class="nav-link">
           <a href="https://bluemap.litopia.fr">Bluemap</a>
@@ -62,11 +62,11 @@
           </a>
         </li>
 
-        <li class="nav-link" [class.selected]="checkUrl('/nous-rejoindre')">
-          <a mat-button href="/nous-rejoindre" routerLink="nous-rejoindre">
+        <li class="nav-link" [class.selected]="checkUrl('/archives')">
+          <a mat-button href="/archives" routerLink="archives">
             <div class="nav-button-text">
-              <mat-icon>send</mat-icon>
-              <span>Nous rejoindre</span>
+              <mat-icon>archive</mat-icon>
+              <span>Archives</span>
             </div>
           </a>
         </li>

@@ -1,0 +1,59 @@
+@use 'sass:map';
+@use '../../../../node_modules/@angular/material/index' as mat;
+
+@mixin color($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the palettes
+  $background-palette: map.get($color-config, 'background');
+  $foreground-palette: map.get($color-config, 'foreground');
+
+  // Get colors
+  $bg-card: mat.get-color-from-palette($background-palette, 'card');
+  $text-color: mat.get-color-from-palette($foreground-palette, 'text');
+  $secondary-text: mat.get-color-from-palette($foreground-palette, 'secondary-text');
+  $divider-color: mat.get-color-from-palette($foreground-palette, 'divider');
+
+  .season-card {
+    background-color: $bg-card;
+
+    .season-description {
+      color: $text-color;
+    }
+
+    mat-card-actions {
+      border-top-color: $divider-color;
+    }
+
+    &.unavailable {
+      .season-description {
+        color: $secondary-text;
+      }
+    }
+  }
+
+  .unavailable-notice {
+    background-color: rgba(255, 152, 0, 0.15);
+    color: $text-color;
+  }
+
+  .intro-text {
+    p, .darkerText {
+      color: $text-color;
+    }
+  }
+
+  .thank-you-content {
+    p, .darkerText {
+      color: $text-color;
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

@@ -1,0 +1,170 @@
+<section>
+  <app-page-header
+    [title]="'Archives de Litopia'"
+    [img]="'litopia-s4-consula'"
+    [imgAlt]="'Archives de Litopia'">
+  </app-page-header>
+  <div class="page-content-container">
+
+    <!-- Introduction -->
+    <article class="card-container-row intro-section" [@upFadeInAnimation]="isAppear('intro')" (appear)="appear('intro')">
+      <div class="intro-text">
+        <h2>🏛️ La Galerie des Mondes Éternels</h2>
+        <p class="darkerText">
+          Après 10 ans d'aventure, Litopia ouvre ses archives au public. Chaque monde raconte une histoire,
+          chaque saison a forgé notre communauté. Téléchargez ces cartes pour revivre les épopées passées,
+          explorer les constructions légendaires et vous immerger dans l'histoire de notre serveur.
+        </p>
+        <div class="warning-box">
+          <mat-icon color="warn">warning</mat-icon>
+          <p><strong>Avertissement important :</strong> Ouvrir ces maps dans des versions différentes de Minecraft
+          peut entraîner la corruption des chunks. Utilisez toujours la version indiquée pour chaque saison.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Section Survie -->
+    <article class="card-container-row section-survival" [@upFadeInAnimation]="isAppear('survival-section')" (appear)="appear('survival-section')">
+      <div class="section-header">
+        <h2>Survie</h2>
+        <p class="darkerText">Maps des saison de Litopia en mode survie</p>
+      </div>
+    </article>
+
+    <div class="seasons-grid">
+      <mat-card *ngFor="let season of survivalSeasons; let i = index"
+                class="season-card"
+                [class.unavailable]="!season.available"
+                [@upFadeInAnimation]="isAppear('survival-' + i)"
+                (appear)="appear('survival-' + i)">
+        <mat-card-header>
+          <mat-card-title>
+            {{ season.name }}
+            <mat-chip *ngIf="!season.available" class="unavailable-chip" color="warn">
+              Perdue
+            </mat-chip>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip color="primary" selected>
+                <mat-icon>gamepad</mat-icon>
+                {{ season.version }}
+              </mat-chip>
+              <mat-chip color="accent" selected>
+                <mat-icon>storage</mat-icon>
+                {{ season.size }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="season-description">{{ season.description }}</p>
+          <p *ngIf="!season.available" class="unavailable-notice">
+            <mat-icon>sentiment_very_dissatisfied</mat-icon>
+            Cette map a été perdue dans les méandres du temps... RIP 😢
+          </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <a mat-raised-button
+             color="primary"
+             [href]="season.downloadUrl"
+             target="_blank"
+             [disabled]="!season.available">
+            <mat-icon>cloud_download</mat-icon>
+            <span>Télécharger</span>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+
+      <p *ngIf="survivalSeasons.length === 0" class="no-seasons">Aucune map de survie disponible.</p>
+    </div>
+
+    <!-- Section Créatif -->
+    <article class="card-container-row section-creative" [@upFadeInAnimation]="isAppear('creative-section')" (appear)="appear('creative-section')">
+      <div class="section-header">
+        <h2>Créatif</h2>
+        <p class="darkerText">Maps en mode créatif là ou les Litopien préparaient leurs oeuvres</p>
+      </div>
+    </article>
+
+    <div class="seasons-grid">
+      <mat-card *ngFor="let season of creativeSeasons; let i = index"
+                class="season-card"
+                [class.unavailable]="!season.available"
+                [@upFadeInAnimation]="isAppear('creative-' + i)"
+                (appear)="appear('creative-' + i)">
+        <mat-card-header>
+          <mat-card-title>
+            {{ season.name }}
+            <mat-chip *ngIf="!season.available" class="unavailable-chip" color="warn">
+              Perdue
+            </mat-chip>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip color="primary" selected>
+                <mat-icon>gamepad</mat-icon>
+                {{ season.version }}
+              </mat-chip>
+              <mat-chip color="accent" selected>
+                <mat-icon>storage</mat-icon>
+                {{ season.size }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="season-description">{{ season.description }}</p>
+          <p *ngIf="!season.available" class="unavailable-notice">
+            <mat-icon>sentiment_very_dissatisfied</mat-icon>
+            Cette map a été perdue dans les méandres du temps... RIP 😢
+          </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <a mat-raised-button
+             color="primary"
+             [href]="season.downloadUrl"
+             target="_blank"
+             [disabled]="!season.available">
+            <mat-icon>cloud_download</mat-icon>
+            <span>Télécharger</span>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+
+      <p *ngIf="creativeSeasons.length === 0" class="no-seasons">Aucune map créative disponible.</p>
+    </div>
+
+    <!-- Section de remerciements -->
+    <article class="card-container-row thank-you-section" [@upFadeInAnimation]="isAppear('thanks')" (appear)="appear('thanks')">
+      <div class="thank-you-content">
+        <h2>✨ Merci aux Bâtisseurs</h2>
+        <p class="darkerText">
+          Ces mondes n'existeraient pas sans vous. Chaque bloc placé, chaque construction achevée,
+          chaque aventure partagée : c'est l'âme de Litopia. De Kraftopia à l'Ultime Saison,
+          vous avez écrit cette légende ensemble.
+        </p>
+        <p class="darkerText">
+          <strong>Litopia © 2016 - 2026</strong><br>
+          Un projet de 10 ans. Une communauté éternelle.
+        </p>
+        <div class="call-to-action-container">
+          <a mat-flat-button color="primary" routerLink="/" href="/">
+            <mat-icon>home</mat-icon>
+            <span>Retour à l'accueil</span>
+          </a>
+          <a mat-stroked-button href="https://discord.gg/DTtDnSqg7X" target="_blank">
+            <mat-icon svgIcon="discord"></mat-icon>
+            <span>Rejoindre notre Discord</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+<app-footer></app-footer>

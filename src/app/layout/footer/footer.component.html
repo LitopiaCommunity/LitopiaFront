@@ -1,7 +1,7 @@
 <footer class="litopia-footer" fxFlex fxLayoutAlign="space-between" fxLayoutAlign.lt-md="center">
   <div class="cc-container">
     <a mat-button class="footer-btn" routerLink="">LITOPIA</a>
-    <span>© {{currentYear}} \</span>
+    <span>© 2016 - 2026 \</span>
     <a mat-button class="footer-btn" href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">
       <span id="licence">Licence&nbsp;</span>
       <span>AGPL-3.0</span></a>
@@ -14,8 +14,7 @@
       <mat-icon svgIcon="github"></mat-icon>
     </a>
   </div>
-  <a mat-button fxHide.lt-md color="primary" routerLink="/nous-rejoindre" href="/nous-rejoindre">
-    <mat-icon>mail</mat-icon>
-    <span>&nbsp;Nous Rejoindre</span>
-  </a>
+  <div fxHide.lt-md class="footer-thanks">
+    <span>Un projet de 10 ans. Merci à tous les Litopien.</span>
+  </div>
 </footer>

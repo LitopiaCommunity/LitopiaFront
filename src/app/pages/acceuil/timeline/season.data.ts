@@ -10,8 +10,8 @@ export const articles : TimelineArticle[] = [
   },
   {
     title: "Litopia saison 1",
-    displayDate: "Janvier 2017",
-    datetime: "2017-01-01 00:00",
+    displayDate: "Janvier 2016",
+    datetime: "2016-01-01 00:00",
     description: "Après une longue pause Loff demande à Solarius d'ouvrir un nouveau serveur, serveur qui sera nommé Litopia. Cette première saison sera dans un monde amplifié.",
     image:""
   },
@@ -83,6 +83,20 @@ export const articles : TimelineArticle[] = [
     displayDate: "Juin 2023",
     datetime: "2023-10-06 16:00",
     description: "La saison 7 a été marquée par la reconstruction d'un spawn déchu et la création d'une immense ville japonaise. C'est également une saison riche en événements, certains offrant même la possibilité de gagner de véritables lots !",
+    image:""
+  },
+  {
+    title: "Litopia saison 8 Vallée Fleurie",
+    displayDate: "Juin 2024",
+    datetime: "2024-06-01 00:00",
+    description: "Passage en version 1.21 avec la seed Vallée Fleurie choisie par vote. Saison placée sous le signe de la simplicité et de la liberté : pas de thème imposé, pas de zones définies. World border évolutive de 5 000 à 40 000 blocs. Premiers signes d'essoufflement, la fin de Litopia approche...",
+    image:""
+  },
+  {
+    title: "L'Apothéose L'Ultime Saison",
+    displayDate: "Avril 2026",
+    datetime: "2026-04-01 00:00",
+    description: "Litopia célèbre ses 10 ans avec le lancement de sa saison finale en version 26.2. Plus de reset, plus de recommencement : passage en mode archive vivante. Une carte éternelle pour une communauté légendaire. Merci à tous les bâtisseurs qui ont fait vivre Litopia depuis 2016.",
     image:""
   }
 
