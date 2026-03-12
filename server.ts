@@ -6,6 +6,7 @@ import * as express from 'express';
 import {existsSync} from 'fs';
 import {join} from 'path';
 import * as compression from 'compression';
+import {environment} from './src/environments/environment';
 
 import {AppServerModule} from './src/main.server';
 import * as zlib from "zlib";
@@ -26,6 +27,14 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+
+  server.get('/runtime-config.json', (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    res.json({
+      apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath,
+      blueMapUrl: process.env['BLUE_MAP_URL'] || environment.blueMapUrl
+    });
+  });
 
   // Example Express Rest API endpoints
   // server.get('/apis/**', (req, res) => { });

@@ -1,4 +1,4 @@
-import {Inject, NgModule, PLATFORM_ID} from '@angular/core';
+import {APP_INITIALIZER, Inject, NgModule, PLATFORM_ID} from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +39,6 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ApiModule, Configuration} from "./apis/litopia-api";
-import { environment } from '../environments/environment';
 import { AuthPopupComponent } from './auth/auth-popup/auth-popup.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MembresComponent } from './pages/membres/membres.component';
@@ -49,6 +48,7 @@ import {MarkdownModule} from "ngx-markdown";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
+import {RuntimeConfigService} from "./runtime-config.service";
 
 @NgModule({
   declarations: [
@@ -110,12 +110,17 @@ import {MatChipsModule} from "@angular/material/chips";
     { provide: 'WINDOWS', useFactory:getWindows },
     { provide: 'DOCUMENT', useFactory:getDocument},
     {
+      provide: APP_INITIALIZER,
+      useFactory: initRuntimeConfig,
+      deps: [RuntimeConfigService],
+      multi: true
+    },
+    {
       provide: Configuration,
-      useFactory: () => new Configuration(
-        {
-          basePath: environment.apiBasePath,
-        }
-      ),
+      useFactory: (runtimeConfig: RuntimeConfigService) => new Configuration({
+        basePath: runtimeConfig.apiBasePath
+      }),
+      deps: [RuntimeConfigService],
       multi: false
     }
   ],
@@ -155,4 +160,8 @@ export function getWindows(){
 
 export function getDocument(){
   return (typeof  document !== "undefined") ? document : null;
+}
+
+export function initRuntimeConfig(runtimeConfig: RuntimeConfigService) {
+  return () => runtimeConfig.load();
 }
