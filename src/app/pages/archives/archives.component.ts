@@ -58,10 +58,10 @@ export class ArchivesComponent {
     {
       name: "Litopia Saison Pirate",
       version: "1.13.x",
-      size: "~3.8 GB",
-      downloadUrl: "#",
+      size: "5.4 GB",
+      downloadUrl: "https://cloud.louisvolat.fr/index.php/s/2jSdma3PZbegBTm",
       description: "La saison 3 sur le thème pirate, avec nouveau discord et nouveau site (Juillet 2018)",
-      available: false,
+      available: true,
       type: 'survival',
       year: 2018
     },
