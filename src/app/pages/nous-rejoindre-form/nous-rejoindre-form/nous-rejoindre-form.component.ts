@@ -14,7 +14,7 @@ import {HttpClient} from "@angular/common/http";
 import {SimpleMinecaftAccount} from "../../../apis/minecraft-api/model/simpleMinecaftAccount";
 import {CandidatureProcessService, MinecraftUsersService} from "../../../apis/litopia-api";
 import {uuidConverter} from "../../../utils/uuid-converter";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-nous-rejoindre-form',

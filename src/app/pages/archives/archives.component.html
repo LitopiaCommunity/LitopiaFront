@@ -45,16 +45,16 @@
             </mat-chip>
           </mat-card-title>
           <mat-card-subtitle>
-            <mat-chip-list>
-              <mat-chip color="primary" selected>
+            <mat-chip-set>
+              <mat-chip color="primary" [highlighted]="true">
                 <mat-icon>gamepad</mat-icon>
                 {{ season.version }}
               </mat-chip>
-              <mat-chip color="accent" selected>
+              <mat-chip color="accent" [highlighted]="true">
                 <mat-icon>storage</mat-icon>
                 {{ season.size }}
               </mat-chip>
-            </mat-chip-list>
+            </mat-chip-set>
           </mat-card-subtitle>
         </mat-card-header>
 
@@ -103,16 +103,16 @@
             </mat-chip>
           </mat-card-title>
           <mat-card-subtitle>
-            <mat-chip-list>
-              <mat-chip color="primary" selected>
+            <mat-chip-set>
+              <mat-chip color="primary" [highlighted]="true">
                 <mat-icon>gamepad</mat-icon>
                 {{ season.version }}
               </mat-chip>
-              <mat-chip color="accent" selected>
+              <mat-chip color="accent" [highlighted]="true">
                 <mat-icon>storage</mat-icon>
                 {{ season.size }}
               </mat-chip>
-            </mat-chip-list>
+            </mat-chip-set>
           </mat-card-subtitle>
         </mat-card-header>
 

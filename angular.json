@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "LitopiaFront:build:production"
+              "buildTarget": "LitopiaFront:build:production"
             },
             "development": {
-              "browserTarget": "LitopiaFront:build:development"
+              "buildTarget": "LitopiaFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "LitopiaFront:build"
+            "buildTarget": "LitopiaFront:build"
           }
         },
         "test": {
@@ -136,7 +136,7 @@
           "defaultConfiguration": "production"
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "proxyConfig": "./proxy.conf.json"
           },
@@ -153,7 +153,7 @@
           "defaultConfiguration": "development"
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "routes": [
               "/"
