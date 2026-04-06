@@ -1,14 +1,19 @@
-<div class="mid-screen-section section-bottom-radius" [class.screen-section-compact]="compact">
-  <app-picture-content-delivery [name]="img" [alt]="imgAlt" [fullScreenImg]="true"
-                                [classNames]="['section-bottom-radius']"></app-picture-content-delivery>
-  <div class="
-    screen-section-container
-    mid-screen-section
-    transparent-theme-gradiant-bg
-    section-bottom-radius
-    header-content-container
-    underline-center">
-    <img class="profile-img" *ngIf="profilePicture" [src]="profilePicture">
-    <h1 class="mat-headline-6 big-title underline">{{title}}</h1>
+<div
+  class="mid-screen-section section-bottom-radius"
+  [class.screen-section-compact]="compact"
+>
+  <app-picture-content-delivery
+    [name]="img"
+    [alt]="imgAlt"
+    [fullScreenImg]="true"
+    [classNames]="['section-bottom-radius']"
+  ></app-picture-content-delivery>
+  <div
+    class="screen-section-container mid-screen-section transparent-theme-gradiant-bg section-bottom-radius header-content-container underline-center"
+  >
+    @if (profilePicture) {
+      <img class="profile-img" [src]="profilePicture" />
+    }
+    <h1 class="big-title underline">{{ title }}</h1>
   </div>
 </div>

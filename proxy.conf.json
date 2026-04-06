@@ -1,4 +1,9 @@
 {
+  "/api": {
+    "target": "https://litopia.fr",
+    "secure": true,
+    "changeOrigin": true
+  },
   "/proxy/mcapi": {
     "target": "https://api.mojang.com/",
     "secure": true,

@@ -26,7 +26,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/robots.txt"],
             "styles": ["src/styles.scss"],
-            "scripts": ["node_modules/marked/marked.min.js"],
+            "scripts": [],
             "browser": "src/main.ts",
             "server": "src/main.server.ts",
             "stylePreprocessorOptions": {
@@ -70,6 +70,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "LitopiaFront:build:production"
@@ -96,7 +99,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/robots.txt"],
             "styles": ["src/styles.scss"],
-            "scripts": ["node_modules/marked/marked.min.js"]
+            "scripts": []
           }
         }
       }

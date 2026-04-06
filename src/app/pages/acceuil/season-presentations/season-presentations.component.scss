@@ -1,17 +1,18 @@
-.container{
+.container {
   display: flex;
   flex-direction: row;
   border-radius: 50px;
 }
 
-.big-title-container{
+.big-title-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   flex-grow: 0;
 }
 
-.title-bg{
+.title-bg {
+  margin: 0 0 16px;
   font-size: 100px;
   line-height: 60px;
   text-transform: uppercase;
@@ -24,8 +25,8 @@
   padding: 10px;
 }
 
-@media screen and (max-width: 750px){
-  .title-bg{
+@media screen and (max-width: 750px) {
+  .title-bg {
     font-size: 80px;
     background-image: url("/assets/images/compressed/litopia-port-s4-512.webp");
   }

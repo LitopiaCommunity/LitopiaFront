@@ -2,31 +2,46 @@
   <app-page-header
     [title]="'Nos Membres'"
     [img]="'litopia-comunity'"
-    [imgAlt]="'Membres de litopia en chute libre'">
+    [imgAlt]="'Membres de litopia en chute libre'"
+  >
   </app-page-header>
 </section>
 <div class="members-container">
   <div class="admin">
     <section class="card card-manager">
-      <h1>Unique Dieux</h1>
-      <article *ngIf="uniqueGodObs | async as uniqueGodList" class="admin__section">
-        <app-profil-card *ngFor="let admin of uniqueGodList" [user]="admin"></app-profil-card>
-      </article>
-      <h1>Litodieux</h1>
-      <article *ngIf="litogodObs | async as litogodList" class="admin__section">
-        <app-profil-card *ngFor="let litoGod of litogodList" [user]="litoGod"></app-profil-card>
-      </article>
+      <h1 class="members-section-title">Unique Dieux</h1>
+      @if (uniqueGodObs | async; as uniqueGodList) {
+        <article class="admin__section">
+          @for (admin of uniqueGodList; track admin) {
+            <app-profil-card [user]="admin"></app-profil-card>
+          }
+        </article>
+      }
+      <h1 class="members-section-title">Litodieux</h1>
+      @if (litogodObs | async; as litogodList) {
+        <article class="admin__section">
+          @for (litoGod of litogodList; track litoGod) {
+            <app-profil-card [user]="litoGod"></app-profil-card>
+          }
+        </article>
+      }
     </section>
   </div>
   <section class="litopien">
     <article class="card card-manager litopien__container">
       <div class="litopien__header">
-        <h1 class="litopien__header__title">Membres du serveur</h1>
+        <h1 class="litopien__header__title members-section-title">
+          Membres du serveur
+        </h1>
         <mat-form-field appearance="outline">
           <mat-label>Tri</mat-label>
           <mat-select [formControl]="sortControl">
-            <mat-option [value]="SortType.LAST_ACTIVITY">Date d'activité</mat-option>
-            <mat-option [value]="SortType.ARIVAL_DATE">Date d'arrivée</mat-option>
+            <mat-option [value]="SortType.LAST_ACTIVITY"
+              >Date d'activité</mat-option
+            >
+            <mat-option [value]="SortType.ARIVAL_DATE"
+              >Date d'arrivée</mat-option
+            >
             <mat-option [value]="SortType.PLAYER_ROLE">Role</mat-option>
             <mat-option [value]="SortType.PLAYER_NAME">Nom</mat-option>
           </mat-select>
@@ -34,13 +49,15 @@
         <mat-form-field appearance="outline" class="litopien__header__search">
           <mat-label>
             <mat-icon>search</mat-icon>
-            <span>Recherche</span></mat-label>
-          <input matInput [formControl]="searchControl"/>
+            <span>Recherche</span></mat-label
+          >
+          <input matInput [formControl]="searchControl" />
         </mat-form-field>
       </div>
       <div class="litopien__grid">
-
-        <app-profil-card *ngFor="let user of membersFinalObs | async" [user]="user"></app-profil-card>
+        @for (user of membersFinalObs | async; track user) {
+          <app-profil-card [user]="user"></app-profil-card>
+        }
       </div>
     </article>
   </section>

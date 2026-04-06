@@ -4,7 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-fullscreen-img-text',
   standalone: false,
   templateUrl: './fullscreen-img-text.component.html',
-  styleUrls: ['./fullscreen-img-text.component.scss'],
+  styleUrls: [
+    './fullscreen-img-text.component.scss',
+    './fullscreen-img-text.theme.component.scss',
+  ],
 })
 export class FullscreenImgTextComponent {
   appearSet = new Set<string>();

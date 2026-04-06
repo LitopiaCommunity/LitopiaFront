@@ -23,7 +23,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-nous-rejoindre-form',
   standalone: false,
   templateUrl: './nous-rejoindre-form.component.html',
-  styleUrls: ['./nous-rejoindre-form.component.scss'],
+  styleUrls: [
+    './nous-rejoindre-form.component.scss',
+    './nous-rejoindre-form.theme.component.scss',
+  ],
 })
 export class NousRejoindreFormComponent {
   candidatureForm: FormGroup;

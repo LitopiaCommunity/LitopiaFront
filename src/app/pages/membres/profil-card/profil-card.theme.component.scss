@@ -1,57 +1,27 @@
-@use "sass:map";
-@use "@angular/material" as mat;
+.profile-link {
+  background: var(--litopia-profile-link-bg);
+}
 
-@mixin color($theme) {
-  // Get the color config from the theme.
-  $color-config: mat.m2-get-color-config($theme);
+.profile-link:hover {
+  background: var(--litopia-profile-link-hover);
+}
 
-  // Get the primary color palette from the color-config.
-  $primary-palette: map.get($color-config, "primary");
-  $primary-color: mat.m2-get-color-from-palette($primary-palette, 200);
+.profile-link:active {
+  background: var(--litopia-profile-link-active);
+}
 
-  $background-palette: map.get($color-config, "background");
-  $bg-10: mat.m2-get-color-from-palette($background-palette, 10);
-  $bg-card: mat.m2-get-color-from-palette($background-palette, "card");
-  $bg-card-lighter: lighten($bg-card, 10%);
-  $bg-card-hover: darken($bg-card, 10%);
-  $bg-card-active: darken($bg-card, 20%);
-  $bg-card-visited: darken($bg-card, 2%);
+.profile-link:visited {
+  background: var(--litopia-profile-link-visited);
 
-  .profile-link {
-    background: $bg-card-lighter;
+  &:hover {
+    background: var(--litopia-profile-link-hover);
   }
 
-  .profile-link:hover {
-    background: $bg-card-hover;
-  }
-
-  .profile-link:active {
-    background: $bg-card-active;
-  }
-
-  .profile-link:visited {
-    background: $bg-card-visited;
-    &:hover {
-      background: $bg-card-hover;
-    }
-    &:active {
-      background: $bg-card-active;
-    }
-  }
-
-  .user-date {
-    color: grey;
+  &:active {
+    background: var(--litopia-profile-link-active);
   }
 }
 
-@mixin theme($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  @if $color-config != null {
-    @include color($theme);
-  }
-  /*
-  $typography-config: mat.get-typography-config($theme);
-  @if $typography-config != null {
-    @include typography($theme);
-  }*/
+.user-date {
+  color: gray;
 }

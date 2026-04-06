@@ -1,7 +1,7 @@
-import {Inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2, DOCUMENT} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {OverlayContainer} from "@angular/cdk/overlay";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 type Theme = 'dark'|'light'
 interface ThemeSettings{

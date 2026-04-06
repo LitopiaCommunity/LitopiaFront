@@ -1,64 +1,59 @@
-@use "sass:map";
-@use "@angular/material" as mat;
+.season-card {
+  background-color: var(--litopia-card);
+  color: var(--litopia-text);
 
-@mixin color($theme) {
-  // Get the color config from the theme.
-  $color-config: mat.m2-get-color-config($theme);
+  mat-card-subtitle,
+  .mat-mdc-card-subtitle {
+    color: var(--litopia-text-muted);
+  }
 
-  // Get the palettes
-  $background-palette: map.get($color-config, "background");
-  $foreground-palette: map.get($color-config, "foreground");
+  .season-description {
+    color: var(--litopia-text);
+  }
 
-  // Get colors
-  $bg-card: mat.m2-get-color-from-palette($background-palette, "card");
-  $text-color: mat.m2-get-color-from-palette($foreground-palette, "text");
-  $secondary-text: mat.m2-get-color-from-palette(
-    $foreground-palette,
-    "secondary-text"
-  );
-  $divider-color: mat.m2-get-color-from-palette($foreground-palette, "divider");
+  mat-chip,
+  mat-chip mat-icon {
+    color: inherit;
+  }
 
-  .season-card {
-    background-color: $bg-card;
+  mat-chip.mat-primary,
+  mat-chip.mat-primary mat-icon {
+    background-color: var(--litopia-primary);
+    color: var(--mat-sys-on-primary);
+  }
 
+  mat-chip.mat-accent,
+  mat-chip.mat-accent mat-icon {
+    background-color: var(--litopia-accent);
+    color: var(--mat-sys-on-tertiary);
+  }
+
+  mat-card-actions {
+    border-top-color: var(--litopia-divider);
+  }
+
+  &.unavailable {
     .season-description {
-      color: $text-color;
-    }
-
-    mat-card-actions {
-      border-top-color: $divider-color;
-    }
-
-    &.unavailable {
-      .season-description {
-        color: $secondary-text;
-      }
-    }
-  }
-
-  .unavailable-notice {
-    background-color: rgba(255, 152, 0, 0.15);
-    color: $text-color;
-  }
-
-  .intro-text {
-    p,
-    .darkerText {
-      color: $text-color;
-    }
-  }
-
-  .thank-you-content {
-    p,
-    .darkerText {
-      color: $text-color;
+      color: var(--litopia-text-muted);
     }
   }
 }
 
-@mixin theme($theme) {
-  $color-config: mat.m2-get-color-config($theme);
-  @if $color-config != null {
-    @include color($theme);
+.unavailable-notice {
+  background-color: color-mix(in srgb, var(--litopia-warn) 15%, transparent);
+  color: var(--litopia-text);
+}
+
+.intro-text {
+  p,
+  .darkerText {
+    color: var(--litopia-text);
+  }
+}
+
+.thank-you-content {
+  p,
+  .darkerText {
+    color: var(--litopia-text);
   }
 }

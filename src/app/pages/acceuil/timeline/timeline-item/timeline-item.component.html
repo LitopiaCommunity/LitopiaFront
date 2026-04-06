@@ -1,12 +1,14 @@
 <div class="point time-item">
-  <article class="card-container-row time-item"
-           [@rightFadeInAnimation]="isAppearRight()"
-           [@leftFadeInAnimation]="isAppearLeft()"
-           (appear)="setAppear($event)">
+  <article
+    class="card-container-row time-item"
+    [@rightFadeInAnimation]="isAppearRight()"
+    [@leftFadeInAnimation]="isAppearLeft()"
+    (appear)="setAppear($event)"
+  >
     <header>
-      <h1 class="headline article-title underline-title">{{title}}</h1>
-      <time class="mat-body-1" [dateTime]="datetime">{{displayDate}}</time>
+      <h1 class="article-title underline-title">{{ title }}</h1>
+      <time class="mat-body-1" [dateTime]="datetime">{{ displayDate }}</time>
     </header>
-    <p>{{description}}</p>
+    <p>{{ description }}</p>
   </article>
 </div>

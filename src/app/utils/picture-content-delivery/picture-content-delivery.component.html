@@ -1,11 +1,13 @@
 <picture>
-  <ng-container *ngFor="let type of FORMAT">
+  @for (type of FORMAT; track type) {
     <!-- {{type}} -->
-    <source *ngFor="let size of SCREEN_SIZE; let index = index;"
-      [srcset]="'assets/images/compressed/'+name+'-'+getWithBaseOnScreenSize(index)+'.'+type"
-      [media]="'(max-width: '+size+'px)'"
-      [type]="'image/'+type"
-    />
-  </ng-container>
+    @for (size of SCREEN_SIZE; track size; let index = $index) {
+      <source
+        [srcset]="'assets/images/compressed/'+name+'-'+getWithBaseOnScreenSize(index)+'.'+type"
+        [media]="'(max-width: '+size+'px)'"
+        [type]="'image/'+type"
+        />
+    }
+  }
   <img [ngClass]="classNames" [src]="'/assets/images/'+name+'.png'" [alt]="alt">
 </picture>
