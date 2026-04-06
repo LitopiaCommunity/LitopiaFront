@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
 import {User} from "./auth-user";
 import {isPlatformBrowser} from "@angular/common";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {AuthPopupComponent} from "../auth-popup/auth-popup.component";
 
 @Injectable({

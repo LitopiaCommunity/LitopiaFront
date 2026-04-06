@@ -1,4 +1,7 @@
 .litopia-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 40px;
   height: 60px;
   border-radius: 40px 40px 0 0;
@@ -23,4 +26,37 @@
   font-size: 0.9rem;
   font-style: italic;
   opacity: 0.8;
+}
+
+.footer-btn--github-icon{
+  display: none;
+}
+
+@media (max-width: 959.98px) {
+  .litopia-footer{
+    justify-content: center;
+  }
+
+  .footer-thanks{
+    display: none;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .litopia-footer{
+    height: auto;
+    padding: 12px 20px;
+  }
+
+  .cc-container{
+    justify-content: center;
+  }
+
+  .footer-btn--github-text{
+    display: none;
+  }
+
+  .footer-btn--github-icon{
+    display: inline-flex;
+  }
 }

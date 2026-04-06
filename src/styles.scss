@@ -16,7 +16,16 @@
 @use "app/pages/membres/profil-card/profil-card.theme.component" as profil-card;
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
-@include mat.core();
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
 // Fonts
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
@@ -162,7 +171,16 @@ $mat-dark-theme-background: (
 );
 
 // Compute font config
-@include mat.core($fontConfig);
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy($fontConfig);`
+@include mat.all-legacy-component-typographies($fontConfig);
+@include mat.legacy-core();
 
 // Theme Config
 
@@ -239,7 +257,7 @@ $darkTheme: (
 );
 
 // Dark Theme Init
-@include mat.all-component-themes($darkTheme);
+@include mat.all-legacy-component-themes($darkTheme);
 
 @include nav.theme($darkTheme);
 @include base.theme($darkTheme);
@@ -257,7 +275,7 @@ body{
 
 // Light Theme Init
 .light-theme {
-  @include mat.all-component-themes($lightTheme);
+  @include mat.all-legacy-component-themes($lightTheme);
 
   // help to use theme color value and text :
   // https://material.angular.io/guide/theming-your-components
