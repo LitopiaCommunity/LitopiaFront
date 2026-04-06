@@ -1,4 +1,4 @@
-.litopia-footer{
+.litopia-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +7,7 @@
   border-radius: 40px 40px 0 0;
 }
 
-.cc-container{
+.cc-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,11 +16,11 @@
   white-space: nowrap;
 }
 
-.footer-btn{
+.footer-btn {
   padding: 0 1px;
 }
 
-.footer-thanks{
+.footer-thanks {
   display: flex;
   align-items: center;
   font-size: 0.9rem;
@@ -28,35 +28,35 @@
   opacity: 0.8;
 }
 
-.footer-btn--github-icon{
+.footer-btn--github-icon {
   display: none;
 }
 
 @media (max-width: 959.98px) {
-  .litopia-footer{
+  .litopia-footer {
     justify-content: center;
   }
 
-  .footer-thanks{
+  .footer-thanks {
     display: none;
   }
 }
 
 @media (max-width: 599.98px) {
-  .litopia-footer{
+  .litopia-footer {
     height: auto;
     padding: 12px 20px;
   }
 
-  .cc-container{
+  .cc-container {
     justify-content: center;
   }
 
-  .footer-btn--github-text{
+  .footer-btn--github-text {
     display: none;
   }
 
-  .footer-btn--github-icon{
+  .footer-btn--github-icon {
     display: inline-flex;
   }
 }
