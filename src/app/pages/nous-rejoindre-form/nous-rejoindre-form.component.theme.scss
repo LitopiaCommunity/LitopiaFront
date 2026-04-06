@@ -1,15 +1,15 @@
 @use 'sass:map';
-@use '../../../../node_modules/@angular/material/index' as mat;
+@use '@angular/material' as mat;
 
 @mixin color($theme) {
   // Get the color config from the theme.
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
 
   // Get the primary color palette from the color-config.
   $primary-palette: map.get($color-config, 'primary');
   $warn-palette: map.get($color-config, 'warn');
-  $primary-color:mat.get-color-from-palette($primary-palette, 200);
-  $accent-color:mat.get-color-from-palette($warn-palette, 200);
+  $primary-color:mat.m2-get-color-from-palette($primary-palette, 200);
+  $accent-color:mat.m2-get-color-from-palette($warn-palette, 200);
   
   .join-us-warn {
     fill: $accent-color;
@@ -23,7 +23,7 @@
 
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

@@ -1,19 +1,19 @@
 @use 'sass:map';
-@use '../../../../node_modules/@angular/material/index' as mat;
+@use '@angular/material' as mat;
 
 @mixin color($theme) {
   // Get the color config from the theme.
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
 
   // Get the palettes
   $background-palette: map.get($color-config, 'background');
   $foreground-palette: map.get($color-config, 'foreground');
 
   // Get colors
-  $bg-card: mat.get-color-from-palette($background-palette, 'card');
-  $text-color: mat.get-color-from-palette($foreground-palette, 'text');
-  $secondary-text: mat.get-color-from-palette($foreground-palette, 'secondary-text');
-  $divider-color: mat.get-color-from-palette($foreground-palette, 'divider');
+  $bg-card: mat.m2-get-color-from-palette($background-palette, 'card');
+  $text-color: mat.m2-get-color-from-palette($foreground-palette, 'text');
+  $secondary-text: mat.m2-get-color-from-palette($foreground-palette, 'secondary-text');
+  $divider-color: mat.m2-get-color-from-palette($foreground-palette, 'divider');
 
   .season-card {
     background-color: $bg-card;
@@ -52,7 +52,7 @@
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

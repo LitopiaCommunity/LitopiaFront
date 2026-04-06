@@ -22,20 +22,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 @import "flex-utils";
 
-$fontConfig: mat.define-typography-config(
+$fontConfig: mat.m2-define-typography-config(
   $font-family: 'Poppins',
-  $headline-1: mat.define-typography-level(112px, 112px, 300, 'Poppins', -0.0134em),
-  $headline-2: mat.define-typography-level(56px, 56px, 400, 'Poppins', -0.0089em),
-  $headline-3: mat.define-typography-level(45px, 48px, 400, 'Poppins', 0.0000em),
-  $headline-4: mat.define-typography-level(34px, 40px, 400, 'Poppins', 0.0074em),
-  $headline-5: mat.define-typography-level(24px, 32px, 400, 'Poppins', 0.0000em),
-  $headline-6: mat.define-typography-level(22px, 32px, 500, 'Poppins', 0.0075em),
-  $subtitle-1: mat.define-typography-level(16px, 28px, 400, 'Poppins', 0.0094em),
-  $subtitle-2: mat.define-typography-level(14px, 24px, 500, 'Poppins', 0.0179em),
-  $body-1: mat.define-typography-level(15px, 24px, 500, 'Poppins', 0.0067em),
-  $body-2: mat.define-typography-level(14px, 20px, 400, 'Poppins', 0.0179em),
-  $button: mat.define-typography-level(14px, 14px, 500, 'Poppins', 0.0893em),
-  $caption: mat.define-typography-level(12px, 20px, 400, 'Poppins', 0.0333em)
+  $headline-1: mat.m2-define-typography-level(112px, 112px, 300, 'Poppins', -0.0134em),
+  $headline-2: mat.m2-define-typography-level(56px, 56px, 400, 'Poppins', -0.0089em),
+  $headline-3: mat.m2-define-typography-level(45px, 48px, 400, 'Poppins', 0.0000em),
+  $headline-4: mat.m2-define-typography-level(34px, 40px, 400, 'Poppins', 0.0074em),
+  $headline-5: mat.m2-define-typography-level(24px, 32px, 400, 'Poppins', 0.0000em),
+  $headline-6: mat.m2-define-typography-level(22px, 32px, 500, 'Poppins', 0.0075em),
+  $subtitle-1: mat.m2-define-typography-level(16px, 28px, 400, 'Poppins', 0.0094em),
+  $subtitle-2: mat.m2-define-typography-level(14px, 24px, 500, 'Poppins', 0.0179em),
+  $body-1: mat.m2-define-typography-level(15px, 24px, 500, 'Poppins', 0.0067em),
+  $body-2: mat.m2-define-typography-level(14px, 20px, 400, 'Poppins', 0.0179em),
+  $button: mat.m2-define-typography-level(14px, 14px, 500, 'Poppins', 0.0893em),
+  $caption: mat.m2-define-typography-level(12px, 20px, 400, 'Poppins', 0.0333em)
 );
 
 @include mat.typography-hierarchy($fontConfig);
@@ -175,7 +175,7 @@ $mat-primary-dark-theme: (
     darker: $dark-primary-text,
   )
 );
-$theme-primary-dark: mat.define-palette($mat-primary-dark-theme, main, lighter, darker);
+$theme-primary-dark: mat.m2-define-palette($mat-primary-dark-theme, main, lighter, darker);
 
 $mat-accent-light-theme: (
   main: #6eba5e,
@@ -188,7 +188,7 @@ $mat-accent-light-theme: (
     darker: $dark-primary-text,
   )
 );
-$theme-accent-light: mat.define-palette($mat-accent-light-theme, main, lighter, darker);
+$theme-accent-light: mat.m2-define-palette($mat-accent-light-theme, main, lighter, darker);
 
 $mat-accent: (
   main: #df9b35,
@@ -201,7 +201,7 @@ $mat-accent: (
     darker: $dark-primary-text,
   )
 );
-$theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+$theme-accent: mat.m2-define-palette($mat-accent, main, lighter, darker);
 
 
 $mat-warn: (
@@ -215,10 +215,10 @@ $mat-warn: (
     darker: $light-primary-text,
   )
 );
-$theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
+$theme-warn: mat.m2-define-palette($mat-warn, main, lighter, darker);
 
 // Keep the existing custom foreground/background colors while using the v17 theme shape.
-$lightThemeBase: mat.define-light-theme((
+$lightThemeBase: mat.m2-define-light-theme((
   color: (
     primary: $theme-accent,
     accent: $theme-accent-light,
@@ -232,7 +232,7 @@ $lightTheme: map.merge(
   $lightThemeBase,
   (
     color: map.merge(
-      mat.get-color-config($lightThemeBase),
+      mat.m2-get-color-config($lightThemeBase),
       (
         foreground: $mat-light-theme-foreground,
         background: $mat-light-theme-background,
@@ -241,7 +241,7 @@ $lightTheme: map.merge(
   )
 );
 
-$darkThemeBase: mat.define-dark-theme((
+$darkThemeBase: mat.m2-define-dark-theme((
   color: (
     primary: $theme-primary-dark,
     accent: $theme-accent,
@@ -255,7 +255,7 @@ $darkTheme: map.merge(
   $darkThemeBase,
   (
     color: map.merge(
-      mat.get-color-config($darkThemeBase),
+      mat.m2-get-color-config($darkThemeBase),
       (
         foreground: $mat-dark-theme-foreground,
         background: $mat-dark-theme-background,

@@ -24,21 +24,21 @@ $colors: (
 
 @mixin color($theme) {
   // Get the color config from the theme.
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
 
   // Get the primary color palette from the color-config.
   $primary-palette: map.get($color-config, 'primary');
-  $primary-color:mat.get-color-from-palette($primary-palette, 200);
+  $primary-color:mat.m2-get-color-from-palette($primary-palette, 200);
 
   $foreground-palette: map.get($color-config, 'foreground');
-  $text-color:mat.get-color-from-palette($foreground-palette, 'base');
+  $text-color:mat.m2-get-color-from-palette($foreground-palette, 'base');
 
   $background-palette: map.get($color-config, 'background');
-  $bg-card:mat.get-color-from-palette($background-palette, 'card');
-  $bg-5:mat.get-color-from-palette($background-palette, 5);
+  $bg-card:mat.m2-get-color-from-palette($background-palette, 'card');
+  $bg-5:mat.m2-get-color-from-palette($background-palette, 5);
 
   $warn-palette: map.get($color-config, 'warn');
-  $warn:mat.get-color-from-palette($warn-palette, 'main');
+  $warn:mat.m2-get-color-from-palette($warn-palette, 'main');
 
   .big-title{
     max-width: 600px;
@@ -194,7 +194,7 @@ $colors: (
 }
 
 @mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
+  $color-config: mat.m2-get-color-config($theme);
   @if $color-config != null {
     @include color($theme);
   }

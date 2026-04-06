@@ -21,7 +21,9 @@ export class AuthenticationService {
   ) {
     this.currentUserSubject = new BehaviorSubject<Partial<User>>({ logged: false });
     this.currentUserObs = this.currentUserSubject.asObservable();
-    this.updateUserStatus();
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateUserStatus();
+    }
   }
 
   public get currentUserValue(): Partial<User> {
@@ -63,6 +65,11 @@ export class AuthenticationService {
   }
 
   public updateUserStatus() {
+    if (!isPlatformBrowser(this.platformId)) {
+      this.currentUserSubject.next({ logged: false });
+      return;
+    }
+
     this.http.get<User>('/api/auth/status').subscribe({
       next: (value) => {
         this.currentUserSubject.next({

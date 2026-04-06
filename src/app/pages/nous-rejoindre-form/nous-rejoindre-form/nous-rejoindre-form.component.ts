@@ -10,7 +10,7 @@ import {
   Validators
 } from "@angular/forms";
 import {lastValueFrom, map, switchMap, take, throttleTime} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {SimpleMinecaftAccount} from "../../../apis/minecraft-api/model/simpleMinecaftAccount";
 import {CandidatureProcessService, MinecraftUsersService} from "../../../apis/litopia-api";
 import {uuidConverter} from "../../../utils/uuid-converter";
