@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import {ThemesChooserService} from "../../../utils/themes-chooser.service";
+import { ThemesChooserService } from '../../../utils/themes-chooser.service';
 
 @Component({
   selector: 'app-theme-chooser',
+  standalone: false,
   templateUrl: './theme-chooser.component.html',
-  styleUrls: ['./theme-chooser.component.scss']
+  styleUrls: ['./theme-chooser.component.scss'],
 })
 export class ThemeChooserComponent {
-
-  constructor(private themeChooser:ThemesChooserService) {
-  }
+  constructor(private themeChooser: ThemesChooserService) {}
 
   setSystemMode() {
-    this.themeChooser.setSystemMode()
+    this.themeChooser.setSystemMode();
   }
 
   setDarkMode() {
-    this.themeChooser.updateSettings("dark",true)
+    this.themeChooser.updateSettings('dark', true);
   }
 
   setLightMode() {
-    this.themeChooser.updateSettings("light",true)
+    this.themeChooser.updateSettings('light', true);
   }
 }

@@ -2,13 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export interface AuthPopupData {
-  canLogin: boolean,
+  canLogin: boolean;
 }
 
 @Component({
   selector: 'app-auth-popup',
+  standalone: false,
   templateUrl: './auth-popup.component.html',
-  styleUrls: ['./auth-popup.component.scss']
+  styleUrls: ['./auth-popup.component.scss'],
 })
 export class AuthPopupComponent implements OnInit {
   notDisplayAnymore: boolean = false;
@@ -19,12 +20,14 @@ export class AuthPopupComponent implements OnInit {
     @Inject('WINDOWS') private windows: Window,
   ) {
     dialogRef.afterClosed().subscribe(() => {
-      windows.localStorage.setItem('display-login-popup', JSON.stringify(!this.notDisplayAnymore));
+      windows.localStorage.setItem(
+        'display-login-popup',
+        JSON.stringify(!this.notDisplayAnymore),
+      );
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   clickOk() {
     this.data.canLogin = true;

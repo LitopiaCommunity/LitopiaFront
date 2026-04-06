@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthPopupComponent } from '../auth-popup/auth-popup.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<Partial<User>>;
@@ -19,7 +19,9 @@ export class AuthenticationService {
     private readonly http: HttpClient,
     private readonly dialog: MatDialog,
   ) {
-    this.currentUserSubject = new BehaviorSubject<Partial<User>>({ logged: false });
+    this.currentUserSubject = new BehaviorSubject<Partial<User>>({
+      logged: false,
+    });
     this.currentUserObs = this.currentUserSubject.asObservable();
     if (isPlatformBrowser(this.platformId)) {
       this.updateUserStatus();
@@ -45,13 +47,18 @@ export class AuthenticationService {
   }
 
   private async infoLoginPopup() {
-    const displayPopupJson = this.windows.localStorage.getItem('display-login-popup');
-    const displayPopup = typeof displayPopupJson === 'undefined' || displayPopupJson === null
-      ? true
-      : JSON.parse(displayPopupJson);
+    const displayPopupJson = this.windows.localStorage.getItem(
+      'display-login-popup',
+    );
+    const displayPopup =
+      typeof displayPopupJson === 'undefined' || displayPopupJson === null
+        ? true
+        : JSON.parse(displayPopupJson);
     let openLoginBox = true;
     if (displayPopup) {
-      const ref = this.dialog.open(AuthPopupComponent, { data: { canLogin: false } });
+      const ref = this.dialog.open(AuthPopupComponent, {
+        data: { canLogin: false },
+      });
       openLoginBox = await firstValueFrom(ref.afterClosed());
     }
     return !!openLoginBox;
@@ -74,7 +81,7 @@ export class AuthenticationService {
       next: (value) => {
         this.currentUserSubject.next({
           ...value,
-          logged: true
+          logged: true,
         });
       },
       error: () => {
@@ -84,8 +91,12 @@ export class AuthenticationService {
   }
 
   popupCenter(url: string, w: number, h: number) {
-    const y = window.top!.outerHeight / 2 + window.top!.screenY - (h / 2);
-    const x = window.top!.outerWidth / 2 + window.top!.screenX - (w / 2);
-    return window.open(url, '', `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
+    const y = window.top!.outerHeight / 2 + window.top!.screenY - h / 2;
+    const x = window.top!.outerWidth / 2 + window.top!.screenX - w / 2;
+    return window.open(
+      url,
+      '',
+      `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`,
+    );
   }
 }

@@ -1,14 +1,20 @@
 <h1 mat-dialog-title>Information !</h1>
 <div mat-dialog-content>
-  <p>Lorsque vous vous connectez ou vous inscrivez à Litopia via discord,<br>
-    le Litobot vous ferra automatiquement rejoindre notre serveur discord.</p>
-  <br>
+  <p>
+    Lorsque vous vous connectez ou vous inscrivez à Litopia via discord,<br />
+    le Litobot vous ferra automatiquement rejoindre notre serveur discord.
+  </p>
+  <br />
   <div class="dialog-checkbox-row">
-    <mat-checkbox [(ngModel)]="notDisplayAnymore">Ne plus afficher</mat-checkbox>
+    <mat-checkbox [(ngModel)]="notDisplayAnymore"
+      >Ne plus afficher</mat-checkbox
+    >
   </div>
-  <br>
+  <br />
 </div>
 <div mat-dialog-actions>
-  <button mat-button color="accent" (click)="clickOk()" cdkFocusInitial>Ok</button>
+  <button mat-button color="accent" (click)="clickOk()" cdkFocusInitial>
+    Ok
+  </button>
   <button mat-button color="warn" (click)="clickCancel()">Annuler</button>
 </div>

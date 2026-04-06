@@ -1,18 +1,18 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
+@use "sass:map";
+@use "@angular/material" as mat;
 
 @mixin color($theme) {
   // Get the color config from the theme.
   $color-config: mat.m2-get-color-config($theme);
 
   // Get the primary color palette from the color-config.
-  $primary-palette: map.get($color-config, 'primary');
-  $primary-color:mat.m2-get-color-from-palette($primary-palette, 200);
+  $primary-palette: map.get($color-config, "primary");
+  $primary-color: mat.m2-get-color-from-palette($primary-palette, 200);
 
-  $background-palette: map.get($color-config, 'background');
-  $bg-10:mat.m2-get-color-from-palette($background-palette, 10);
+  $background-palette: map.get($color-config, "background");
+  $bg-10: mat.m2-get-color-from-palette($background-palette, 10);
 
-  .timeline-item-container{
+  .timeline-item-container {
     display: flex;
     position: relative;
     padding: 30px;
@@ -55,11 +55,10 @@
     border-radius: 0 50px 50px 0;
   }
 
-  .timeline-container{
+  .timeline-container {
     background-color: $bg-10;
   }
 }
-
 
 @mixin theme($theme) {
   $color-config: mat.m2-get-color-config($theme);

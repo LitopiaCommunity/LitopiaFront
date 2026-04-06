@@ -1,4 +1,10 @@
-import { APP_INITIALIZER, Inject, NgModule, PLATFORM_ID } from '@angular/core';
+import {
+  APP_ID,
+  APP_INITIALIZER,
+  Inject,
+  NgModule,
+  PLATFORM_ID,
+} from '@angular/core';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +30,11 @@ import { PictureContentDeliveryComponent } from './utils/picture-content-deliver
 import { TimelineComponent } from './pages/acceuil/timeline/timeline.component';
 import { TimelineItemComponent } from './pages/acceuil/timeline/timeline-item/timeline-item.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { AProposComponent } from './pages/acceuil/a-propos/a-propos.component';
 import { isPlatformServer } from '@angular/common';
 import { ReglementComponent } from './pages/reglement/reglement.component';
@@ -49,76 +59,84 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { RuntimeConfigService } from './runtime-config.service';
 
-@NgModule({ declarations: [
-        AppComponent,
-        NavbarComponent,
-        ThemeChooserComponent,
-        AcceuilComponent,
-        NotFoundComponent,
-        FullscreenImgTextComponent,
-        SeasonPresentationsComponent,
-        NousRejoindreComponent,
-        ArchivesComponent,
-        PictureContentDeliveryComponent,
-        TimelineComponent,
-        TimelineItemComponent,
-        FooterComponent,
-        AProposComponent,
-        ReglementComponent,
-        PageHeaderComponent,
-        AppearDirective,
-        PageHeaderComponent,
-        NousRejoindreFormComponent,
-        NousRejoindreFormAdhesionComponent,
-        NousRejoindreFormCounselComponent,
-        AuthPopupComponent,
-        MembresComponent,
-        ProfilCardComponent,
-        ProfilComponent,
-    ],
-    bootstrap: [AppComponent],
-    exports: [MatCheckboxModule], imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        ApiModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSlideToggleModule,
-        ReactiveFormsModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatTooltipModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCheckboxModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        FormsModule,
-        MarkdownModule.forRoot(),
-        MatSelectModule,
-        MatCardModule,
-        MatChipsModule], providers: [
-        { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
-        { provide: 'PREFERSCOLOR', useFactory: getPrefersColorSchemeDark },
-        { provide: 'WINDOWS', useFactory: getWindows },
-        { provide: 'DOCUMENT', useFactory: getDocument },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initRuntimeConfig,
-            deps: [RuntimeConfigService],
-            multi: true,
-        },
-        {
-            provide: Configuration,
-            useFactory: (runtimeConfig: RuntimeConfigService) => new Configuration({
-                basePath: runtimeConfig.apiBasePath,
-            }),
-            deps: [RuntimeConfigService],
-            multi: false,
-        },
-        provideHttpClient(withInterceptorsFromDi(), withFetch()),
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    ThemeChooserComponent,
+    AcceuilComponent,
+    NotFoundComponent,
+    FullscreenImgTextComponent,
+    SeasonPresentationsComponent,
+    NousRejoindreComponent,
+    ArchivesComponent,
+    PictureContentDeliveryComponent,
+    TimelineComponent,
+    TimelineItemComponent,
+    FooterComponent,
+    AProposComponent,
+    ReglementComponent,
+    PageHeaderComponent,
+    AppearDirective,
+    PageHeaderComponent,
+    NousRejoindreFormComponent,
+    NousRejoindreFormAdhesionComponent,
+    NousRejoindreFormCounselComponent,
+    AuthPopupComponent,
+    MembresComponent,
+    ProfilCardComponent,
+    ProfilComponent,
+  ],
+  bootstrap: [AppComponent],
+  exports: [MatCheckboxModule],
+  imports: [
+    BrowserModule,
+    ApiModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    FormsModule,
+    MarkdownModule.forRoot(),
+    MatSelectModule,
+    MatCardModule,
+    MatChipsModule,
+  ],
+  providers: [
+    { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
+    { provide: 'PREFERSCOLOR', useFactory: getPrefersColorSchemeDark },
+    { provide: 'WINDOWS', useFactory: getWindows },
+    { provide: 'DOCUMENT', useFactory: getDocument },
+    { provide: APP_ID, useValue: 'serverApp' },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initRuntimeConfig,
+      deps: [RuntimeConfigService],
+      multi: true,
+    },
+    {
+      provide: Configuration,
+      useFactory: (runtimeConfig: RuntimeConfigService) =>
+        new Configuration({
+          basePath: runtimeConfig.apiBasePath,
+        }),
+      deps: [RuntimeConfigService],
+      multi: false,
+    },
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+  ],
+})
 export class AppModule {
   constructor(
     private matIconRegistry: MatIconRegistry,

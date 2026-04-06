@@ -4,38 +4,78 @@
 * Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48I2ExZWMwMCIsIj9lcjwjZTNmOWIzIiwiO2VyPCM4NWU0MDB$LCIlPmBePCNkZjliMzUiLCI~ZXI8I2Y1ZTFjMiIsIjtlcjwjZDI3ZjIyfiwid2Fybj5gXjwjZjQ0MzQzIiwiP2VyPCNmY2M3YzciLCI7ZXI8I2VmMmMyY34sIj9UZXh0PCMxODFlMjQiLCI~PTwjZmVmZWZlIiwiO1RleHQ8I2ZlZmVmZSIsIjs9PCMxODFlMjR$LCJmb250cz5bYEA8KC00IiwiZmFtaWx5PFBvcHBpbnN$LGBAPCgtMyIsImZhbWlseTxQb3BwaW5zfixgQDwoLTIiLCJmYW1pbHk8UG9wcGluc34sYEA8KC0xIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGhlYWRsaW5lIiwiZmFtaWx5PFBvcHBpbnN$LGBAPHRpdGxlIiwiZmFtaWx5PFBvcHBpbnN$LGBAPHN1YiktMiIsImZhbWlseTxQb3BwaW5zfixgQDxzdWIpLTEiLCJmYW1pbHk8UG9wcGluc34sYEA8Ym9keS0yIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGJvZHktMX4sYEA8YnV0dG9uIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGNhcHRpb24iLCJmYW1pbHk8UG9wcGluc34sYEA8aW5wdXQiLCJmYW1pbHk8UG9wcGlucyIsInZhcmlhbnQ8PyIsImxpbmVIZWlnaHQ$MS4xNSwic2l6ZT5udWxsLCJzcGFjaW5nPi00fV0sImljb25zPE91dGxpbmVkIiwiP25lc3M$dHJ1ZSwidmVyc2lvbj4xM30=
 */
 
-@use 'sass:map';
-@use '@angular/material' as mat;
+@use "sass:map";
+@use "@angular/material" as mat;
 @use "./app/layout/navbar/navbar.theme.component" as nav;
 @use "./litopia-base" as base;
-@use "app/pages/acceuil/fullscreen-img-text/fullscreen-img-text.theme.component" as fullscreen-img-text;
+@use "app/pages/acceuil/fullscreen-img-text/fullscreen-img-text.theme.component"
+  as fullscreen-img-text;
 @use "app/pages/acceuil/timeline/timeline.theme.component" as timeline-container;
-@use "app/pages/acceuil/timeline/timeline-item/timeline-item.component.theme" as timeline-item;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form.component.theme" as nous-rejoindre;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.theme.component" as nous-rejoindre-form;
+@use "app/pages/acceuil/timeline/timeline-item/timeline-item.component.theme" as
+  timeline-item;
+@use "app/pages/nous-rejoindre-form/nous-rejoindre-form.component.theme" as
+  nous-rejoindre;
+@use "app/pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.theme.component"
+  as nous-rejoindre-form;
 @use "app/layout/footer/footers.component.theme" as footer;
 @use "app/pages/membres/profil-card/profil-card.theme.component" as profil-card;
 @include mat.core();
 // Fonts
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 @import "flex-utils";
 
 $fontConfig: mat.m2-define-typography-config(
-  $font-family: 'Poppins',
-  $headline-1: mat.m2-define-typography-level(112px, 112px, 300, 'Poppins', -0.0134em),
-  $headline-2: mat.m2-define-typography-level(56px, 56px, 400, 'Poppins', -0.0089em),
-  $headline-3: mat.m2-define-typography-level(45px, 48px, 400, 'Poppins', 0.0000em),
-  $headline-4: mat.m2-define-typography-level(34px, 40px, 400, 'Poppins', 0.0074em),
-  $headline-5: mat.m2-define-typography-level(24px, 32px, 400, 'Poppins', 0.0000em),
-  $headline-6: mat.m2-define-typography-level(22px, 32px, 500, 'Poppins', 0.0075em),
-  $subtitle-1: mat.m2-define-typography-level(16px, 28px, 400, 'Poppins', 0.0094em),
-  $subtitle-2: mat.m2-define-typography-level(14px, 24px, 500, 'Poppins', 0.0179em),
-  $body-1: mat.m2-define-typography-level(15px, 24px, 500, 'Poppins', 0.0067em),
-  $body-2: mat.m2-define-typography-level(14px, 20px, 400, 'Poppins', 0.0179em),
-  $button: mat.m2-define-typography-level(14px, 14px, 500, 'Poppins', 0.0893em),
-  $caption: mat.m2-define-typography-level(12px, 20px, 400, 'Poppins', 0.0333em)
+  $font-family: "Poppins",
+  $headline-1: mat.m2-define-typography-level(
+      112px,
+      112px,
+      300,
+      "Poppins",
+      -0.0134em
+    ),
+  $headline-2: mat.m2-define-typography-level(
+      56px,
+      56px,
+      400,
+      "Poppins",
+      -0.0089em
+    ),
+  $headline-3: mat.m2-define-typography-level(45px, 48px, 400, "Poppins", 0em),
+  $headline-4: mat.m2-define-typography-level(
+      34px,
+      40px,
+      400,
+      "Poppins",
+      0.0074em
+    ),
+  $headline-5: mat.m2-define-typography-level(24px, 32px, 400, "Poppins", 0em),
+  $headline-6: mat.m2-define-typography-level(
+      22px,
+      32px,
+      500,
+      "Poppins",
+      0.0075em
+    ),
+  $subtitle-1: mat.m2-define-typography-level(
+      16px,
+      28px,
+      400,
+      "Poppins",
+      0.0094em
+    ),
+  $subtitle-2: mat.m2-define-typography-level(
+      14px,
+      24px,
+      500,
+      "Poppins",
+      0.0179em
+    ),
+  $body-1: mat.m2-define-typography-level(15px, 24px, 500, "Poppins", 0.0067em),
+  $body-2: mat.m2-define-typography-level(14px, 20px, 400, "Poppins", 0.0179em),
+  $button: mat.m2-define-typography-level(14px, 14px, 500, "Poppins", 0.0893em),
+  $caption: mat.m2-define-typography-level(12px, 20px, 400, "Poppins", 0.0333em),
 );
 
 @include mat.typography-hierarchy($fontConfig);
@@ -51,21 +91,21 @@ $dark-dividers: rgba($dark-primary-text, 0.12);
 $dark-focused: rgba($dark-primary-text, 0.12);
 
 $mat-light-theme-foreground: (
-  base:              black,
-  divider:           $dark-dividers,
-  dividers:          $dark-dividers,
-  disabled:          $dark-disabled-text,
-  disabled-button:   rgba($dark-text, 0.26),
-  disabled-text:     $dark-disabled-text,
-  elevation:         black,
-  secondary-text:    $dark-accent-text,
-  hint-text:         $dark-disabled-text,
-  accent-text:       $dark-accent-text,
-  icon:              $dark-accent-text,
-  icons:             $dark-accent-text,
-  text:              $dark-primary-text,
-  slider-min:        $dark-primary-text,
-  slider-off:        rgba($dark-text, 0.26),
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
   slider-off-active: $dark-disabled-text,
 );
 
@@ -78,88 +118,88 @@ $light-dividers: rgba($light-primary-text, 0.12);
 $light-focused: rgba($light-primary-text, 0.12);
 
 $mat-dark-theme-foreground: (
-  base:              $light-text,
-  divider:           $light-dividers,
-  dividers:          $light-dividers,
-  disabled:          $light-disabled-text,
-  disabled-button:   rgba($light-text, 0.3),
-  disabled-text:     $light-disabled-text,
-  elevation:         black,
-  hint-text:         $light-disabled-text,
-  secondary-text:    $light-accent-text,
-  accent-text:       $light-accent-text,
-  icon:              $light-text,
-  icons:             $light-text,
-  text:              $light-text,
-  slider-min:        $light-text,
-  slider-off:        rgba($light-text, 0.3),
+  base: $light-text,
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba($light-text, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-accent-text,
+  accent-text: $light-accent-text,
+  icon: $light-text,
+  icons: $light-text,
+  text: $light-text,
+  slider-min: $light-text,
+  slider-off: rgba($light-text, 0.3),
   slider-off-active: rgba($light-text, 0.3),
 );
 
 // Background config
 // Light bg
 $light-background: #e6f2e6;
-$light-bg-darker-5:   darken($light-background, 5%);
-$light-bg-darker-10:  darken($light-background, 10%);
-$light-bg-darker-20:  darken($light-background, 20%);
-$light-bg-darker-30:  darken($light-background, 30%);
-$light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-tooltip:     lighten(#0a1e0a, 20%);
-$dark-bg-alpha-4:     rgba(#0a1e0a, 0.04);
-$dark-bg-alpha-12:    rgba(#0a1e0a, 0.12);
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten(#0a1e0a, 20%);
+$dark-bg-alpha-4: rgba(#0a1e0a, 0.04);
+$dark-bg-alpha-12: rgba(#0a1e0a, 0.12);
 
 $mat-light-theme-background: (
-  background:               $light-background,
-  status-bar:               $light-bg-darker-20,
-  app-bar:                  $light-bg-darker-5,
-  hover:                    $dark-bg-alpha-4,
-  card:                     $light-bg-lighter-5,
-  dialog:                   $light-bg-lighter-5,
-  tooltip:                  $dark-bg-tooltip,
-  disabled-button:          $dark-bg-alpha-12,
-  raised-button:            $light-bg-lighter-5,
-  focused-button:           $dark-focused,
-  selected-button:          $light-bg-darker-20,
+  background: $light-background,
+  status-bar: $light-bg-darker-20,
+  app-bar: $light-bg-darker-5,
+  hover: $dark-bg-alpha-4,
+  card: $light-bg-lighter-5,
+  dialog: $light-bg-lighter-5,
+  tooltip: $dark-bg-tooltip,
+  disabled-button: $dark-bg-alpha-12,
+  raised-button: $light-bg-lighter-5,
+  focused-button: $dark-focused,
+  selected-button: $light-bg-darker-20,
   selected-disabled-button: $light-bg-darker-30,
-  disabled-button-toggle:   $light-bg-darker-10,
-  unselected-chip:          $light-bg-darker-10,
-  disabled-list-option:     $light-bg-darker-10,
-  5:$light-bg-darker-5,
-  10:$light-bg-darker-10,
-  20:$light-bg-darker-20,
-  30:$light-bg-darker-30,
+  disabled-button-toggle: $light-bg-darker-10,
+  unselected-chip: $light-bg-darker-10,
+  disabled-list-option: $light-bg-darker-10,
+  5: $light-bg-darker-5,
+  10: $light-bg-darker-10,
+  20: $light-bg-darker-20,
+  30: $light-bg-darker-30,
 );
 
 // Dark bg
-$dark-background:     #181e24;
-$dark-bg-lighter-5:   #1D242C;
-$dark-bg-lighter-10:  lighten($dark-background, 10%);
-$dark-bg-lighter-20:  lighten($dark-background, 20%);
-$dark-bg-lighter-30:  lighten($dark-background, 30%);
-$light-bg-alpha-4:    rgba(#fefefe, 0.04);
-$light-bg-alpha-12:   rgba(#fefefe, 0.12);
+$dark-background: #181e24;
+$dark-bg-lighter-5: #1d242c;
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+$light-bg-alpha-4: rgba(#fefefe, 0.04);
+$light-bg-alpha-12: rgba(#fefefe, 0.12);
 
 // Background palette for dark themes.
 $mat-dark-theme-background: (
-  background:               $dark-background,
-  status-bar:               $dark-bg-lighter-20,
-  app-bar:                  $dark-bg-lighter-5,
-  hover:                    $light-bg-alpha-4,
-  card:                     $dark-bg-lighter-5,
-  dialog:                   $dark-bg-lighter-5,
-  tooltip:                  $dark-bg-lighter-20,
-  disabled-button:          $light-bg-alpha-12,
-  raised-button:            $dark-bg-lighter-5,
-  focused-button:           $light-focused,
-  selected-button:          $dark-bg-lighter-20,
+  background: $dark-background,
+  status-bar: $dark-bg-lighter-20,
+  app-bar: $dark-bg-lighter-5,
+  hover: $light-bg-alpha-4,
+  card: $dark-bg-lighter-5,
+  dialog: $dark-bg-lighter-5,
+  tooltip: $dark-bg-lighter-20,
+  disabled-button: $light-bg-alpha-12,
+  raised-button: $dark-bg-lighter-5,
+  focused-button: $light-focused,
+  selected-button: $dark-bg-lighter-20,
   selected-disabled-button: $dark-bg-lighter-30,
-  disabled-button-toggle:   $dark-bg-lighter-10,
-  unselected-chip:          $dark-bg-lighter-20,
-  disabled-list-option:     $dark-bg-lighter-10,
-  5:$dark-bg-lighter-5,
-  10:$dark-bg-lighter-10,
-  20:$dark-bg-lighter-20,
-  30:$dark-bg-lighter-30,
+  disabled-button-toggle: $dark-bg-lighter-10,
+  unselected-chip: $dark-bg-lighter-20,
+  disabled-list-option: $dark-bg-lighter-10,
+  5: $dark-bg-lighter-5,
+  10: $dark-bg-lighter-10,
+  20: $dark-bg-lighter-20,
+  30: $dark-bg-lighter-30,
 );
 
 // Theme Config
@@ -168,99 +208,116 @@ $mat-primary-dark-theme: (
   main: #30f230,
   lighter: #b3ffb3,
   darker: #4d994d,
-  200: #30f230, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
+  200: #30f230,
+  // For slide toggle,
+  contrast: (
+      main: $dark-primary-text,
+      lighter: $dark-primary-text,
+      darker: $dark-primary-text,
+    ),
 );
-$theme-primary-dark: mat.m2-define-palette($mat-primary-dark-theme, main, lighter, darker);
+$theme-primary-dark: mat.m2-define-palette(
+  $mat-primary-dark-theme,
+  main,
+  lighter,
+  darker
+);
 
 $mat-accent-light-theme: (
   main: #6eba5e,
   lighter: #a0ed8d,
   darker: #3d8931,
-  200: #6eba5e, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
+  200: #6eba5e,
+  // For slide toggle,
+  contrast: (
+      main: $dark-primary-text,
+      lighter: $dark-primary-text,
+      darker: $dark-primary-text,
+    ),
 );
-$theme-accent-light: mat.m2-define-palette($mat-accent-light-theme, main, lighter, darker);
+$theme-accent-light: mat.m2-define-palette(
+  $mat-accent-light-theme,
+  main,
+  lighter,
+  darker
+);
 
 $mat-accent: (
   main: #df9b35,
   lighter: #f5e1c2,
   darker: #d27f22,
-  200: #df9b35, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
+  200: #df9b35,
+  // For slide toggle,
+  contrast: (
+      main: $dark-primary-text,
+      lighter: $dark-primary-text,
+      darker: $dark-primary-text,
+    ),
 );
 $theme-accent: mat.m2-define-palette($mat-accent, main, lighter, darker);
 
-
 $mat-warn: (
-  main: #D34646,
+  main: #d34646,
   lighter: #ff7871,
   darker: #9b051e,
-  200: #D34646, // For slide toggle,
-  contrast : (
-    main: $light-primary-text,
-    lighter: $dark-primary-text,
-    darker: $light-primary-text,
-  )
+  200: #d34646,
+  // For slide toggle,
+  contrast: (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
 );
 $theme-warn: mat.m2-define-palette($mat-warn, main, lighter, darker);
 
 // Keep the existing custom foreground/background colors while using the v17 theme shape.
-$lightThemeBase: mat.m2-define-light-theme((
-  color: (
-    primary: $theme-accent,
-    accent: $theme-accent-light,
-    warn: $theme-warn,
-  ),
-  typography: $fontConfig,
-  density: 0,
-));
+$lightThemeBase: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $theme-accent,
+      accent: $theme-accent-light,
+      warn: $theme-warn,
+    ),
+    typography: $fontConfig,
+    density: 0,
+  )
+);
 
 $lightTheme: map.merge(
   $lightThemeBase,
   (
     color: map.merge(
-      mat.m2-get-color-config($lightThemeBase),
-      (
-        foreground: $mat-light-theme-foreground,
-        background: $mat-light-theme-background,
-      )
-    ),
+        mat.m2-get-color-config($lightThemeBase),
+        (
+          foreground: $mat-light-theme-foreground,
+          background: $mat-light-theme-background,
+        )
+      ),
   )
 );
 
-$darkThemeBase: mat.m2-define-dark-theme((
-  color: (
-    primary: $theme-primary-dark,
-    accent: $theme-accent,
-    warn: $theme-warn,
-  ),
-  typography: $fontConfig,
-  density: 0,
-));
+$darkThemeBase: mat.m2-define-dark-theme(
+  (
+    color: (
+      primary: $theme-primary-dark,
+      accent: $theme-accent,
+      warn: $theme-warn,
+    ),
+    typography: $fontConfig,
+    density: 0,
+  )
+);
 
 $darkTheme: map.merge(
   $darkThemeBase,
   (
     color: map.merge(
-      mat.m2-get-color-config($darkThemeBase),
-      (
-        foreground: $mat-dark-theme-foreground,
-        background: $mat-dark-theme-background,
-      )
-    ),
+        mat.m2-get-color-config($darkThemeBase),
+        (
+          foreground: $mat-dark-theme-foreground,
+          background: $mat-dark-theme-background,
+        )
+      ),
   )
 );
 
@@ -277,8 +334,9 @@ $darkTheme: map.merge(
 @include footer.theme($darkTheme);
 @include profil-card.theme($darkTheme);
 
-body{
+body {
   background-color: $dark-background;
+  color: $light-primary-text;
 }
 
 // Light Theme Init
@@ -297,28 +355,31 @@ body{
   @include footer.theme($lightTheme);
   @include profil-card.theme($lightTheme);
 }
-body.light-theme{
+body.light-theme {
   background-color: $light-background;
+  color: $dark-primary-text;
 }
 
 // Handle buttons appropriately, with respect to line-height
-.mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button {
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
   padding: 0 1.15em;
-  margin: 0 .65em;
+  margin: 0 0.65em;
   min-width: 3em;
-  line-height: 36.4px
+  line-height: 36.4px;
 }
 
 .mat-mdc-standard-chip {
-  padding: .5em .85em;
+  padding: 0.5em 0.85em;
   min-height: 2.5em;
 }
 
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons Outlined', 'Material Icons', sans-serif;
+  font-family: "Material Icons Outlined", "Material Icons", sans-serif;
   .mat-badge-content {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -332,6 +393,8 @@ body {
   padding: 0;
 }
 
-*{
-  transition: background-color .3s ease-in-out,border .3s ease-in-out;
+* {
+  transition:
+    background-color 0.3s ease-in-out,
+    border 0.3s ease-in-out;
 }

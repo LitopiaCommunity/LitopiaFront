@@ -1,20 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-header[title][img][imgAlt]',
+  standalone: false,
   templateUrl: './page-header.component.html',
-  styleUrls: ['./page-header.component.scss']
+  styleUrls: ['./page-header.component.scss'],
 })
 export class PageHeaderComponent implements OnInit {
-  @Input() title!:string;
-  @Input() img!:string;
-  @Input() imgAlt!:string;
-  @Input() profilePicture!:string;
-  @Input() compact=false;
+  @Input() title!: string;
+  @Input() img!: string;
+  @Input() imgAlt!: string;
+  @Input() profilePicture!: string;
+  @Input() compact = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

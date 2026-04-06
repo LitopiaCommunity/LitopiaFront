@@ -2,9 +2,9 @@
   width: 60px;
   height: 60px;
   transition: background-image 200ms;
-  background-position:center center;
-  background-repeat:no-repeat;
-  background-size:cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-image: url("https://mc-heads.net/head/left");
 }
 
@@ -56,7 +56,7 @@
   margin-top: 0;
 }
 
-.btn-error{
+.btn-error {
   position: absolute;
   font-size: 10.5px;
   line-height: 12px;
@@ -65,7 +65,7 @@
   margin: 66px 10px;
 }
 
-.btn-container{
+.btn-container {
   display: flex;
   flex-direction: column;
 }

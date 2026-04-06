@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import {leftFadeInAnimation} from "../../../animations/left-fade-in.animation";
-import {rightFadeInAnimation} from "../../../animations/right-fade-in.animation";
+import { leftFadeInAnimation } from '../../../animations/left-fade-in.animation';
+import { rightFadeInAnimation } from '../../../animations/right-fade-in.animation';
 
 @Component({
   selector: 'app-season-presentations',
+  standalone: false,
   templateUrl: './season-presentations.component.html',
   styleUrls: ['./season-presentations.component.scss'],
-  animations:[leftFadeInAnimation,rightFadeInAnimation]
+  animations: [leftFadeInAnimation, rightFadeInAnimation],
 })
 export class SeasonPresentationsComponent {
+  appearSet = new Set<string>();
 
-  appearSet=new Set<string>();
-
-  constructor() { }
+  constructor() {}
 
   appear(title: string) {
-    this.appearSet.add(title)
+    this.appearSet.add(title);
   }
 
   isAppear(title: string) {
-    return this.appearSet.has(title)
+    return this.appearSet.has(title);
   }
 }

@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
+  standalone: false,
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss','footers.component.theme.scss']
+  styleUrls: ['./footer.component.scss', 'footers.component.theme.scss'],
 })
 export class FooterComponent {
-
-  get currentYear(){
-    return new Date().getFullYear()
+  get currentYear() {
+    return new Date().getFullYear();
   }
-
 }
