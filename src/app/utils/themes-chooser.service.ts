@@ -53,11 +53,15 @@ export class ThemesChooserService {
   }
 
   private setDark(){
+    this.renderer.removeClass(this.document.documentElement,'light-theme')
+    this.renderer.setStyle(this.document.documentElement, 'color-scheme', 'dark')
     this.renderer.removeClass(this.document.body,'light-theme')
     this.overlay.getContainerElement().classList.remove('light-theme')
   }
 
   private setLight(){
+    this.renderer.addClass(this.document.documentElement,'light-theme')
+    this.renderer.setStyle(this.document.documentElement, 'color-scheme', 'light')
     this.renderer.addClass(this.document.body,'light-theme')
     this.overlay.getContainerElement().classList.add('light-theme')
   }
