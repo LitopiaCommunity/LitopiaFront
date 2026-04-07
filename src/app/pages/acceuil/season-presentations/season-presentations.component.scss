@@ -1,7 +1,17 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: row;
+  width: 100%;
   border-radius: 50px;
+
+  > * {
+    min-width: 0;
+  }
 }
 
 .big-title-container {
@@ -26,8 +36,17 @@
 }
 
 @media screen and (max-width: 750px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .big-title-container {
+    margin-bottom: 1rem;
+  }
+
   .title-bg {
-    font-size: 80px;
+    font-size: clamp(42px, 15vw, 50px);
+    line-height: 0.9;
     background-image: url("/assets/images/compressed/litopia-port-s4-512.webp");
   }
 }

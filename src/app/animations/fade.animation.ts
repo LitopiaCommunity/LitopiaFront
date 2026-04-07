@@ -1,28 +1,34 @@
-import {animate, query, style, transition, trigger} from "@angular/animations";
+import {
+  animate,
+  group,
+  query,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
-
-export const fade =   // trigger name for attaching this animation to an element using the [@triggerName] syntax
-
-  trigger('fadeAnimations', [
-    transition('* => *', [
-      query(':enter', [style({ opacity: 0, position: 'absolute' ,  width: '100%', height: '100%'})], {
-        optional: true,
-      }),
+export const fade = trigger('fadeAnimations', [
+  transition('* => *', [
+    query(
+      ':leave',
+      [style({ position: 'absolute', top: 0, left: 0, width: '100%' })],
+      { optional: true },
+    ),
+    group([
       query(
         ':leave',
-        [
-          style({ opacity: 1,  width: '100%', height: '100%' }),
-          animate('0.3s', style({ opacity: 0, position: 'absolute',  width: '100%', height: '100%' })),
-        ],
-        { optional: true }
+        [style({ opacity: 1 }), animate('0.3s ease', style({ opacity: 0 }))],
+        {
+          optional: true,
+        },
       ),
       query(
         ':enter',
-        [
-          style({ opacity: 0,  width: '100%', height: '100%' }),
-          animate('0.3s', style({ opacity: 1, position: 'relative',  width: '100%', height: '100%' })),
-        ],
-        { optional: true }
+        [style({ opacity: 0 }), animate('0.3s ease', style({ opacity: 1 }))],
+        {
+          optional: true,
+        },
       ),
     ]),
-  ]);
+  ]),
+]);

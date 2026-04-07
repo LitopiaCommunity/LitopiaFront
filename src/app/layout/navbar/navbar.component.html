@@ -4,16 +4,16 @@
     <nav>
       <ul>
         <li class="nav-link" [class.selected]="checkUrl('/')">
-          <a href="/" routerLink="">Accueil</a>
+          <a routerLink="/">Accueil</a>
         </li>
         <li class="nav-link" [class.selected]="checkUrl('/archives')">
-          <a href="/archives" routerLink="archives">🏛️ Archives</a>
+          <a routerLink="/archives">🏛️ Archives</a>
         </li>
         <li class="nav-link">
           <a [attr.href]="blueMapUrl">Bluemap</a>
         </li>
         <li class="nav-link" [class.selected]="checkUrl('/membres')">
-          <a href="/membres" routerLink="membres">Membres</a>
+          <a routerLink="/membres">Membres</a>
         </li>
         <li class="nav-link">
           <a href="https://www.paypal.me/litopia">Nous Soutenir</a>
@@ -24,17 +24,32 @@
     @if (authObs() | async; as user) {
       <div>
         @if (!user.logged) {
-          <button mat-stroked-button style="font-size: 13px" color="primary" (click)="login()">
+          <button
+            mat-stroked-button
+            style="font-size: 13px"
+            color="primary"
+            (click)="login()"
+          >
             Se connecter
           </button>
         }
         @if (user.logged) {
           <div>
             <button mat-icon-button>
-              <img class="pp" src="https://cdn.discordapp.com/avatars/{{user.discordID}}/{{user.discordAvatar}}.png" referrerpolicy="no-referrer" [matMenuTriggerFor]="menu" alt="avatar">
+              <img
+                class="pp"
+                src="https://cdn.discordapp.com/avatars/{{ user.discordID }}/{{
+                  user.discordAvatar
+                }}.png"
+                referrerpolicy="no-referrer"
+                [matMenuTriggerFor]="menu"
+                alt="avatar"
+              />
             </button>
             <mat-menu #menu="matMenu">
-              <p mat-menu-item [disableRipple]="true">Bienvenue {{user.discordNickname}} !</p>
+              <p mat-menu-item [disableRipple]="true">
+                Bienvenue {{ user.discordNickname }} !
+              </p>
               <button mat-menu-item (click)="logout()">
                 <mat-icon>exit_to_app</mat-icon>
                 <span>Déconnection</span>
@@ -50,17 +65,22 @@
   <mat-toolbar class="topbar-container-sm" role="heading" aria-level="2">
     <h1 class="litopia-title">LITOPIA</h1>
     <div class="flex-stretch"></div>
-    <button mat-stroked-button style="font-size: 13px" color="primary" (click)="login()">
+    <button
+      mat-stroked-button
+      style="font-size: 13px"
+      color="primary"
+      (click)="login()"
+    >
       Se connecter
     </button>
     <app-theme-chooser></app-theme-chooser>
   </mat-toolbar>
 
-  <mat-toolbar  class="navbar-container-sm" role="heading" aria-level="1">
+  <mat-toolbar class="navbar-container-sm" role="heading" aria-level="1">
     <nav>
       <ul class="nav-sub-container">
         <li class="nav-link" [class.selected]="checkUrl('/')">
-          <a mat-button href="/" routerLink="">
+          <a mat-button routerLink="/">
             <div class="nav-button-text">
               <mat-icon>home</mat-icon>
               <span>Accueil</span>
@@ -69,7 +89,7 @@
         </li>
 
         <li class="nav-link" [class.selected]="checkUrl('/archives')">
-          <a mat-button href="/archives" routerLink="archives">
+          <a mat-button routerLink="/archives">
             <div class="nav-button-text">
               <mat-icon>archive</mat-icon>
               <span>Archives</span>
@@ -78,16 +98,14 @@
         </li>
 
         <li class="nav-link" [class.selected]="checkUrl('/membres')">
-          <a mat-button href="/membres" routerLink="membres">
+          <a mat-button routerLink="/membres">
             <div class="nav-button-text">
               <mat-icon>groupe</mat-icon>
               <span>Membres</span>
             </div>
           </a>
         </li>
-
       </ul>
     </nav>
-
   </mat-toolbar>
 </header>

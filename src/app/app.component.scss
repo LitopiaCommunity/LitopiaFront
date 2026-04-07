@@ -1,12 +1,13 @@
-main{
+main {
   display: flex;
   flex-direction: column;
+  position: relative;
   margin-top: 80px;
   min-height: calc(100vh - 80px);
 }
 
-@media screen and (max-width: 750px){
-  main{
+@media screen and (max-width: 750px) {
+  main {
     margin-top: 60px;
     min-height: calc(100vh - 60px * 2);
     margin-bottom: 60px;
