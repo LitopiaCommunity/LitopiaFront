@@ -5,12 +5,16 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "images:generate": "node tools/generate-images.mjs",
+    "build:analyze": "ng build --configuration analyze --stats-json",
+    "analyze:main": "node tools/analyze-stats.mjs main",
+    "analyze:bundle": "npm run build:analyze && npm run analyze:main",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng serve",
     "build:ssr": "ng build",
     "serve:ssr": "node dist/LitopiaFront/server/server.mjs",
-    "prebuild": "gulp compress",
+    "prebuild": "npm run images:generate",
     "openAPIGenerator": "openapi-generator-cli generate -i http://localhost:8000/api-json -g typescript-angular -o ./src/app/apis/litopia-api",
     "pm2:stop": "pm2 stop litopia-front",
     "pm2:start": "pm2 start dist/LitopiaFront/server/server.mjs --name litopia-front"
@@ -32,7 +36,6 @@
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "marked": "^16.4.2",
-    "ngx-markdown": "^20.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"
@@ -46,14 +49,13 @@
     "@types/jasmine": "~4.0.0",
     "@types/node": "^20.19.39",
     "browser-sync": "^3.0.0",
-    "gulp": "^4.0.2",
-    "gulp-sharp-responsive": "^0.4.0",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "sharp": "^0.34.5",
     "typescript": "~5.9.3"
   }
 }

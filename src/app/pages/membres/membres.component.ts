@@ -1,4 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { SeoService } from '../../utils/seo.service';
 import { UserEntity, UsersService } from '../../apis/litopia-api';
 import {
@@ -9,7 +14,10 @@ import {
   switchMap,
   map,
 } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
+import { ProfilCardComponent } from './profil-card/profil-card.component';
 
 export enum SortType {
   LAST_ACTIVITY = 'lastActivity',
@@ -20,7 +28,18 @@ export enum SortType {
 
 @Component({
   selector: 'app-membres',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FooterComponent,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    PageHeaderComponent,
+    ProfilCardComponent,
+  ],
   templateUrl: './membres.component.html',
   styleUrls: ['./membres.component.scss'],
 })

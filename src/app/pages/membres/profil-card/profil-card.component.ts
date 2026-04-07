@@ -1,4 +1,6 @@
+import { DatePipe, NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { UserEntity } from '../../../apis/litopia-api';
 import {
   getProfilePicture,
@@ -8,7 +10,8 @@ import {
 
 @Component({
   selector: 'app-profil-card',
-  standalone: false,
+  standalone: true,
+  imports: [RouterLink, NgClass, DatePipe],
   templateUrl: './profil-card.component.html',
   styleUrls: [
     './profil-card.component.scss',

@@ -1,8 +1,10 @@
+import { NgClass } from '@angular/common';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-picture-content-delivery[alt][name]',
-  standalone: false,
+  standalone: true,
+  imports: [NgClass],
   templateUrl: './picture-content-delivery.component.html',
   styleUrls: ['./picture-content-delivery.component.scss'],
   encapsulation: ViewEncapsulation.None,

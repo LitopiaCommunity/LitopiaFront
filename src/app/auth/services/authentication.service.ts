@@ -6,6 +6,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthPopupComponent } from '../auth-popup/auth-popup.component';
 
+type WindowWithIdleCallback = Window & {
+  requestIdleCallback?: (
+    callback: () => void,
+    options?: { timeout: number },
+  ) => number;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +22,7 @@ export class AuthenticationService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
-    @Inject('WINDOWS') private windows: Window,
+    @Inject('WINDOWS') private windows: WindowWithIdleCallback,
     private readonly http: HttpClient,
     private readonly dialog: MatDialog,
   ) {
@@ -24,8 +31,39 @@ export class AuthenticationService {
     });
     this.currentUserObs = this.currentUserSubject.asObservable();
     if (isPlatformBrowser(this.platformId)) {
-      this.updateUserStatus();
+      this.scheduleInitialUserStatusUpdate();
     }
+  }
+
+  private scheduleInitialUserStatusUpdate() {
+    let hasStarted = false;
+    const startUpdate = () => {
+      if (hasStarted) {
+        return;
+      }
+
+      hasStarted = true;
+      this.deferUserStatusUpdate();
+    };
+
+    if (this.windows?.document?.readyState === 'complete') {
+      startUpdate();
+      return;
+    }
+
+    this.windows?.addEventListener?.('load', startUpdate, { once: true });
+    this.windows?.setTimeout?.(startUpdate, 1500);
+  }
+
+  private deferUserStatusUpdate() {
+    if (this.windows?.requestIdleCallback) {
+      this.windows.requestIdleCallback(() => this.updateUserStatus(), {
+        timeout: 2000,
+      });
+      return;
+    }
+
+    this.windows?.setTimeout(() => this.updateUserStatus(), 250);
   }
 
   public get currentUserValue(): Partial<User> {

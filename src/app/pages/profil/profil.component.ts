@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService, UserEntity } from '../../apis/litopia-api';
 import { first, Observable } from 'rxjs';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 import { SeoService } from '../../utils/seo.service';
 import {
   getMnecraftFullSkin,
@@ -9,11 +13,16 @@ import {
   getRole,
   getUserName,
 } from '../../utils/user-default';
-import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-profil',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    FooterComponent,
+    MatTooltipModule,
+    PageHeaderComponent,
+  ],
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss'],
 })
@@ -25,19 +34,14 @@ export class ProfilComponent implements OnInit {
     private route: ActivatedRoute,
     private seo: SeoService,
     private userService: UsersService,
-    private md: MarkdownService,
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.memberObs = this.userService.usersControllerGetUserByNickname(id);
     this.memberObs.pipe(first()).subscribe((user) => {
-      if (user) {
-        void Promise.resolve(this.md.parse(user.candidature)).then(
-          (parsedCandidature) => {
-            this.descriptionField = parsedCandidature;
-          },
-        );
+      if (user?.candidature) {
+        void this.renderCandidature(user.candidature);
       }
     });
 
@@ -46,6 +50,15 @@ export class ProfilComponent implements OnInit {
       description: 'Profile de ' + id + ' sur Litopia',
       image: 'https://mc-heads.net/head/' + id + '/100.png',
     });
+  }
+
+  private async renderCandidature(candidature: string) {
+    try {
+      const { marked } = await import('marked');
+      this.descriptionField = await marked.parse(candidature);
+    } catch (_error) {
+      this.descriptionField = candidature;
+    }
   }
 
   protected readonly getUserName = getUserName;

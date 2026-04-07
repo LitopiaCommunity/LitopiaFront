@@ -6,16 +6,14 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -24,8 +22,6 @@ import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FullscreenImgTextComponent } from './pages/acceuil/fullscreen-img-text/fullscreen-img-text.component';
 import { SeasonPresentationsComponent } from './pages/acceuil/season-presentations/season-presentations.component';
-import { NousRejoindreComponent } from './pages/nous-rejoindre/nous-rejoindre.component';
-import { ArchivesComponent } from './pages/archives/archives.component';
 import { PictureContentDeliveryComponent } from './utils/picture-content-delivery/picture-content-delivery.component';
 import { TimelineComponent } from './pages/acceuil/timeline/timeline.component';
 import { TimelineItemComponent } from './pages/acceuil/timeline/timeline-item/timeline-item.component';
@@ -37,26 +33,11 @@ import {
 } from '@angular/common/http';
 import { AProposComponent } from './pages/acceuil/a-propos/a-propos.component';
 import { isPlatformServer } from '@angular/common';
-import { ReglementComponent } from './pages/reglement/reglement.component';
-import { PageHeaderComponent } from './layout/page-header/page-header.component';
 import { AppearDirective } from './utils/appear.directive';
-import { NousRejoindreFormComponent } from './pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.component';
-import { NousRejoindreFormAdhesionComponent } from './pages/nous-rejoindre-form/nous-rejoindre-form-adhesion/nous-rejoindre-form-adhesion.component';
-import { NousRejoindreFormCounselComponent } from './pages/nous-rejoindre-form/nous-rejoindre-form-counsel/nous-rejoindre-form-counsel.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ApiModule, Configuration } from './apis/litopia-api';
+import { Configuration } from './apis/litopia-api/configuration';
 import { AuthPopupComponent } from './auth/auth-popup/auth-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MembresComponent } from './pages/membres/membres.component';
-import { ProfilCardComponent } from './pages/membres/profil-card/profil-card.component';
-import { ProfilComponent } from './pages/profil/profil.component';
-import { MarkdownModule } from 'ngx-markdown';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { RuntimeConfigService } from './runtime-config.service';
 
 @NgModule({
@@ -68,50 +49,28 @@ import { RuntimeConfigService } from './runtime-config.service';
     NotFoundComponent,
     FullscreenImgTextComponent,
     SeasonPresentationsComponent,
-    NousRejoindreComponent,
-    ArchivesComponent,
-    PictureContentDeliveryComponent,
     TimelineComponent,
     TimelineItemComponent,
-    FooterComponent,
     AProposComponent,
-    ReglementComponent,
-    PageHeaderComponent,
-    AppearDirective,
-    PageHeaderComponent,
-    NousRejoindreFormComponent,
-    NousRejoindreFormAdhesionComponent,
-    NousRejoindreFormCounselComponent,
     AuthPopupComponent,
-    MembresComponent,
-    ProfilCardComponent,
-    ProfilComponent,
   ],
   bootstrap: [AppComponent],
   exports: [MatCheckboxModule],
   imports: [
     BrowserModule,
-    ApiModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    FooterComponent,
+    PictureContentDeliveryComponent,
+    AppearDirective,
     MatToolbarModule,
     MatIconModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
     MatButtonModule,
     MatMenuModule,
     MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatCheckboxModule,
-    MatSnackBarModule,
     MatDialogModule,
     FormsModule,
-    MarkdownModule.forRoot(),
-    MatSelectModule,
-    MatCardModule,
-    MatChipsModule,
   ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },

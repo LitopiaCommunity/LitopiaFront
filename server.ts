@@ -1,9 +1,11 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr/node';
+import compression from 'compression';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import AppServerModule from './src/main.server';
+import { environment } from './src/environments/environment';
 
 const DEFAULT_SSR_ALLOWED_HOSTS = [
   'localhost',
@@ -44,6 +46,21 @@ function getRequestUrl(req: express.Request): string {
   return `${protocol}://${host}${req.originalUrl}`;
 }
 
+function getRuntimeConfigPayload(): string {
+  return JSON.stringify({
+    apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath,
+    blueMapUrl: process.env['BLUE_MAP_URL'] || environment.blueMapUrl,
+  }).replace(/</g, '\\u003c');
+}
+
+function injectRuntimeConfig(html: string): string {
+  const runtimeConfigScript = `<script>window.__LITOPIA_RUNTIME_CONFIG__=${getRuntimeConfigPayload()};</script>`;
+
+  return html.includes('</head>')
+    ? html.replace('</head>', `${runtimeConfigScript}</head>`)
+    : `${runtimeConfigScript}${html}`;
+}
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -57,6 +74,7 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
+  server.use(compression());
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
@@ -81,7 +99,7 @@ export function app(): express.Express {
         publicPath: browserDistFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
-      .then((html: string) => res.send(html))
+      .then((html: string) => res.send(injectRuntimeConfig(html)))
       .catch((err: unknown) => next(err));
   });
 

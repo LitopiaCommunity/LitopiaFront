@@ -1,5 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { upFadeInAnimation } from '../../animations/up-fade-in.animation';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
+import { AppearDirective } from '../../utils/appear.directive';
 import { SeoService } from '../../utils/seo.service';
 
 export interface SeasonDownload {
@@ -17,7 +26,18 @@ export interface SeasonDownload {
 
 @Component({
   selector: 'app-archives',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    FooterComponent,
+    PageHeaderComponent,
+    AppearDirective,
+  ],
   templateUrl: './archives.component.html',
   styleUrls: ['./archives.component.scss', './archives.component.theme.scss'],
   animations: [upFadeInAnimation],

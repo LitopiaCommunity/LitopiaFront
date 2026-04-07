@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[appear]',
-  standalone: false,
+  standalone: true,
 })
 export class AppearDirective implements OnInit {
   windowHeight: number = 0;

@@ -1,9 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 import { SeoService } from '../../utils/seo.service';
 
 @Component({
   selector: 'app-reglement',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatButtonModule,
+    MatIconModule,
+    FooterComponent,
+    PageHeaderComponent,
+  ],
   templateUrl: './reglement.component.html',
   styleUrls: ['./reglement.component.scss'],
 })
