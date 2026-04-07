@@ -5,6 +5,45 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import AppServerModule from './src/main.server';
 
+const DEFAULT_SSR_ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1',
+  '[::1]',
+  'litopia.fr',
+  '*.litopia.fr',
+];
+
+function getConfiguredAllowedHosts(): readonly string[] {
+  const envAllowedHosts =
+    process.env['NG_ALLOWED_HOSTS']
+      ?.split(',')
+      .map((host) => host.trim())
+      .filter((host) => host.length > 0) ?? [];
+
+  return [...new Set([...DEFAULT_SSR_ALLOWED_HOSTS, ...envAllowedHosts])];
+}
+
+function getFirstHeaderValue(
+  value: string | string[] | undefined,
+): string | undefined {
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+
+  return value?.split(',', 1)[0]?.trim();
+}
+
+function getRequestUrl(req: express.Request): string {
+  const protocol =
+    getFirstHeaderValue(req.headers['x-forwarded-proto']) ?? req.protocol;
+  const host =
+    getFirstHeaderValue(req.headers['x-forwarded-host']) ??
+    req.get('host') ??
+    'localhost';
+
+  return `${protocol}://${host}${req.originalUrl}`;
+}
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -12,7 +51,9 @@ export function app(): express.Express {
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  const commonEngine = new CommonEngine();
+  const commonEngine = new CommonEngine({
+    allowedHosts: getConfiguredAllowedHosts(),
+  });
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
@@ -30,13 +71,13 @@ export function app(): express.Express {
 
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
-    const { protocol, originalUrl, baseUrl, headers } = req;
+    const { baseUrl } = req;
 
     commonEngine
       .render({
         bootstrap: AppServerModule,
         documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
+        url: getRequestUrl(req),
         publicPath: browserDistFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })

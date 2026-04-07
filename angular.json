@@ -32,6 +32,15 @@
             "stylePreprocessorOptions": {
               "includePaths": ["."]
             },
+            "security": {
+              "allowedHosts": [
+                "localhost",
+                "127.0.0.1",
+                "[::1]",
+                "litopia.fr",
+                "*.litopia.fr"
+              ]
+            },
             "prerender": false,
             "ssr": {
               "entry": "server.ts"
