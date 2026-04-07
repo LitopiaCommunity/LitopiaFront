@@ -15,10 +15,10 @@ export class FullscreenImgTextComponent {
   constructor() {}
 
   isAppear(title: string) {
-    this.appearSet.add(title);
+    return this.appearSet.has(title);
   }
 
   appear(title: string) {
-    return this.appearSet.has(title);
+    this.appearSet.add(title);
   }
 }

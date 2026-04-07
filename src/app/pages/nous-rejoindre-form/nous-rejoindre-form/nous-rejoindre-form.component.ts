@@ -71,7 +71,7 @@ export class NousRejoindreFormComponent {
         }),
         map((base64: string) => {
           return {
-            backgroundImage: 'url(data:image/png;;base64,' + base64 + ')',
+            backgroundImage: 'url(data:image/png;base64,' + base64 + ')',
           };
         }),
       )
@@ -140,6 +140,7 @@ export class NousRejoindreFormComponent {
         'Ok',
         { duration: 5000, panelClass: 'snackbar-error' },
       );
+      return;
     }
     try {
       await lastValueFrom(
