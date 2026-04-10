@@ -102,8 +102,7 @@ export class NousRejoindreFormComponent {
               ),
             );
             return { takenUsername: true };
-          } catch (e) {
-            console.log(e);
+          } catch (_e) {
             return null;
           }
         }

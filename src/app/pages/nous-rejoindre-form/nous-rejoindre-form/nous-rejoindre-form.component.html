@@ -92,28 +92,32 @@
                     serveur</mat-error
                   >
                 }
-                @if (mcAccount.value.length == 0) {
+                @if ((mcAccount.value?.length ?? 0) == 0) {
                   <mat-hint align="end"
                     >Saisissez au moins 3 caractères</mat-hint
                   >
                 }
-                @if (mcAccount.value.length > 0 && mcAccount.value.length < 3) {
+                @if (
+                  (mcAccount.value?.length ?? 0) > 0 &&
+                  (mcAccount.value?.length ?? 0) < 3
+                ) {
                   <mat-hint align="end"
-                    >Plus que {{ 3 - mcAccount.value.length }}...</mat-hint
+                    >Plus que {{ 3 - (mcAccount.value?.length ?? 0) }}...</mat-hint
                   >
                 }
                 @if (
-                  mcAccount.value.length >= 3 && mcAccount.value.length <= 16
+                  (mcAccount.value?.length ?? 0) >= 3 &&
+                  (mcAccount.value?.length ?? 0) <= 16
                 ) {
                   <mat-hint align="end"
-                    >{{ 16 - mcAccount.value.length }} caractères
+                    >{{ 16 - (mcAccount.value?.length ?? 0) }} caractères
                     restants</mat-hint
                   >
                 }
-                @if (mcAccount.value.length > 16) {
+                @if ((mcAccount.value?.length ?? 0) > 16) {
                   <mat-hint align="end"
                     >Trop long de
-                    {{ mcAccount.value.length - 16 }} caractères</mat-hint
+                    {{ (mcAccount.value?.length ?? 0) - 16 }} caractères</mat-hint
                   >
                 }
               </mat-form-field>
@@ -218,7 +222,7 @@
               </a>
             </div>
           } @else {
-            <h2>Tu as déjà rédigé ta canidature</h2>
+            <h2>Tu as déjà rédigé ta candidature</h2>
             <h3>Espèce de petit malin</h3>
             <p>Voici la candidature que nous avons enregistrée :</p>
             <p>{{ user.candidature }}</p>
