@@ -129,12 +129,19 @@ export class AuthenticationService {
   }
 
   popupCenter(url: string, w: number, h: number) {
-    const y = window.top!.outerHeight / 2 + window.top!.screenY - h / 2;
-    const x = window.top!.outerWidth / 2 + window.top!.screenX - w / 2;
-    return window.open(
-      url,
-      '',
-      `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`,
+    const parentWindow = this.windows?.top ?? this.windows;
+    const outerHeight = parentWindow?.outerHeight ?? 0;
+    const outerWidth = parentWindow?.outerWidth ?? 0;
+    const screenY = parentWindow?.screenY ?? 0;
+    const screenX = parentWindow?.screenX ?? 0;
+    const y = outerHeight / 2 + screenY - h / 2;
+    const x = outerWidth / 2 + screenX - w / 2;
+    return (
+      this.windows?.open(
+        url,
+        '',
+        `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`,
+      ) ?? null
     );
   }
 }

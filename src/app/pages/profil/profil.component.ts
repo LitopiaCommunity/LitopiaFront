@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService, UserEntity } from '../../apis/litopia-api';
@@ -7,6 +7,7 @@ import { first, Observable } from 'rxjs';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 import { SeoService } from '../../utils/seo.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import {
   getMnecraftFullSkin,
   getProfilePicture,
@@ -34,6 +35,7 @@ export class ProfilComponent implements OnInit {
     private route: ActivatedRoute,
     private seo: SeoService,
     private userService: UsersService,
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,9 @@ export class ProfilComponent implements OnInit {
   private async renderCandidature(candidature: string) {
     try {
       const { marked } = await import('marked');
-      this.descriptionField = await marked.parse(candidature);
+      const rawHtml = await marked.parse(candidature);
+      this.descriptionField =
+        this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? candidature;
     } catch (_error) {
       this.descriptionField = candidature;
     }
