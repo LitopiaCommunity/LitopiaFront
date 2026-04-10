@@ -1,123 +1,163 @@
-import {Component} from '@angular/core';
-import {AuthenticationService} from "../../../auth/services/authentication.service";
-import {MinecraftApiService} from "../../../apis/minecraft-api/minecraft-api.service";
+import { Component } from '@angular/core';
+import { AuthenticationService } from '../../../auth/services/authentication.service';
+import { MinecraftApiService } from '../../../apis/minecraft-api/minecraft-api.service';
 import {
   AbstractControl,
   AsyncValidatorFn,
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
-} from "@angular/forms";
-import {lastValueFrom, map, switchMap, take, throttleTime} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {SimpleMinecaftAccount} from "../../../apis/minecraft-api/model/simpleMinecaftAccount";
-import {CandidatureProcessService, MinecraftUsersService} from "../../../apis/litopia-api";
-import {uuidConverter} from "../../../utils/uuid-converter";
-import {MatSnackBar} from "@angular/material/snack-bar";
+  Validators,
+} from '@angular/forms';
+import { lastValueFrom, map, switchMap, take, throttleTime } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { SimpleMinecaftAccount } from '../../../apis/minecraft-api/model/simpleMinecaftAccount';
+import {
+  CandidatureProcessService,
+  MinecraftUsersService,
+} from '../../../apis/litopia-api';
+import { uuidConverter } from '../../../utils/uuid-converter';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nous-rejoindre-form',
+  standalone: false,
   templateUrl: './nous-rejoindre-form.component.html',
-  styleUrls: ['./nous-rejoindre-form.component.scss']
+  styleUrls: [
+    './nous-rejoindre-form.component.scss',
+    './nous-rejoindre-form.theme.component.scss',
+  ],
 })
 export class NousRejoindreFormComponent {
+  candidatureForm: FormGroup;
 
-  candidatureForm:FormGroup;
+  style: { [klass: string]: any } | null = null;
 
-  style:{[klass: string]: any;}|null=null;
-
-  uuid='';
+  uuid = '';
 
   constructor(
-    public authService : AuthenticationService,
-    private mcApiService:MinecraftApiService,
+    public authService: AuthenticationService,
+    private mcApiService: MinecraftApiService,
     private http: HttpClient,
-    private minecraftUserService:MinecraftUsersService,
-    private candidatureProcess:CandidatureProcessService,
-    private snackBar: MatSnackBar) {
+    private minecraftUserService: MinecraftUsersService,
+    private candidatureProcess: CandidatureProcessService,
+    private snackBar: MatSnackBar,
+  ) {
     this.candidatureForm = new FormGroup({
-      minecraftUsername: new FormControl('', [
-        Validators.required, Validators.minLength(3),
-        Validators.maxLength(16)
-      ], [
-        this.minecraftAsyncValidator()
+      minecraftUsername: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(16),
+        ],
+        [this.minecraftAsyncValidator()],
+      ),
+      candidature: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1024),
+        Validators.maxLength(4096),
       ]),
-      candidature: new FormControl('', [Validators.required, Validators.minLength(1024), Validators.maxLength(4096)]),
-      conditions: new FormControl(false, [Validators.requiredTrue])
+      conditions: new FormControl(false, [Validators.requiredTrue]),
     });
 
-    this.candidatureForm.controls['minecraftUsername'].valueChanges.pipe(
-      throttleTime(200, undefined, {leading: true, trailing: true}),
-      switchMap((name:string)=>{
-        return this.imageUrlToBase64(`https://mc-heads.net/head/${name}/left`)
-      }),
-      map((base64:string)=>{
-        return {
-          backgroundImage:"url(data:image/png;;base64,"+base64+")",
-        }
-      })
-    ).subscribe(style=>{
-      this.style = style;
-    })
+    this.candidatureForm.controls['minecraftUsername'].valueChanges
+      .pipe(
+        throttleTime(200, undefined, { leading: true, trailing: true }),
+        switchMap((name: string) => {
+          return this.imageUrlToBase64(
+            `https://mc-heads.net/head/${name}/left`,
+          );
+        }),
+        map((base64: string) => {
+          return {
+            backgroundImage: 'url(data:image/png;base64,' + base64 + ')',
+          };
+        }),
+      )
+      .subscribe((style) => {
+        this.style = style;
+      });
   }
 
-  hasError(controlName:string, errorName:string){
+  hasError(controlName: string, errorName: string) {
     return this.candidatureForm.controls[controlName].hasError(errorName);
   }
 
-  minecraftAsyncValidator():AsyncValidatorFn {
-    return async (control: AbstractControl): Promise<ValidationErrors | null> => {
+  minecraftAsyncValidator(): AsyncValidatorFn {
+    return async (
+      control: AbstractControl,
+    ): Promise<ValidationErrors | null> => {
       try {
-        const val = await lastValueFrom(this.mcApiService.getUUIDFomUser$Response(control.value))
-        if (val){
+        const val = await lastValueFrom(
+          this.mcApiService.getUUIDFomUser$Response(control.value),
+        );
+        if (val) {
           const mcUser = <SimpleMinecaftAccount>val;
-          try{
+          try {
             this.uuid = uuidConverter(mcUser.id);
-            await lastValueFrom(this.minecraftUserService.minecraftUsersControllerIsMinecraftUserExist(this.uuid));
-            return {takenUsername: true};
-          }catch (e){
-            console.log(e)
+            await lastValueFrom(
+              this.minecraftUserService.minecraftUsersControllerIsMinecraftUserExist(
+                this.uuid,
+              ),
+            );
+            return { takenUsername: true };
+          } catch (_e) {
             return null;
           }
         }
-        return {invalidMinecraftUsername:true};
-      }catch (e) {
-        return {invalidMinecraftUsername:true};
+        return { invalidMinecraftUsername: true };
+      } catch (e) {
+        return { invalidMinecraftUsername: true };
       }
-    }
+    };
   }
 
   imageUrlToBase64(urL: string) {
-    return this.http.get(urL, {
-      observe: 'body',
-      responseType: 'arraybuffer',
-    })
+    return this.http
+      .get(urL, {
+        observe: 'body',
+        responseType: 'arraybuffer',
+      })
       .pipe(
         take(1),
         map((arrayBuffer) =>
           btoa(
             Array.from(new Uint8Array(arrayBuffer))
               .map((b) => String.fromCharCode(b))
-              .join('')
-          )
+              .join(''),
+          ),
         ),
-      )
+      );
   }
 
-  async onSubmit(){
+  async onSubmit() {
     const user = this.authService.currentUserValue;
-    if (!user.logged){
-      this.snackBar.open('Vous devez être connecté pour pouvoir candidater', 'Ok', {duration: 5000, panelClass: 'snackbar-error'});
+    if (!user.logged) {
+      this.snackBar.open(
+        'Vous devez être connecté pour pouvoir candidater',
+        'Ok',
+        { duration: 5000, panelClass: 'snackbar-error' },
+      );
+      return;
     }
     try {
       await lastValueFrom(
-        this.candidatureProcess.candidatureProcessControllerPostCandidature({candidature: this.candidatureForm.value.candidature, minecraftUUID:this.uuid})
+        this.candidatureProcess.candidatureProcessControllerPostCandidature({
+          candidature: this.candidatureForm.value.candidature,
+          minecraftUUID: this.uuid,
+        }),
       );
-      this.snackBar.open('Candidature envoyée', 'Ok', {duration: 5000, panelClass: 'snackbar-success'});
+      this.snackBar.open('Candidature envoyée', 'Ok', {
+        duration: 5000,
+        panelClass: 'snackbar-success',
+      });
       this.authService.updateUserStatus();
-    }catch (e){
-      this.snackBar.open('Erreur lors de l\'envoi de la candidature', 'Ok', {duration: 5000, panelClass: 'snackbar-error'});
+    } catch (e) {
+      this.snackBar.open("Erreur lors de l'envoi de la candidature", 'Ok', {
+        duration: 5000,
+        panelClass: 'snackbar-error',
+      });
     }
   }
 }

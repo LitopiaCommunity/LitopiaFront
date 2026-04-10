@@ -6,22 +6,35 @@
     (appear)="appear('img')"
   ></app-picture-content-delivery>
   <article>
-    <header [@rightFadeInAnimation]="isAppear('title')"
-            (appear)="appear('title')">
+    <header
+      [@rightFadeInAnimation]="isAppear('title')"
+      (appear)="appear('title')"
+    >
       <h1>A propos</h1>
     </header>
-    <p [@rightFadeInAnimation]="isAppear('p1')"
-       (appear)="appear('p1')">Litopia est un serveur Minecraft Vanilla en UltraHardCore (avec respawn), actuellement en <strong>version 26.2</strong>. Le PvP est actif et la map illimitée en freebuild. Nous sommes avant tout une communauté soudée, une bande de copains qui se retrouvent pour partager ensemble une aventure sur Minecraft.</p>
-    <p [@rightFadeInAnimation]="isAppear('p2')"
-       (appear)="appear('p2')"><strong>Serveur privé réservé aux membres historiques.</strong> Avec l'Ultime Saison, nous entrons dans une nouvelle ère : <strong>Zéro Reset. Construction éternelle.</strong> Cette carte restera en ligne à jamais, monument permanent de notre communauté et témoin de 10 ans d'aventures partagées.</p>
-    <div class="call-to-action-container"
-         [@rightFadeInAnimation]="isAppear('btn')"
-         (appear)="appear('btn')">
-      <a mat-flat-button color="primary" href="/archives" routerLink="/archives">
+    <p [@rightFadeInAnimation]="isAppear('p1')" (appear)="appear('p1')">
+      Litopia est un serveur Minecraft Vanilla en UltraHardCore (avec respawn),
+      actuellement en <strong>version 26.2</strong>. Le PvP est actif et la map
+      illimitée en freebuild. Nous sommes avant tout une communauté soudée, une
+      bande de copains qui se retrouvent pour partager ensemble une aventure sur
+      Minecraft.
+    </p>
+    <p [@rightFadeInAnimation]="isAppear('p2')" (appear)="appear('p2')">
+      <strong>Serveur privé réservé aux membres historiques.</strong> Avec
+      l'Ultime Saison, nous entrons dans une nouvelle ère :
+      <strong>Zéro Reset. Construction éternelle.</strong> Cette carte restera
+      en ligne à jamais, monument permanent de notre communauté et témoin de 10
+      ans d'aventures partagées.
+    </p>
+    <div
+      class="call-to-action-container"
+      [@rightFadeInAnimation]="isAppear('btn')"
+      (appear)="appear('btn')"
+    >
+      <a mat-flat-button color="primary" routerLink="/archives">
         <span>Voir les archives&nbsp;</span>
         <mat-icon>history</mat-icon>
       </a>
     </div>
   </article>
 </section>
-

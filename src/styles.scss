@@ -1,298 +1,386 @@
-/**
-* Generated theme by Material Theme Generator
-* https://materialtheme.arcsine.dev
-* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48I2ExZWMwMCIsIj9lcjwjZTNmOWIzIiwiO2VyPCM4NWU0MDB$LCIlPmBePCNkZjliMzUiLCI~ZXI8I2Y1ZTFjMiIsIjtlcjwjZDI3ZjIyfiwid2Fybj5gXjwjZjQ0MzQzIiwiP2VyPCNmY2M3YzciLCI7ZXI8I2VmMmMyY34sIj9UZXh0PCMxODFlMjQiLCI~PTwjZmVmZWZlIiwiO1RleHQ8I2ZlZmVmZSIsIjs9PCMxODFlMjR$LCJmb250cz5bYEA8KC00IiwiZmFtaWx5PFBvcHBpbnN$LGBAPCgtMyIsImZhbWlseTxQb3BwaW5zfixgQDwoLTIiLCJmYW1pbHk8UG9wcGluc34sYEA8KC0xIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGhlYWRsaW5lIiwiZmFtaWx5PFBvcHBpbnN$LGBAPHRpdGxlIiwiZmFtaWx5PFBvcHBpbnN$LGBAPHN1YiktMiIsImZhbWlseTxQb3BwaW5zfixgQDxzdWIpLTEiLCJmYW1pbHk8UG9wcGluc34sYEA8Ym9keS0yIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGJvZHktMX4sYEA8YnV0dG9uIiwiZmFtaWx5PFBvcHBpbnN$LGBAPGNhcHRpb24iLCJmYW1pbHk8UG9wcGluc34sYEA8aW5wdXQiLCJmYW1pbHk8UG9wcGlucyIsInZhcmlhbnQ8PyIsImxpbmVIZWlnaHQ$MS4xNSwic2l6ZT5udWxsLCJzcGFjaW5nPi00fV0sImljb25zPE91dGxpbmVkIiwiP25lc3M$dHJ1ZSwidmVyc2lvbj4xM30=
-*/
-
-@use '@angular/material' as mat;
-@use "./app/layout/navbar/navbar.theme.component" as nav;
+@use "sass:color";
+@use "sass:map";
+@use "@angular/material" as mat;
 @use "./litopia-base" as base;
-@use "app/pages/acceuil/fullscreen-img-text/fullscreen-img-text.theme.component" as fullscreen-img-text;
-@use "app/pages/acceuil/timeline/timeline.theme.component" as timeline-container;
-@use "app/pages/acceuil/timeline/timeline-item/timeline-item.component.theme" as timeline-item;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form.component.theme" as nous-rejoindre;
-@use "app/pages/nous-rejoindre-form/nous-rejoindre-form/nous-rejoindre-form.theme.component" as nous-rejoindre-form;
-@use "app/layout/footer/footers.component.theme" as footer;
-@use "app/pages/membres/profil-card/profil-card.theme.component" as profil-card;
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-@include mat.core();
-// Fonts
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-@import "flex-utils";
+@use "./theme-colors" as theme-colors;
 
-$fontConfig: (
-  display-4: mat.define-typography-level(112px, 112px, 300, 'Poppins', -0.0134em),
-  display-3: mat.define-typography-level(56px, 56px, 400, 'Poppins', -0.0089em),
-  display-2: mat.define-typography-level(45px, 48px, 400, 'Poppins', 0.0000em),
-  display-1: mat.define-typography-level(34px, 40px, 400, 'Poppins', 0.0074em),
-  headline: mat.define-typography-level(24px, 32px, 400, 'Poppins', 0.0000em),
-  title: mat.define-typography-level(22px, 32px, 500, 'Poppins', 0.0075em),
-  subheading-2: mat.define-typography-level(16px, 28px, 400, 'Poppins', 0.0094em),
-  subheading-1: mat.define-typography-level(15px, 24px, 500, 'Poppins', 0.0067em),
-  body-2: mat.define-typography-level(14px, 24px, 500, 'Poppins', 0.0179em),
-  body-1: mat.define-typography-level(14px, 20px, 400, 'Poppins', 0.0179em),
-  button: mat.define-typography-level(14px, 14px, 500, 'Poppins', 0.0893em),
-  caption: mat.define-typography-level(12px, 20px, 400, 'Poppins', 0.0333em),
-  input: mat.define-typography-level(inherit, 1.15, 300, 'Poppins', 1.5px)
-);
+@include mat.elevation-classes();
+@include mat.app-background();
 
-// Foreground Elements
-
-// Light Theme Text
-$dark-text: #181e24;
-$dark-primary-text: rgba($dark-text, 0.87);
-$dark-accent-text: rgba($dark-primary-text, 0.54);
-$dark-disabled-text: rgba($dark-primary-text, 0.38);
-$dark-dividers: rgba($dark-primary-text, 0.12);
-$dark-focused: rgba($dark-primary-text, 0.12);
-
-$mat-light-theme-foreground: (
-  base:              black,
-  divider:           $dark-dividers,
-  dividers:          $dark-dividers,
-  disabled:          $dark-disabled-text,
-  disabled-button:   rgba($dark-text, 0.26),
-  disabled-text:     $dark-disabled-text,
-  elevation:         black,
-  secondary-text:    $dark-accent-text,
-  hint-text:         $dark-disabled-text,
-  accent-text:       $dark-accent-text,
-  icon:              $dark-accent-text,
-  icons:             $dark-accent-text,
-  text:              $dark-primary-text,
-  slider-min:        $dark-primary-text,
-  slider-off:        rgba($dark-text, 0.26),
-  slider-off-active: $dark-disabled-text,
-);
-
-// Dark Theme text
-$light-text: #fefefe;
-$light-primary-text: $light-text;
-$light-accent-text: rgba($light-primary-text, 0.7);
-$light-disabled-text: rgba($light-primary-text, 0.5);
-$light-dividers: rgba($light-primary-text, 0.12);
-$light-focused: rgba($light-primary-text, 0.12);
-
-$mat-dark-theme-foreground: (
-  base:              $light-text,
-  divider:           $light-dividers,
-  dividers:          $light-dividers,
-  disabled:          $light-disabled-text,
-  disabled-button:   rgba($light-text, 0.3),
-  disabled-text:     $light-disabled-text,
-  elevation:         black,
-  hint-text:         $light-disabled-text,
-  secondary-text:    $light-accent-text,
-  accent-text:       $light-accent-text,
-  icon:              $light-text,
-  icons:             $light-text,
-  text:              $light-text,
-  slider-min:        $light-text,
-  slider-off:        rgba($light-text, 0.3),
-  slider-off-active: rgba($light-text, 0.3),
-);
-
-// Background config
-// Light bg
 $light-background: #e6f2e6;
-$light-bg-darker-5:   darken($light-background, 5%);
-$light-bg-darker-10:  darken($light-background, 10%);
-$light-bg-darker-20:  darken($light-background, 20%);
-$light-bg-darker-30:  darken($light-background, 30%);
-$light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-tooltip:     lighten(#0a1e0a, 20%);
-$dark-bg-alpha-4:     rgba(#0a1e0a, 0.04);
-$dark-bg-alpha-12:    rgba(#0a1e0a, 0.12);
+$light-app-bar: color.adjust($light-background, $lightness: -5%, $space: hsl);
+$light-surface: color.adjust($light-background, $lightness: 5%, $space: hsl);
+$light-step-5: $light-app-bar;
+$light-step-10: color.adjust($light-background, $lightness: -10%, $space: hsl);
+$light-step-20: color.adjust($light-background, $lightness: -20%, $space: hsl);
+$light-step-30: color.adjust($light-background, $lightness: -30%, $space: hsl);
+$light-profile-bg: color.adjust($light-surface, $lightness: 10%, $space: hsl);
+$light-profile-hover: color.adjust(
+  $light-surface,
+  $lightness: -10%,
+  $space: hsl
+);
+$light-profile-active: color.adjust(
+  $light-surface,
+  $lightness: -20%,
+  $space: hsl
+);
+$light-profile-visited: color.adjust(
+  $light-surface,
+  $lightness: -2%,
+  $space: hsl
+);
+$light-tooltip: color.adjust(#0a1e0a, $lightness: 20%, $space: hsl);
 
-$mat-light-theme-background: (
-  background:               $light-background,
-  status-bar:               $light-bg-darker-20,
-  app-bar:                  $light-bg-darker-5,
-  hover:                    $dark-bg-alpha-4,
-  card:                     $light-bg-lighter-5,
-  dialog:                   $light-bg-lighter-5,
-  tooltip:                  $dark-bg-tooltip,
-  disabled-button:          $dark-bg-alpha-12,
-  raised-button:            $light-bg-lighter-5,
-  focused-button:           $dark-focused,
-  selected-button:          $light-bg-darker-20,
-  selected-disabled-button: $light-bg-darker-30,
-  disabled-button-toggle:   $light-bg-darker-10,
-  unselected-chip:          $light-bg-darker-10,
-  disabled-list-option:     $light-bg-darker-10,
-  5:$light-bg-darker-5,
-  10:$light-bg-darker-10,
-  20:$light-bg-darker-20,
-  30:$light-bg-darker-30,
+$dark-background: #181e24;
+$dark-surface: #1d242c;
+$dark-step-5: $dark-surface;
+$dark-step-10: color.adjust($dark-background, $lightness: 10%, $space: hsl);
+$dark-step-20: color.adjust($dark-background, $lightness: 20%, $space: hsl);
+$dark-step-30: color.adjust($dark-background, $lightness: 30%, $space: hsl);
+$dark-profile-bg: color.adjust($dark-surface, $lightness: 10%, $space: hsl);
+$dark-profile-hover: color.adjust($dark-surface, $lightness: -10%, $space: hsl);
+$dark-profile-active: color.adjust(
+  $dark-surface,
+  $lightness: -20%,
+  $space: hsl
+);
+$dark-profile-visited: color.adjust(
+  $dark-surface,
+  $lightness: -2%,
+  $space: hsl
 );
 
-// Dark bg
-$dark-background:     #181e24;
-$dark-bg-lighter-5:   #1D242C;
-$dark-bg-lighter-10:  lighten($dark-background, 10%);
-$dark-bg-lighter-20:  lighten($dark-background, 20%);
-$dark-bg-lighter-30:  lighten($dark-background, 30%);
-$light-bg-alpha-4:    rgba(#fefefe, 0.04);
-$light-bg-alpha-12:   rgba(#fefefe, 0.12);
+$dark-text-base: #181e24;
+$light-text-base: #fefefe;
+$light-text: rgba($dark-text-base, 0.87);
+$light-text-muted: rgba($dark-text-base, 0.54);
+$light-divider: rgba($dark-text-base, 0.12);
+$light-outline: rgba($dark-text-base, 0.24);
+$dark-text: $light-text-base;
+$dark-text-muted: rgba($light-text-base, 0.7);
+$dark-divider: rgba($light-text-base, 0.12);
+$dark-outline: rgba($light-text-base, 0.3);
 
-// Background palette for dark themes.
-$mat-dark-theme-background: (
-  background:               $dark-background,
-  status-bar:               $dark-bg-lighter-20,
-  app-bar:                  $dark-bg-lighter-5,
-  hover:                    $light-bg-alpha-4,
-  card:                     $dark-bg-lighter-5,
-  dialog:                   $dark-bg-lighter-5,
-  tooltip:                  $dark-bg-lighter-20,
-  disabled-button:          $light-bg-alpha-12,
-  raised-button:            $dark-bg-lighter-5,
-  focused-button:           $light-focused,
-  selected-button:          $dark-bg-lighter-20,
-  selected-disabled-button: $dark-bg-lighter-30,
-  disabled-button-toggle:   $dark-bg-lighter-10,
-  unselected-chip:          $dark-bg-lighter-20,
-  disabled-list-option:     $dark-bg-lighter-10,
-  5:$dark-bg-lighter-5,
-  10:$dark-bg-lighter-10,
-  20:$dark-bg-lighter-20,
-  30:$dark-bg-lighter-30,
+$warn-color: #d34646;
+
+$light-theme-config: (
+  color: (
+    primary: theme-colors.$orange-palette,
+    tertiary: theme-colors.$green-palette,
+    theme-type: light,
+  ),
+  typography: (
+    plain-family: "Poppins",
+    brand-family: "Poppins",
+    bold-weight: 600,
+    medium-weight: 500,
+    regular-weight: 400,
+  ),
+  density: (
+    scale: 0,
+  ),
 );
 
-// Compute font config
-@include mat.core($fontConfig);
-
-// Theme Config
-
-$mat-primary-dark-theme: (
-  main: #30f230,
-  lighter: #b3ffb3,
-  darker: #4d994d,
-  200: #30f230, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
-);
-$theme-primary-dark: mat.define-palette($mat-primary-dark-theme, main, lighter, darker);
-
-$mat-accent-light-theme: (
-  main: #6eba5e,
-  lighter: #a0ed8d,
-  darker: #3d8931,
-  200: #6eba5e, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
-);
-$theme-accent-light: mat.define-palette($mat-accent-light-theme, main, lighter, darker);
-
-$mat-accent: (
-  main: #df9b35,
-  lighter: #f5e1c2,
-  darker: #d27f22,
-  200: #df9b35, // For slide toggle,
-  contrast : (
-    main: $dark-primary-text,
-    lighter: $dark-primary-text,
-    darker: $dark-primary-text,
-  )
-);
-$theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
-
-
-$mat-warn: (
-  main: #D34646,
-  lighter: #ff7871,
-  darker: #9b051e,
-  200: #D34646, // For slide toggle,
-  contrast : (
-    main: $light-primary-text,
-    lighter: $dark-primary-text,
-    darker: $light-primary-text,
-  )
-);
-$theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
-;
-
-$lightTheme: (
-  primary: $theme-accent,
-  accent: $theme-accent-light,
-  warn: $theme-warn,
-  is-dark: false,
-  foreground: $mat-light-theme-foreground,
-  background: $mat-light-theme-background,
+$dark-theme-config: (
+  color: (
+    primary: theme-colors.$green-palette,
+    tertiary: theme-colors.$orange-palette,
+    theme-type: dark,
+  ),
+  typography: (
+    plain-family: "Poppins",
+    brand-family: "Poppins",
+    bold-weight: 600,
+    medium-weight: 500,
+    regular-weight: 400,
+  ),
+  density: (
+    scale: 0,
+  ),
 );
 
-$darkTheme: (
-  primary: $theme-primary-dark,
-  accent: $theme-accent,
-  warn: $theme-warn,
-  is-dark: true,
-  foreground: $mat-dark-theme-foreground,
-  background: $mat-dark-theme-background,
+$light-theme: mat.define-theme($light-theme-config);
+$dark-theme: mat.define-theme($dark-theme-config);
+
+$light-mode: (
+  primary: #df9b35,
+  on-primary: $light-text,
+  primary-container: #f5e1c2,
+  on-primary-container: $light-text,
+  secondary: #6eba5e,
+  on-secondary: $light-text,
+  secondary-container: #a0ed8d,
+  on-secondary-container: $light-text,
+  tertiary: #6eba5e,
+  on-tertiary: $light-text,
+  tertiary-container: #a0ed8d,
+  on-tertiary-container: $light-text,
+  error: $warn-color,
+  on-error: $light-text-base,
+  surface: $light-background,
+  surface-variant: $light-step-10,
+  surface-container-lowest: $light-background,
+  surface-container-low: $light-surface,
+  surface-container: $light-surface,
+  surface-container-high: $light-surface,
+  surface-container-highest: $light-surface,
+  inverse-surface: $light-tooltip,
+  inverse-on-surface: $light-text-base,
+  on-surface: $light-text,
+  on-surface-variant: $light-text-muted,
+  outline: $light-outline,
+  outline-variant: $light-divider,
+  app-bar: $light-app-bar,
+  background: $light-background,
+  card: $light-surface,
+  divider: $light-divider,
+  step-5: $light-step-5,
+  step-10: $light-step-10,
+  step-20: $light-step-20,
+  step-30: $light-step-30,
+  profile-bg: $light-profile-bg,
+  profile-hover: $light-profile-hover,
+  profile-active: $light-profile-active,
+  profile-visited: $light-profile-visited,
+  snackbar-text: $light-text,
+  text-soft: rgba(#000000, 0.75),
+  big-title-weight: 600,
+  section-subtitle-size: 20px,
+  section-subtitle-line-height: 30px,
+  section-subtitle-weight: 500,
+  option-selected-text: #df9b35,
+  option-selected-layer: rgba(#df9b35, 0.12),
 );
 
-// Dark Theme Init
-@include mat.all-component-themes($darkTheme);
+$dark-mode: (
+  primary: #30f230,
+  on-primary: rgba($dark-text-base, 0.87),
+  primary-container: #b3ffb3,
+  on-primary-container: rgba($dark-text-base, 0.87),
+  secondary: #df9b35,
+  on-secondary: rgba($dark-text-base, 0.87),
+  secondary-container: #f5e1c2,
+  on-secondary-container: rgba($dark-text-base, 0.87),
+  tertiary: #df9b35,
+  on-tertiary: rgba($dark-text-base, 0.87),
+  tertiary-container: #f5e1c2,
+  on-tertiary-container: rgba($dark-text-base, 0.87),
+  error: $warn-color,
+  on-error: $light-text-base,
+  surface: $dark-background,
+  surface-variant: $dark-step-10,
+  surface-container-lowest: $dark-background,
+  surface-container-low: $dark-surface,
+  surface-container: $dark-surface,
+  surface-container-high: $dark-surface,
+  surface-container-highest: $dark-surface,
+  inverse-surface: $dark-step-20,
+  inverse-on-surface: $light-text-base,
+  on-surface: $dark-text,
+  on-surface-variant: $dark-text-muted,
+  outline: $dark-outline,
+  outline-variant: $dark-divider,
+  app-bar: $dark-surface,
+  background: $dark-background,
+  card: $dark-surface,
+  divider: $dark-divider,
+  step-5: $dark-step-5,
+  step-10: $dark-step-10,
+  step-20: $dark-step-20,
+  step-30: $dark-step-30,
+  profile-bg: $dark-profile-bg,
+  profile-hover: $dark-profile-hover,
+  profile-active: $dark-profile-active,
+  profile-visited: $dark-profile-visited,
+  snackbar-text: $dark-text,
+  text-soft: rgba($light-text-base, 0.75),
+  big-title-weight: 500,
+  section-subtitle-size: 16px,
+  section-subtitle-line-height: 28px,
+  section-subtitle-weight: 400,
+  option-selected-text: #30f230,
+  option-selected-layer: $dark-divider,
+);
 
-@include nav.theme($darkTheme);
-@include base.theme($darkTheme);
-@include fullscreen-img-text.theme($darkTheme);
-@include timeline-item.theme($darkTheme);
-@include timeline-container.theme($darkTheme);
-@include nous-rejoindre.theme($darkTheme);
-@include nous-rejoindre-form.theme($darkTheme);
-@include footer.theme($darkTheme);
-@include profil-card.theme($darkTheme);
-
-body{
-  background-color: $dark-background;
+@mixin litopia-css-vars($mode) {
+  --primary-color: #{map.get($mode, primary)};
+  --litopia-primary: #{map.get($mode, primary)};
+  --litopia-accent: #{map.get($mode, tertiary)};
+  --litopia-warn: #{map.get($mode, error)};
+  --litopia-text: #{map.get($mode, on-surface)};
+  --litopia-text-muted: #{map.get($mode, on-surface-variant)};
+  --litopia-outline: #{map.get($mode, outline)};
+  --litopia-divider: #{map.get($mode, divider)};
+  --litopia-background: #{map.get($mode, background)};
+  --litopia-app-bar: #{map.get($mode, app-bar)};
+  --litopia-card: #{map.get($mode, card)};
+  --litopia-step-5: #{map.get($mode, step-5)};
+  --litopia-step-10: #{map.get($mode, step-10)};
+  --litopia-step-20: #{map.get($mode, step-20)};
+  --litopia-step-30: #{map.get($mode, step-30)};
+  --litopia-profile-link-bg: #{map.get($mode, profile-bg)};
+  --litopia-profile-link-hover: #{map.get($mode, profile-hover)};
+  --litopia-profile-link-active: #{map.get($mode, profile-active)};
+  --litopia-profile-link-visited: #{map.get($mode, profile-visited)};
+  --litopia-snackbar-text: #{map.get($mode, snackbar-text)};
+  --litopia-text-soft: #{map.get($mode, text-soft)};
+  --litopia-big-title-weight: #{map.get($mode, big-title-weight)};
+  --litopia-section-subtitle-size: #{map.get($mode, section-subtitle-size)};
+  --litopia-section-subtitle-line-height: #{map.get(
+      $mode,
+      section-subtitle-line-height
+    )};
+  --litopia-section-subtitle-weight: #{map.get($mode, section-subtitle-weight)};
 }
 
-// Light Theme Init
+@mixin litopia-system-overrides($mode) {
+  @include mat.theme-overrides(
+    (
+      primary: map.get($mode, primary),
+      on-primary: map.get($mode, on-primary),
+      primary-container: map.get($mode, primary-container),
+      on-primary-container: map.get($mode, on-primary-container),
+      secondary: map.get($mode, secondary),
+      on-secondary: map.get($mode, on-secondary),
+      secondary-container: map.get($mode, secondary-container),
+      on-secondary-container: map.get($mode, on-secondary-container),
+      tertiary: map.get($mode, tertiary),
+      on-tertiary: map.get($mode, on-tertiary),
+      tertiary-container: map.get($mode, tertiary-container),
+      on-tertiary-container: map.get($mode, on-tertiary-container),
+      error: map.get($mode, error),
+      on-error: map.get($mode, on-error),
+      surface: map.get($mode, surface),
+      surface-variant: map.get($mode, surface-variant),
+      surface-container-lowest: map.get($mode, surface-container-lowest),
+      surface-container-low: map.get($mode, surface-container-low),
+      surface-container: map.get($mode, surface-container),
+      surface-container-high: map.get($mode, surface-container-high),
+      surface-container-highest: map.get($mode, surface-container-highest),
+      inverse-surface: map.get($mode, inverse-surface),
+      inverse-on-surface: map.get($mode, inverse-on-surface),
+      on-surface: map.get($mode, on-surface),
+      on-surface-variant: map.get($mode, on-surface-variant),
+      outline: map.get($mode, outline),
+      outline-variant: map.get($mode, outline-variant),
+      surface-tint: map.get($mode, primary),
+    )
+  );
+}
+
+@mixin litopia-component-overrides($mode) {
+  @include mat.option-overrides(
+    (
+      selected-state-label-text-color: map.get($mode, option-selected-text),
+      selected-state-layer-color: map.get($mode, option-selected-layer),
+    )
+  );
+
+  @include mat.menu-overrides(
+    (
+      container-color: map.get($mode, card),
+    )
+  );
+
+  @include mat.dialog-overrides(
+    (
+      container-color: map.get($mode, card),
+    )
+  );
+
+  @include mat.select-overrides(
+    (
+      panel-background-color: map.get($mode, card),
+    )
+  );
+}
+
+@include mat.typography-hierarchy($dark-theme, $back-compat: true);
+
+h1.big-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: var(--litopia-big-title-weight);
+}
+
+h1.underline-title,
+h1.article-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 33px;
+  font-weight: 600;
+}
+
+h2.underline-title {
+  margin: 0 0 16px;
+  font-size: var(--litopia-section-subtitle-size);
+  line-height: var(--litopia-section-subtitle-line-height);
+  font-weight: var(--litopia-section-subtitle-weight);
+}
+
+h3.underline-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+p.darkerText {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: var(--litopia-text-soft);
+}
+
+html {
+  color-scheme: dark;
+  @include mat.theme($dark-theme-config);
+  @include litopia-system-overrides($dark-mode);
+  @include litopia-component-overrides($dark-mode);
+  @include litopia-css-vars($dark-mode);
+  @include mat.color-variants-backwards-compatibility($dark-theme);
+}
+
 .light-theme {
-  @include mat.all-component-themes($lightTheme);
-
-  // help to use theme color value and text :
-  // https://material.angular.io/guide/theming-your-components
-  @include nav.theme($lightTheme);
-  @include base.theme($lightTheme);
-  @include fullscreen-img-text.theme($lightTheme);
-  @include timeline-item.theme($lightTheme);
-  @include timeline-container.theme($lightTheme);
-  @include nous-rejoindre.theme($lightTheme);
-  @include nous-rejoindre-form.theme($lightTheme);
-  @include footer.theme($lightTheme);
-  @include profil-card.theme($lightTheme);
+  color-scheme: light;
+  @include mat.theme($light-theme-config);
+  @include litopia-system-overrides($light-mode);
+  @include litopia-component-overrides($light-mode);
+  @include litopia-css-vars($light-mode);
+  @include mat.color-variants-backwards-compatibility($light-theme);
 }
-body.light-theme{
-  background-color: $light-background;
+
+body,
+body.mat-app-background {
+  background-color: var(--litopia-background);
+  color: var(--litopia-text);
+  font-size: 14px;
+  line-height: 20px;
 }
 
 // Handle buttons appropriately, with respect to line-height
-.mat-raised-button, .mat-stroked-button, .mat-flat-button {
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
   padding: 0 1.15em;
-  margin: 0 .65em;
+  margin: 0 0.65em;
   min-width: 3em;
-  line-height: 36.4px
+  line-height: 36.4px;
 }
 
-.mat-standard-chip {
-  padding: .5em .85em;
+.mat-mdc-standard-chip {
+  padding: 0.5em 0.85em;
   min-height: 2.5em;
 }
 
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons Outlined', 'Material Icons', sans-serif;
+  font-family: "Material Icons Outlined", "Material Icons", sans-serif;
   .mat-badge-content {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -306,6 +394,8 @@ body {
   padding: 0;
 }
 
-*{
-  transition: background-color .3s ease-in-out,border .3s ease-in-out;
+* {
+  transition:
+    background-color 0.3s ease-in-out,
+    border 0.3s ease-in-out;
 }

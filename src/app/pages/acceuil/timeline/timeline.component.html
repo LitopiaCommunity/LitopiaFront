@@ -5,15 +5,17 @@
     <div class="start-flag-container">
       <mat-icon color="primary">flag</mat-icon>
     </div>
-    <app-timeline-item *ngFor="let article of articles; let index = index"
-                       [title]="article.title"
-                       [datetime]="article.datetime"
-                       [displayDate]="article.displayDate"
-                       [description]="article.description"
-                       [image]="article.image"
-                       [align]="index%2==1?'left':'right'"
-                       class="timeline-item-container" [class.left]="index%2==1" [class.right]="index%2==0">
-    </app-timeline-item>
+    @for (article of articles; track article; let index = $index) {
+      <app-timeline-item
+        [title]="article.title"
+        [datetime]="article.datetime"
+        [displayDate]="article.displayDate"
+        [description]="article.description"
+        [image]="article.image"
+        [align]="index%2==1?'left':'right'"
+        class="timeline-item-container" [class.left]="index%2==1" [class.right]="index%2==0">
+      </app-timeline-item>
+    }
     <div class="end-flag-container">
       <mat-icon color="primary">tour_flag</mat-icon>
     </div>

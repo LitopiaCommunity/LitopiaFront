@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
-import {articles} from "./season.data"
+import { articles } from './season.data';
 
 export interface TimelineArticle {
-  title:string;
-  displayDate:string;
-  datetime:string;
-  description:string;
-  image:string;
+  title: string;
+  displayDate: string;
+  datetime: string;
+  description: string;
+  image: string;
 }
 
 @Component({
   selector: 'app-timeline',
+  standalone: false,
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.scss','./timeline.theme.component.scss']
+  styleUrls: ['./timeline.component.scss', './timeline.theme.component.scss'],
 })
 export class TimelineComponent {
-
-  articles : TimelineArticle[] = articles;
+  articles: TimelineArticle[] = articles;
 }

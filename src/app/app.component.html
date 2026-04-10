@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
-<main [@fadeAnimations]="getRouteAnimationData()">
-      <router-outlet></router-outlet>
+<main
+  [@.disabled]="animationsDisabled"
+  [@fadeAnimations]="getRouteAnimationData()"
+>
+  <router-outlet></router-outlet>
 </main>

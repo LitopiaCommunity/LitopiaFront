@@ -1,74 +1,46 @@
-@use 'sass:map';
-@use '../../../../../node_modules/@angular/material/index' as mat;
-
-@mixin color($theme) {
-  // Get the color config from the theme.
-  $color-config: mat.get-color-config($theme);
-
-  // Get the primary color palette from the color-config.
-  $primary-palette: map.get($color-config, 'primary');
-  $primary-color:mat.get-color-from-palette($primary-palette, 200);
-
-  $background-palette: map.get($color-config, 'background');
-  $bg-10:mat.get-color-from-palette($background-palette, 10);
-
-  .timeline-item-container{
-    display: flex;
-    position: relative;
-    padding: 30px;
-  }
-
-  .timeline-item-container:not(:last-child) {
-    margin-bottom: -5px;
-  }
-
-  .timeline-item-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    border-top: 5px solid $primary-color;
-    border-bottom: 5px solid $primary-color;
-  }
-
-  .timeline-item-container:nth-child(odd) {
-    flex-direction: row;
-    padding-left: 30px;
-  }
-
-  .timeline-item-container:nth-child(odd)::before {
-    right: 50px;
-    left: 0;
-    border-left: 5px solid $primary-color;
-    border-radius: 50px 0 0 50px;
-  }
-
-  .timeline-item-container:nth-child(even) {
-    flex-direction: row-reverse;
-    padding-right: 30px;
-  }
-
-  .timeline-item-container:nth-child(even)::before {
-    left: 50px;
-    right: 0;
-    border-right: 5px solid $primary-color;
-    border-radius: 0 50px 50px 0;
-  }
-
-  .timeline-container{
-    background-color: $bg-10;
-  }
+.timeline-item-container {
+  display: flex;
+  position: relative;
+  padding: 30px;
 }
 
+.timeline-item-container:not(:last-child) {
+  margin-bottom: -5px;
+}
 
-@mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
-  @if $color-config != null {
-    @include color($theme);
-  }
-  /*
-  $typography-config: mat.get-typography-config($theme);
-  @if $typography-config != null {
-    @include typography($theme);
-  }*/
+.timeline-item-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-top: 5px solid var(--litopia-primary);
+  border-bottom: 5px solid var(--litopia-primary);
+}
+
+.timeline-item-container:nth-child(odd) {
+  flex-direction: row;
+  padding-left: 30px;
+}
+
+.timeline-item-container:nth-child(odd)::before {
+  right: 50px;
+  left: 0;
+  border-left: 5px solid var(--litopia-primary);
+  border-radius: 50px 0 0 50px;
+}
+
+.timeline-item-container:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-right: 30px;
+}
+
+.timeline-item-container:nth-child(even)::before {
+  left: 50px;
+  right: 0;
+  border-right: 5px solid var(--litopia-primary);
+  border-radius: 0 50px 50px 0;
+}
+
+.timeline-container {
+  background-color: var(--litopia-step-10);
 }

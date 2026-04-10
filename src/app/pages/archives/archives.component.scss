@@ -35,6 +35,7 @@
 
 .seasons-grid {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2.5rem;
   margin-bottom: 3rem;
@@ -44,7 +45,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover:not(.unavailable) {
     transform: translateY(-5px);
@@ -80,7 +83,7 @@
     margin-top: 0.5rem;
   }
 
-  mat-chip-list {
+  mat-chip-set {
     display: flex;
     gap: 0.5rem;
     margin-top: 0.5rem;
@@ -131,7 +134,8 @@
     gap: 1rem;
     padding: 1rem;
 
-    button, a {
+    button,
+    a {
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -140,7 +144,11 @@
 }
 
 .thank-you-section {
-  background: linear-gradient(135deg, rgba(103, 58, 183, 0.1) 0%, rgba(63, 81, 181, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(103, 58, 183, 0.1) 0%,
+    rgba(63, 81, 181, 0.1) 100%
+  );
   border-radius: 8px;
   padding: 2rem;
   margin-top: 3rem;

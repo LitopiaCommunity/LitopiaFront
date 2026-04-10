@@ -1,43 +1,68 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {UsersService, UserEntity} from '../../apis/litopia-api';
-import {first, Observable} from 'rxjs';
-import {SeoService} from "../../utils/seo.service";
-import {getMnecraftFullSkin, getProfilePicture, getRole, getUserName} from "../../utils/user-default";
-import {MarkdownService} from "ngx-markdown";
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ActivatedRoute } from '@angular/router';
+import { UsersService, UserEntity } from '../../apis/litopia-api';
+import { first, Observable } from 'rxjs';
+import { FooterComponent } from '../../layout/footer/footer.component';
+import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
+import { SeoService } from '../../utils/seo.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import {
+  getMnecraftFullSkin,
+  getProfilePicture,
+  getRole,
+  getUserName,
+} from '../../utils/user-default';
 
 @Component({
   selector: 'app-profil',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FooterComponent,
+    MatTooltipModule,
+    PageHeaderComponent,
+  ],
   templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+  styleUrls: ['./profil.component.scss'],
 })
 export class ProfilComponent implements OnInit {
   memberObs!: Observable<UserEntity>;
-  descriptionField: string='';
+  descriptionField: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private seo: SeoService,
     private userService: UsersService,
-    private md: MarkdownService
-  ) {
-  }
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.memberObs = this.userService.usersControllerGetUserByNickname(id);
-    this.memberObs.pipe(first()).subscribe(user => {
-      if(user){
-        this.descriptionField = this.md.parse(user.candidature);
+    this.memberObs.pipe(first()).subscribe((user) => {
+      if (user?.candidature) {
+        void this.renderCandidature(user.candidature);
       }
-    })
+    });
 
     this.seo.generateTags({
-      title: 'Litopia - '+id,
-      description: 'Profile de '+id+' sur Litopia',
-      //get image from user
-      image:'https://mc-heads.net/head/'+id+'/100.png'
+      title: 'Litopia - ' + id,
+      description: 'Profile de ' + id + ' sur Litopia',
+      image: 'https://mc-heads.net/head/' + id + '/100.png',
     });
+  }
+
+  private async renderCandidature(candidature: string) {
+    try {
+      const { marked } = await import('marked');
+      const rawHtml = await marked.parse(candidature);
+      this.descriptionField =
+        this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? candidature;
+    } catch (_error) {
+      this.descriptionField = candidature;
+    }
   }
 
   protected readonly getUserName = getUserName;

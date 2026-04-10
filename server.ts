@@ -1,51 +1,106 @@
-import 'zone.js/dist/zone-node';
+import { APP_BASE_HREF } from '@angular/common';
+import { CommonEngine } from '@angular/ssr/node';
+import compression from 'compression';
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+import AppServerModule from './src/main.server';
+import { environment } from './src/environments/environment';
 
-import {APP_BASE_HREF} from '@angular/common';
-import {ngExpressEngine} from '@nguniversal/express-engine';
-import * as express from 'express';
-import {existsSync} from 'fs';
-import {join} from 'path';
-import * as compression from 'compression';
-import {environment} from './src/environments/environment';
+const DEFAULT_SSR_ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1',
+  '[::1]',
+  'litopia.fr',
+  '*.litopia.fr',
+];
 
-import {AppServerModule} from './src/main.server';
-import * as zlib from "zlib";
-import {Z_RLE} from "zlib";
+function getConfiguredAllowedHosts(): readonly string[] {
+  const envAllowedHosts =
+    process.env['NG_ALLOWED_HOSTS']
+      ?.split(',')
+      .map((host) => host.trim())
+      .filter((host) => host.length > 0) ?? [];
+
+  return [...new Set([...DEFAULT_SSR_ALLOWED_HOSTS, ...envAllowedHosts])];
+}
+
+function getFirstHeaderValue(
+  value: string | string[] | undefined,
+): string | undefined {
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+
+  return value?.split(',', 1)[0]?.trim();
+}
+
+function getRequestUrl(req: express.Request): string {
+  const protocol =
+    getFirstHeaderValue(req.headers['x-forwarded-proto']) ?? req.protocol;
+  const host =
+    getFirstHeaderValue(req.headers['x-forwarded-host']) ??
+    req.get('host') ??
+    'localhost';
+
+  return `${protocol}://${host}${req.originalUrl}`;
+}
+
+function getRuntimeConfigPayload(): string {
+  return JSON.stringify({
+    apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath,
+    blueMapUrl: process.env['BLUE_MAP_URL'] || environment.blueMapUrl,
+  }).replace(/</g, '\\u003c');
+}
+
+function injectRuntimeConfig(html: string): string {
+  const runtimeConfigScript = `<script>window.__LITOPIA_RUNTIME_CONFIG__=${getRuntimeConfigPayload()};</script>`;
+
+  return html.includes('</head>')
+    ? html.replace('</head>', `${runtimeConfigScript}</head>`)
+    : `${runtimeConfigScript}${html}`;
+}
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/LitopiaFront/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+  const browserDistFolder = resolve(serverDistFolder, '../browser');
+  const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  server.use(compression({level:9}))
-
-  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/main/modules/express-engine)
-  server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
-  }));
-
-  server.set('view engine', 'html');
-  server.set('views', distFolder);
-
-  server.get('/runtime-config.json', (req, res) => {
-    res.set('Cache-Control', 'no-store');
-    res.json({
-      apiBasePath: process.env['API_BASE_PATH'] || environment.apiBasePath,
-      blueMapUrl: process.env['BLUE_MAP_URL'] || environment.blueMapUrl
-    });
+  const commonEngine = new CommonEngine({
+    allowedHosts: getConfiguredAllowedHosts(),
   });
 
-  // Example Express Rest API endpoints
-  // server.get('/apis/**', (req, res) => { });
-  // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
-  }));
+  server.set('view engine', 'html');
+  server.set('views', browserDistFolder);
+  server.use(compression());
 
-  // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+  // Example Express Rest API endpoints
+  // server.get('/api/**', (req, res) => { });
+  // Serve static files from /browser
+  server.get(
+    '*.*',
+    express.static(browserDistFolder, {
+      maxAge: '1y',
+      index: false,
+    }),
+  );
+
+  // All regular routes use the Angular engine
+  server.get('**', (req, res, next) => {
+    const { baseUrl } = req;
+
+    commonEngine
+      .render({
+        bootstrap: AppServerModule,
+        documentFilePath: indexHtml,
+        url: getRequestUrl(req),
+        publicPath: browserDistFolder,
+        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+      })
+      .then((html: string) => res.send(injectRuntimeConfig(html)))
+      .catch((err: unknown) => next(err));
   });
 
   return server;
@@ -61,14 +116,4 @@ function run(): void {
   });
 }
 
-// Webpack will replace 'require' with '__webpack_require__'
-// '__non_webpack_require__' is a proxy to Node 'require'
-// The below code is to ensure that the server is run only when not requiring the bundle.
-declare const __non_webpack_require__: NodeRequire;
-const mainModule = __non_webpack_require__.main;
-const moduleFilename = mainModule && mainModule.filename || '';
-if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
-  run();
-}
-
-export * from './src/main.server';
+run();

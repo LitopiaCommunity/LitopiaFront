@@ -1,20 +1,40 @@
-<footer class="litopia-footer" fxFlex fxLayoutAlign="space-between" fxLayoutAlign.lt-md="center">
+<footer class="litopia-footer">
   <div class="cc-container">
     <a mat-button class="footer-btn" routerLink="">LITOPIA</a>
     <span>© 2016 - 2026 \</span>
-    <a mat-button class="footer-btn" href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">
+    <a
+      mat-button
+      class="footer-btn"
+      href="https://www.gnu.org/licenses/agpl-3.0.html"
+      target="_blank"
+    >
       <span id="licence">Licence&nbsp;</span>
-      <span>AGPL-3.0</span></a>
-    <span>\</span>
-    <a mat-button class="footer-btn" title="github de litopia" matTooltip="Code source de litopia.fr" fxHide.lt-sm href="https://github.com/LitopiaCommunity/LitopiaFront" target="_blank">
-      <mat-icon svgIcon="github"></mat-icon>
-      <span>&nbsp;Github</span>
+      <span>AGPL-3.0</span>
     </a>
-    <a mat-icon-button class="footer-btn" fxHide fxShow.xs title="Code source de litopia.fr sur github" matTooltip="Code source de litopia.fr" href="https://github.com/LitopiaCommunity/LitopiaFront" target="_blank">
+    <span>\</span>
+    <a
+      mat-button
+      class="footer-btn footer-btn--github-text"
+      title="github de litopia"
+      matTooltip="Code source de litopia.fr"
+      href="https://github.com/LitopiaCommunity/LitopiaFront"
+      target="_blank"
+    >
+      <mat-icon svgIcon="github"></mat-icon>
+      <span>&nbsp;GitHub</span>
+    </a>
+    <a
+      mat-icon-button
+      class="footer-btn footer-btn--github-icon"
+      title="Code source de litopia.fr sur github"
+      matTooltip="Code source de litopia.fr"
+      href="https://github.com/LitopiaCommunity/LitopiaFront"
+      target="_blank"
+    >
       <mat-icon svgIcon="github"></mat-icon>
     </a>
   </div>
-  <div fxHide.lt-md class="footer-thanks">
+  <div class="footer-thanks">
     <span>Un projet de 10 ans. Merci à tous les Litopien.</span>
   </div>
 </footer>
