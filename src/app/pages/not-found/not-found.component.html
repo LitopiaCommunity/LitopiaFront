@@ -1,2 +1,166 @@
-<p>not-found works!</p>
-<app-footer></app-footer>
+<div class="not-found-layout">
+  <section class="not-found-page">
+    <div
+      class="not-found-page__sky-glow not-found-page__sky-glow--sun"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="not-found-page__sky-glow not-found-page__sky-glow--moon"
+      aria-hidden="true"
+    ></div>
+    <div class="not-found-page__scanlines" aria-hidden="true"></div>
+
+    <div class="not-found-page__clouds" aria-hidden="true">
+      <span class="not-found-page__cloud not-found-page__cloud--1"></span>
+      <span class="not-found-page__cloud not-found-page__cloud--2"></span>
+      <span class="not-found-page__cloud not-found-page__cloud--3"></span>
+    </div>
+
+    <div class="not-found-page__pixels" aria-hidden="true">
+      @for (pixel of ambientPixels; track $index) {
+        <span
+          class="not-found-page__pixel"
+          [style.top]="pixel.top"
+          [style.left]="pixel.left"
+          [style.width]="pixel.size"
+          [style.height]="pixel.size"
+          [style.animationDuration]="pixel.duration"
+          [style.animationDelay]="pixel.delay"
+          [style.opacity]="pixel.opacity"
+        ></span>
+      }
+    </div>
+
+    <div class="not-found-page__shell">
+      <div class="not-found-page__copy">
+        <p class="not-found-page__eyebrow">Erreur 404 · Chunk non généré</p>
+
+        <h1 class="not-found-page__title">
+          Le chunk demandé
+          <span>n'a jamais spawn.</span>
+        </h1>
+
+        <p class="not-found-page__lead">
+          On a relancé la seed, poussé la render distance et sondé les archives:
+          cette route flotte quelque part entre le spawn, le Nether et un gros
+          vide administratif.
+        </p>
+
+        <div class="not-found-page__chips">
+          <span class="not-found-page__chip">Route: {{ currentRoute }}</span>
+          <span class="not-found-page__chip">Biome: hors carte</span>
+          <span class="not-found-page__chip">Seed: 4-0-4</span>
+        </div>
+
+        <div class="not-found-page__actions">
+          <a
+            mat-flat-button
+            color="primary"
+            class="not-found-page__action not-found-page__action--primary"
+            routerLink="/"
+          >
+            Retour au spawn
+          </a>
+          <a
+            mat-stroked-button
+            class="not-found-page__action"
+            routerLink="/archives"
+          >
+            Explorer les archives
+          </a>
+        </div>
+      </div>
+
+      <div class="not-found-page__scene">
+        <div class="not-found-page__digits" aria-hidden="true">
+          <span>4</span>
+          <span>0</span>
+          <span>4</span>
+        </div>
+
+        <div class="chunk-scene" aria-hidden="true">
+          <div class="chunk-scene__shadow"></div>
+
+          <div class="chunk-scene__debris">
+            @for (block of floatingBlocks; track $index) {
+              <span
+                class="floating-block"
+                [class.floating-block--grass]="block.variant === 'grass'"
+                [class.floating-block--stone]="block.variant === 'stone'"
+                [class.floating-block--ore]="block.variant === 'ore'"
+                [class.floating-block--log]="block.variant === 'log'"
+                [style.top]="block.top"
+                [style.left]="block.left"
+                [style.--block-size]="block.size"
+                [style.animationDelay]="block.delay"
+              ></span>
+            }
+          </div>
+
+          <div class="chunk-scene__portal-sparks">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="chunk-scene__leaf-drift">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="chunk-scene__terrain">
+            <div class="chunk-scene__grass"></div>
+            <div class="chunk-scene__dirt"></div>
+            <div class="chunk-scene__stone"></div>
+            <div class="chunk-scene__portal-frame">
+              <div class="chunk-scene__portal-runes" aria-hidden="true">
+                <span class="chunk-scene__portal-rune"></span>
+                <span class="chunk-scene__portal-rune"></span>
+                <span class="chunk-scene__portal-rune"></span>
+                <span class="chunk-scene__portal-rune"></span>
+              </div>
+              <div class="chunk-scene__portal-core"></div>
+            </div>
+            <div class="chunk-scene__torch chunk-scene__torch--left"></div>
+            <div class="chunk-scene__torch chunk-scene__torch--right"></div>
+            <div class="chunk-scene__litopia-mark" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="chunk-scene__tree"></div>
+          <div class="chunk-scene__tree chunk-scene__tree--small"></div>
+        </div>
+
+        <p class="not-found-page__hint not-found-page__hint--scene">
+          La bonne nouvelle: le serveur tient toujours debout. La mauvaise: ce
+          chunk a clairement décidé de partir miner ailleurs.
+        </p>
+
+        <div class="status-board">
+          <p class="status-board__title">Journal du chunk</p>
+          <div class="status-board__line">
+            <span>Coord.</span>
+            <strong>{{ currentRoute }}</strong>
+          </div>
+          <div class="status-board__line">
+            <span>Etat</span>
+            <strong>génération interrompue</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer class="not-found-layout__footer"></app-footer>
+</div>
