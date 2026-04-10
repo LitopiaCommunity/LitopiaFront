@@ -3,7 +3,7 @@
   <section class="flex-column timeline-container-boundary">
 
     <div class="start-flag-container">
-      <mat-icon color="primary">flag</mat-icon>
+      <mat-icon class="timeline-flag-icon">flag</mat-icon>
     </div>
     @for (article of articles; track article; let index = $index) {
       <app-timeline-item
@@ -17,7 +17,7 @@
       </app-timeline-item>
     }
     <div class="end-flag-container">
-      <mat-icon color="primary">tour_flag</mat-icon>
+      <mat-icon class="timeline-flag-icon">tour_flag</mat-icon>
     </div>
   </section>
 </section>
