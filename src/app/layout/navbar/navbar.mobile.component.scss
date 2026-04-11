@@ -1,11 +1,11 @@
-mat-toolbar.topbar-container-sm{
+mat-toolbar.topbar-container-sm {
   display: none;
   position: fixed;
   align-items: center;
   width: 100%;
   padding: 10px;
-  z-index: 1;
-  top:0;
+  z-index: 2;
+  top: 0;
   height: 60px;
 }
 
@@ -17,7 +17,8 @@ mat-toolbar.navbar-container-sm {
   width: 100%;
   z-index: 1;
 
-  nav, nav ul {
+  nav,
+  nav ul {
     height: 100%;
     width: 100%;
   }
@@ -53,14 +54,14 @@ mat-toolbar.navbar-container-sm {
   }
 }
 
-@media screen and (max-width:750px)  {
-  .navbar-container-lg{
-    display: none!important;
+@media screen and (max-width: 750px) {
+  .navbar-container-lg {
+    display: none !important;
   }
-  .navbar-container-sm{
-    display: flex!important;
+  .navbar-container-sm {
+    display: flex !important;
   }
-  .topbar-container-sm{
-    display: flex!important;
+  .topbar-container-sm {
+    display: flex !important;
   }
 }

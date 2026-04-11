@@ -2,7 +2,7 @@
 .navbar-container-lg {
   display: flex;
   height: 80px;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   position: fixed;
 
@@ -20,8 +20,9 @@
       white-space: nowrap;
     }
 
-    .nav-link::after, .nav-link::before {
-      content: '';
+    .nav-link::after,
+    .nav-link::before {
+      content: "";
       display: inline-block;
       transition: 0.3s;
       width: 1px;
@@ -38,7 +39,8 @@
       transform: translate(0, -10px);
     }
 
-    .nav-link:hover::after, .nav-link:hover::before {
+    .nav-link:hover::after,
+    .nav-link:hover::before {
       transform: translate(0, 0px);
     }
   }
